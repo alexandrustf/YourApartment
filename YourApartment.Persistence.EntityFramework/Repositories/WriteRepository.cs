@@ -13,15 +13,17 @@ namespace YourApartment.Persistence.EntityFramework
             this.context = context;
         }
 
-        public Task Create(T entity)
+        public async Task Create(T entity)
         {
-            context.Set<T>().Add(entity);
-            return Task.CompletedTask;
+            await context.Set<T>().AddAsync(entity);
         }
-
-        public Task Commit()
+        public async Task Delete(T entity)
         {
-            return context.SaveChangesAsync();
+            context.Set<T>().Remove(entity);
+        }
+        public async Task Commit()
+        {
+            await context.SaveChangesAsync();
         }
     }
 }

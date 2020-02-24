@@ -12,5 +12,9 @@ namespace YourApartment.Business
         Task<Result> Create(CreateAccommodationCommand command);
 
         Task<IEnumerable<AccommodationModel>> GetAll(GetAccommodationsQuery query);
+
+        Task<Maybe<AccommodationModel>> GetById(GetAccommodationById query);
+
+        Task<Result> DeleteById(DeleteAccommodationByIdCommand command);
     }
 }
