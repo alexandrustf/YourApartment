@@ -9,7 +9,8 @@ using YourApartment.Business;
 
 namespace YourApartment.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AccommodationsController : ControllerBase
     {
@@ -22,25 +23,32 @@ namespace YourApartment.WebApi.Controllers
 
         // GET: api/Accommodations
         [HttpGet]
-        public IEnumerable<AccommodationModel> Get()
+        [ProducesResponseType(200)]
+        public async Task<IActionResult> GetAll()
         {
             var command = new GetAccommodationsQuery();
-            var result = accommodationsService.GetAll(command).Result;
-            return result;
+            return Ok(await accommodationsService.GetAll(command));
         }
 
         // GET: api/Accommodations/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{accommodationId:Guid}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> GetAccommodationById([FromRoute] Guid accommodationId)
         {
-            return "value";
+            var query = new GetAccommodationById(accommodationId);
+            var result = await accommodationsService.GetById(query);
+
+            return result.HasValue
+                ? Ok(result.Value)
+                : (IActionResult)NotFound();
         }
 
         // POST: api/Accommodations
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Post([FromBody] CreateAccommodationModel createAccommodationModel)
+        public async Task<IActionResult> AddAccommodation([FromBody] CreateAccommodationModel createAccommodationModel)
         {
             var command = new CreateAccommodationCommand(createAccommodationModel.Title);
             var result = await accommodationsService.Create(command);
@@ -50,7 +58,7 @@ namespace YourApartment.WebApi.Controllers
                 return BadRequest(result.Error);
             }
 
-            return Ok();
+            return CreatedAtAction(null,"Created!");
         }
 
         // PUT: api/Accommodations/5
@@ -60,9 +68,19 @@ namespace YourApartment.WebApi.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{accommodationId:Guid}/messages")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Delete([FromRoute] Guid accommodationId)
         {
+            var command = new DeleteAccommodationByIdCommand(accommodationId);
+            var result = await accommodationsService.DeleteById(command);
+
+            if(result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok();
         }
     }
 }

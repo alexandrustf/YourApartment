@@ -31,6 +31,7 @@ namespace YourApartment.WebApi
         {
             services.AddCors()
                 .AddPersistence(Configuration.GetConnectionString("YourApartment"));
+            services.AddApiVersioning();
             services.AddControllers();
             services.AddSwagger();
             services.AddBusiness();
