@@ -16,5 +16,10 @@ namespace YourApartment.Persistence.EntityFramework
         {
         }
         public DbSet<Apartment> Apartments { get; private set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            modelBuilder.Entity<Apartment>().ToTable("Apartments");
+        }
     }
 }

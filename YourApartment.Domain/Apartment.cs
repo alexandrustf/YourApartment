@@ -10,6 +10,7 @@ namespace YourApartment.Domain
         public Apartment(string title)
         {
             this.Title = title;
+            this.AddedAt = DateTime.Now;
         }
         public string Title { get; set; }
         public int Price { get; set; }

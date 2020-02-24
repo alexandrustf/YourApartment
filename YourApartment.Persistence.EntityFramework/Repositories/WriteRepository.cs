@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using YourApartment.Domain;
 
 namespace YourApartment.Persistence.EntityFramework
@@ -10,21 +7,21 @@ namespace YourApartment.Persistence.EntityFramework
         where T : Entity
     {
         private readonly YourApartmentContext context;
-        public WriteRepository()
-        {}
+        
         public WriteRepository(YourApartmentContext context)
         {
             this.context = context;
         }
 
-        public async Task Create(T entity)
+        public Task Create(T entity)
         {
-            await context.Set<T>().AddAsync(entity);
+            context.Set<T>().Add(entity);
+            return Task.CompletedTask;
         }
 
-        public async Task Commit()
+        public Task Commit()
         {
-            await context.SaveChangesAsync();
+            return context.SaveChangesAsync();
         }
     }
 }

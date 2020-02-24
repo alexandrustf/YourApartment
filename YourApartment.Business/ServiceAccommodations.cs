@@ -5,6 +5,8 @@ using System.Collections.Generic;
 using System.Text;
 using System.Threading.Tasks;
 using YourApartment.Domain;
+using System.Linq;
+
 
 namespace YourApartment.Business
 {
@@ -23,18 +25,18 @@ namespace YourApartment.Business
             this.writeRepository = writeRepository;
         }
 
-        public Task<Result> Create(CreateAccommodationCommand command)
+        public async Task<Result> Create(CreateAccommodationCommand command)
         {
             EnsureArg.IsNotNull(command);
-            return Result.Success( Apartment.Create(command.Title))
-                .OnSuccess(s => writeRepository.Create(s.Value))
-                .OnSuccess(_ => writeRepository.Commit())
-                .OnSuccess(s => Result.Success());
+            return await Result.Success(Apartment.Create(command.Title))
+                .Tap(s => writeRepository.Create(s.Value))
+                .Tap(_ => writeRepository.Commit());
         }
 
-        public async Task<Result<IEnumerable<Apartment>>> GetAll(GetAccommodationsQuery query)
+        public async Task<IEnumerable<AccommodationModel>> GetAll(GetAccommodationsQuery query)
         {
-            throw new NotImplementedException();
+            var accommodations = await readRepository.GetAll();
+            return accommodations.OrderBy(c => c.Title).Select(a => new AccommodationModel(a));
         }
     }
 }

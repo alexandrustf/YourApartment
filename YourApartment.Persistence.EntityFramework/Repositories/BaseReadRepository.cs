@@ -12,16 +12,16 @@ using YourApartment.Domain;
 
 namespace YourApartment.Persistence.EntityFramework
 {
-    internal class ReadRepository<T> : IReadRepository<T>
+    internal abstract class BaseReadRepository<T> : IReadRepository<T>
         where T : Entity
     {
         private readonly YourApartmentContext context;
         
         private readonly IQueryable<T> entitiesSet;
 
-        public ReadRepository()
+        public BaseReadRepository()
         {}
-        protected ReadRepository(YourApartmentContext context)
+        protected BaseReadRepository(YourApartmentContext context)
         {
             EnsureArg.IsNotNull(context);
             this.context = context;

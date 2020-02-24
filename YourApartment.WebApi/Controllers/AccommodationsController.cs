@@ -22,11 +22,11 @@ namespace YourApartment.WebApi.Controllers
 
         // GET: api/Accommodations
         [HttpGet]
-        public IEnumerable<string> Get()
+        public IEnumerable<AccommodationModel> Get()
         {
             var command = new GetAccommodationsQuery();
-            //var result = accommodationsService.
-            return new List<string>{ "dada"};
+            var result = accommodationsService.GetAll(command).Result;
+            return result;
         }
 
         // GET: api/Accommodations/5
@@ -40,11 +40,17 @@ namespace YourApartment.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public bool Post([FromBody] CreateAccommodationModel createAccommodationModel)
+        public async Task<IActionResult> Post([FromBody] CreateAccommodationModel createAccommodationModel)
         {
             var command = new CreateAccommodationCommand(createAccommodationModel.Title);
-            var result = accommodationsService.Create(command);
-            return result.IsCompleted;
+            var result = await accommodationsService.Create(command);
+            
+            if (result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+
+            return Ok();
         }
 
         // PUT: api/Accommodations/5
