@@ -38,5 +38,13 @@ namespace YourApartment.Business
             var accommodations = await readRepository.GetAll();
             return accommodations.OrderBy(c => c.Title).Select(a => new AccommodationModel(a));
         }
+
+        public async Task<Result<AccommodationDetailsModel>> GetSpecifiedAccommodation(GetSpecifiedAccommodationQuery query)
+        {
+            EnsureArg.IsNotNull(query);
+            return (await readRepository.GetById(query.AccommodationId))
+                .ToResult("Accommodation not found")
+                .Map(a => new AccommodationDetailsModel(a));
+        }
     }
 }

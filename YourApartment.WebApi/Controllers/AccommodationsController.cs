@@ -22,6 +22,7 @@ namespace YourApartment.WebApi.Controllers
 
         // GET: api/Accommodations
         [HttpGet]
+        [ProducesResponseType(200)]
         public IEnumerable<AccommodationModel> Get()
         {
             var command = new GetAccommodationsQuery();
@@ -30,17 +31,25 @@ namespace YourApartment.WebApi.Controllers
         }
 
         // GET: api/Accommodations/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
+        [HttpGet("{accommodationId:Guid}")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Get([FromRoute] Guid accommodationId)
         {
-            return "value";
+            var query = new GetSpecifiedAccommodationQuery(accommodationId);
+
+            var result = await accommodationsService.GetSpecifiedAccommodation(query);
+
+            return result.IsFailure
+                ? (IActionResult) BadRequest(Result.Failure(result.Error))
+                : Ok(result.Value);
         }
 
         // POST: api/Accommodations
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Post([FromBody] CreateAccommodationModel createAccommodationModel)
+        public async Task<IActionResult> CreateAccommodation([FromBody] CreateAccommodationModel createAccommodationModel)
         {
             var command = new CreateAccommodationCommand(createAccommodationModel.Title);
             var result = await accommodationsService.Create(command);
