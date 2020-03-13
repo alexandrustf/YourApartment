@@ -5,9 +5,9 @@ using System.Text;
 
 namespace YourApartment.Business
 {
-    public sealed class CreateAccommodationCommand
+    public sealed class CreateAparmentCommand
     {
-        public CreateAccommodationCommand(string title)
+        public CreateAparmentCommand(string title)
         {
             EnsureArg.IsNotNullOrEmpty(title);
             Title = title;

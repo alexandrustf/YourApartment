@@ -11,9 +11,9 @@ namespace YourApartment.Infrastructure
     {
         public AutoMapperProfile()
         {
-            CreateMap<Apartment, AccommodationModel>()
+            CreateMap<Apartment, ApartmentModel>()
                 .ReverseMap();
-            CreateMap<Apartment, AccommodationDetailsModel>()
+            CreateMap<Apartment, ApartmentDetailsModel>()
                 .ReverseMap();
         }
     }

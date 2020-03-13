@@ -4,9 +4,9 @@ using System.Text;
 
 namespace YourApartment.Business
 {
-    public sealed class DeleteAccommodationByIdCommand
+    public sealed class DeleteApartmentByIdCommand
     {
-        public DeleteAccommodationByIdCommand(Guid id)
+        public DeleteApartmentByIdCommand(Guid id)
         {
             Id = id;
         }

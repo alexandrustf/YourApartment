@@ -13,13 +13,13 @@ namespace YourApartment.WebApi.Controllers
     [ApiVersion("1.0")]
     [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
-    public class AccommodationsController : ControllerBase
+    public class ApartmentsController : ControllerBase
     {
-        private readonly IServiceAccommodations accommodationsService;
+        private readonly IApartmentsService _apartmentsService;
 
-        public AccommodationsController(IServiceAccommodations accommodationsService)
+        public ApartmentsController(IApartmentsService apartmentsService)
         {
-            this.accommodationsService = accommodationsService;
+            this._apartmentsService = apartmentsService;
         }
 
         // GET: api/Accommodations
@@ -28,7 +28,7 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> Get([FromQuery]Sieve.Models.SieveModel sieveModel)
         {
             var query = new SieveQuery(sieveModel);
-            return Ok(await accommodationsService.GetAll(query));
+            return Ok(await _apartmentsService.GetAll(query));
         }
 
         // GET: api/Accommodations/5
@@ -37,9 +37,9 @@ namespace YourApartment.WebApi.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> Get([FromRoute] Guid accommodationId)
         {
-            var query = new GetSpecifiedAccommodationQuery(accommodationId);
+            var query = new GetSpecifiedApartmentQuery(accommodationId);
 
-            var result = await accommodationsService.GetSpecifiedAccommodation(query);
+            var result = await _apartmentsService.GetDetailedById(query);
 
             return result.IsFailure
                 ? (IActionResult) BadRequest(Result.Failure(result.Error))
@@ -50,10 +50,10 @@ namespace YourApartment.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateAccommodation([FromBody] CreateAccommodationModel createAccommodationModel)
+        public async Task<IActionResult> CreateAccommodation([FromBody] CreateApartmentModel createApartmentModel)
         {
-            var command = new CreateAccommodationCommand(createAccommodationModel.Title);
-            var result = await accommodationsService.Create(command);
+            var command = new CreateAparmentCommand(createApartmentModel.Title);
+            var result = await _apartmentsService.Create(command);
             
             if (result.IsFailure)
             {
@@ -75,8 +75,8 @@ namespace YourApartment.WebApi.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> Delete([FromRoute] Guid accommodationId)
         {
-            var command = new DeleteAccommodationByIdCommand(accommodationId);
-            var result = await accommodationsService.DeleteById(command);
+            var command = new DeleteApartmentByIdCommand(accommodationId);
+            var result = await _apartmentsService.DeleteById(command);
 
             if (result.IsFailure)
             {

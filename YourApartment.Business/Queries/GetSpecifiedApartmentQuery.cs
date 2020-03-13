@@ -5,9 +5,9 @@ using EnsureThat;
 
 namespace YourApartment.Business
 {
-    public sealed class GetSpecifiedAccommodationQuery
+    public sealed class GetSpecifiedApartmentQuery
     {
-        public GetSpecifiedAccommodationQuery(Guid accommodationId)
+        public GetSpecifiedApartmentQuery(Guid accommodationId)
         {
             EnsureArg.IsNotEmpty(accommodationId);
             AccommodationId = accommodationId;
