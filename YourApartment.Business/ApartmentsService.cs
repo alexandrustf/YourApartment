@@ -59,5 +59,12 @@ namespace YourApartment.Business
 
         private async Task<Maybe<Apartment>> GetApartmentById(Guid id) => (await readRepository.GetById(id));
 
+        public async Task<Result> UpdateApartment(UpdateApartmentCommand command)
+        {
+            return await readRepository.GetById(command.Id)
+                .ToResult("Accommodation not found")
+                .Tap(a => a.Title = command.Title) // CAn be implemented with AUTO mapper
+                .Tap(_ => writeRepository.Commit());
+        }
     }
 }

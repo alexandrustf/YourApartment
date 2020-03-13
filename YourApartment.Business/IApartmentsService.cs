@@ -16,5 +16,7 @@ namespace YourApartment.Business
         Task<Result<ApartmentDetailsModel>> GetDetailedById(GetSpecifiedApartmentQuery query);
 
         Task<Result> DeleteById(DeleteApartmentByIdCommand command);
+
+        Task<Result> UpdateApartment(UpdateApartmentCommand command);
     }
 }
