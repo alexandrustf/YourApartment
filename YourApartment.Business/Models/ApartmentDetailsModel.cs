@@ -5,9 +5,9 @@ using YourApartment.Domain;
 
 namespace YourApartment.Business
 {
-    public sealed class AccommodationDetailsModel
+    public sealed class ApartmentDetailsModel
     {
-        public AccommodationDetailsModel(Apartment apartment)
+        public ApartmentDetailsModel(Apartment apartment)
         {
             Id = apartment.Id;
             Title = apartment.Title;

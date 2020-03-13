@@ -5,13 +5,13 @@ using YourApartment.Domain;
 
 namespace YourApartment.Business
 {
-    public sealed class AccommodationModel
+    public sealed class ApartmentModel
     {
-        public AccommodationModel()
+        public ApartmentModel()
         {
                 
         }
-        public AccommodationModel(Apartment apartment)
+        public ApartmentModel(Apartment apartment)
         {
             Id = apartment.Id;
             Title = apartment.Title;

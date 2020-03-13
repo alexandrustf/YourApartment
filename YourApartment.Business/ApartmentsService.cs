@@ -10,14 +10,14 @@ using System.Linq;
 
 namespace YourApartment.Business
 {
-    public class ServiceAccommodations : IServiceAccommodations
+    public class ApartmentsService : IApartmentsService
     {
         private readonly IReadRepository<Apartment> readRepository;
         private readonly IWriteRepository<Apartment> writeRepository;
-        private readonly IPaginationService<Apartment, AccommodationModel> paginationService;
+        private readonly IPaginationService<Apartment, ApartmentModel> paginationService;
 
 
-        public ServiceAccommodations(IWriteRepository<Apartment> writeRepository, IReadRepository<Apartment> readRepository, IPaginationService<Apartment, AccommodationModel> paginationService)
+        public ApartmentsService(IWriteRepository<Apartment> writeRepository, IReadRepository<Apartment> readRepository, IPaginationService<Apartment, ApartmentModel> paginationService)
         {
             EnsureArg.IsNotNull(readRepository);
             EnsureArg.IsNotNull(writeRepository);
@@ -28,7 +28,7 @@ namespace YourApartment.Business
             this.paginationService = paginationService;
         }
 
-        public async Task<Result> Create(CreateAccommodationCommand command)
+        public async Task<Result> Create(CreateAparmentCommand command)
         {
             EnsureArg.IsNotNull(command);
             return await Result.Success(Apartment.Create(command.Title))
@@ -36,27 +36,21 @@ namespace YourApartment.Business
                 .Tap(_ => writeRepository.Commit());
         }
 
-        public async Task<PageModel<AccommodationModel>> GetAll(SieveQuery query)
+        public async Task<PageModel<ApartmentModel>> GetAll(SieveQuery query)
         {
             EnsureArg.IsNotNull(query);
             return paginationService.GetPage(query.Model);
-            //var accommodations = await readRepository.GetAll();
-            //return accommodations.OrderBy(c => c.Title).Select(a => new AccommodationModel(a));
         }
 
-        public async Task<Result<AccommodationDetailsModel>> GetSpecifiedAccommodation(GetSpecifiedAccommodationQuery query)
+        public async Task<Result<ApartmentDetailsModel>> GetDetailedById(GetSpecifiedApartmentQuery query)
         {
             EnsureArg.IsNotNull(query);
             return (await readRepository.GetById(query.AccommodationId))
                 .ToResult("Accommodation not found")
-                .Map(a => new AccommodationDetailsModel(a));
+                .Map(a => new ApartmentDetailsModel(a));
         }
 
-        public async Task<Maybe<AccommodationModel>> GetById(GetAccommodationById query)
-        {
-            return (await GetApartmentById(query.Id)).Select(p => new AccommodationModel(p));
-        }
-        public async Task<Result> DeleteById(DeleteAccommodationByIdCommand command)
+        public async Task<Result> DeleteById(DeleteApartmentByIdCommand command)
         {
             return await this.GetApartmentById(command.Id).ToResult("Accommodation Does Not Exist")
                 .Tap(a => writeRepository.Delete(a))

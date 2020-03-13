@@ -5,9 +5,9 @@ using System.Text;
 
 namespace YourApartment.Business
 {
-    public sealed class GetAccommodationById
+    public sealed class GetApartmentById
     {
-        public GetAccommodationById(Guid id)
+        public GetApartmentById(Guid id)
         {
             EnsureArg.IsNotEmpty(id);
             Id = id;
