@@ -14,5 +14,7 @@ namespace YourApartment.Business
         Task<PageModel<AccommodationModel>> GetAll(SieveQuery query);
 
         Task<Result<AccommodationDetailsModel>> GetSpecifiedAccommodation(GetSpecifiedAccommodationQuery query);
+
+        Task<Result> DeleteById(DeleteAccommodationByIdCommand command);
     }
 }

@@ -69,7 +69,7 @@ namespace YourApartment.WebApi.Controllers
         {
         }
 
-        // DELETE: api/ApiWithActions/5
+        //DELETE: api/ApiWithActions/5
         [HttpDelete("{accommodationId:Guid}/messages")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
@@ -78,7 +78,7 @@ namespace YourApartment.WebApi.Controllers
             var command = new DeleteAccommodationByIdCommand(accommodationId);
             var result = await accommodationsService.DeleteById(command);
 
-            if(result.IsFailure)
+            if (result.IsFailure)
             {
                 return BadRequest(result.Error);
             }
