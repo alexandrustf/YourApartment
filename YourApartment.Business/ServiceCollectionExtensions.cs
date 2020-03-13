@@ -9,7 +9,7 @@ namespace YourApartment.Business
     {
         public static IServiceCollection AddBusiness(this IServiceCollection services)
         {
-            services.AddScoped<IServiceAccommodations, ServiceAccommodations>();
+            services.AddScoped<IApartmentsService, ApartmentsService>();
 
             return services;
         }
