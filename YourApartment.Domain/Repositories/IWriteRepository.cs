@@ -10,6 +10,8 @@ namespace YourApartment.Domain
     {
         Task Create(T entity);
 
+        Task Delete(T entity);
+
         Task Commit();
     }
 }

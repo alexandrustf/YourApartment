@@ -10,7 +10,8 @@ using YourApartment.Business;
 
 namespace YourApartment.WebApi.Controllers
 {
-    [Route("api/[controller]")]
+    [ApiVersion("1.0")]
+    [Route("api/v{version:apiVersion}/[controller]")]
     [ApiController]
     public class AccommodationsController : ControllerBase
     {
@@ -59,7 +60,7 @@ namespace YourApartment.WebApi.Controllers
                 return BadRequest(result.Error);
             }
 
-            return Ok();
+            return CreatedAtAction(null,"Created!");
         }
 
         // PUT: api/Accommodations/5
@@ -69,9 +70,19 @@ namespace YourApartment.WebApi.Controllers
         }
 
         // DELETE: api/ApiWithActions/5
-        [HttpDelete("{id}")]
-        public void Delete(int id)
+        [HttpDelete("{accommodationId:Guid}/messages")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Delete([FromRoute] Guid accommodationId)
         {
+            var command = new DeleteAccommodationByIdCommand(accommodationId);
+            var result = await accommodationsService.DeleteById(command);
+
+            if(result.IsFailure)
+            {
+                return BadRequest(result.Error);
+            }
+            return Ok();
         }
     }
 }

@@ -51,5 +51,19 @@ namespace YourApartment.Business
                 .ToResult("Accommodation not found")
                 .Map(a => new AccommodationDetailsModel(a));
         }
+
+        public async Task<Maybe<AccommodationModel>> GetById(GetAccommodationById query)
+        {
+            return (await GetApartmentById(query.Id)).Select(p => new AccommodationModel(p));
+        }
+        public async Task<Result> DeleteById(DeleteAccommodationByIdCommand command)
+        {
+            return await this.GetApartmentById(command.Id).ToResult("Accommodation Does Not Exist")
+                .Tap(a => writeRepository.Delete(a))
+                .Tap(_ => writeRepository.Commit());
+        }
+
+        private async Task<Maybe<Apartment>> GetApartmentById(Guid id) => (await readRepository.GetById(id));
+
     }
 }
