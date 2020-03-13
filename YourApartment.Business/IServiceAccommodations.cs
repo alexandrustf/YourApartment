@@ -11,7 +11,7 @@ namespace YourApartment.Business
     {
         Task<Result> Create(CreateAccommodationCommand command);
 
-        Task<IEnumerable<AccommodationModel>> GetAll(GetAccommodationsQuery query);
+        Task<PageModel<AccommodationModel>> GetAll(SieveQuery query);
 
         Task<Result<AccommodationDetailsModel>> GetSpecifiedAccommodation(GetSpecifiedAccommodationQuery query);
     }

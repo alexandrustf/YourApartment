@@ -5,6 +5,7 @@ using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Sieve.Models;
 using YourApartment.Business;
 
 namespace YourApartment.WebApi.Controllers
@@ -23,11 +24,10 @@ namespace YourApartment.WebApi.Controllers
         // GET: api/Accommodations
         [HttpGet]
         [ProducesResponseType(200)]
-        public IEnumerable<AccommodationModel> Get()
+        public async Task<IActionResult> Get([FromQuery]Sieve.Models.SieveModel sieveModel)
         {
-            var command = new GetAccommodationsQuery();
-            var result = accommodationsService.GetAll(command).Result;
-            return result;
+            var query = new SieveQuery(sieveModel);
+            return Ok(await accommodationsService.GetAll(query));
         }
 
         // GET: api/Accommodations/5

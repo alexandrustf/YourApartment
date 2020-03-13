@@ -7,6 +7,10 @@ namespace YourApartment.Business
 {
     public sealed class AccommodationModel
     {
+        public AccommodationModel()
+        {
+                
+        }
         public AccommodationModel(Apartment apartment)
         {
             Id = apartment.Id;
