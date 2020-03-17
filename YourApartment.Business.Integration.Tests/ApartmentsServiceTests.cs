@@ -17,8 +17,8 @@ namespace YourApartment.Business.Integration.Tests
             var context = ContextFactory.BuildContext();
             //this.readRepository = new ApartmentsReadRepository(context);
             //this.writeRepository = new WriteRepository<Apartment>(context);
-            this.paginationService = paginationService;
-            this.sut = sut;
+            //this.paginationService = paginationService;
+            //this.sut = sut;
         }
     }
 }

@@ -1,0 +1,7 @@
+.apartments-container {
+  display: flex;
+  flex-wrap: wrap;
+}
+.apartment-card {
+  margin: 50px;
+}
