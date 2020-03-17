@@ -13,8 +13,8 @@ namespace YourApartment.Persistence.EntityFramework
         {
             services.AddDbContext<YourApartmentContext>(options => options.UseSqlServer(connectionString));
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
-            services.AddScoped(typeof(IReadRepository<>), typeof(AccommodationsReadRepository<>));
-            services.AddScoped<IReadRepository<Apartment>, AccommodationsReadRepository<Apartment>>();
+            services.AddScoped(typeof(IReadRepository<>), typeof(ApartmentsReadRepository<>));
+            services.AddScoped<IReadRepository<Apartment>, ApartmentsReadRepository<Apartment>>();
             services.AddScoped<IWriteRepository<Apartment>, WriteRepository<Apartment>>();
 
             return services;
