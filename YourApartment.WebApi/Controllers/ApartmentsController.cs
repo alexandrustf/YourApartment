@@ -32,13 +32,12 @@ namespace YourApartment.WebApi.Controllers
         }
 
         // GET: api/Accommodations/5
-        [HttpGet("{accommodationId:Guid}")]
+        [HttpGet("{apartmentId:Guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> Get([FromRoute] Guid accommodationId)
+        public async Task<IActionResult> Get([FromRoute] Guid apartmentId)
         {
-            var query = new GetSpecifiedApartmentQuery(accommodationId);
-
+            var query = new GetSpecifiedApartmentQuery(apartmentId);
             var result = await _apartmentsService.GetDetailedById(query);
 
             return result.IsFailure
@@ -50,7 +49,8 @@ namespace YourApartment.WebApi.Controllers
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
-        public async Task<IActionResult> CreateAccommodation([FromBody] CreateApartmentModel createApartmentModel)
+        public async Task<IActionResult> CreateApartment([FromBody] CreateApartmentModel createApartmentModel)
+
         {
             var command = new CreateAparmentCommand(createApartmentModel.Title);
             var result = await _apartmentsService.Create(command);
@@ -64,18 +64,27 @@ namespace YourApartment.WebApi.Controllers
         }
 
         // PUT: api/Accommodations/5
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
+        [HttpPut("{apartmentId:Guid}")]
+        [ProducesResponseType(204)]
+        [ProducesResponseType(404)]
+
+        public async Task<IActionResult> UpdateApartment([FromRoute] Guid apartmentId, [FromBody] UpdateApartmentModel updateApartmentModel)
         {
+            var command = new UpdateApartmentCommand(apartmentId, updateApartmentModel.Title);
+            var result = await _apartmentsService.UpdateApartment(command);
+
+            return result.IsFailure
+                ? (IActionResult) BadRequest(Result.Failure(result.Error))
+                : NoContent();
         }
 
         //DELETE: api/ApiWithActions/5
-        [HttpDelete("{accommodationId:Guid}/messages")]
+        [HttpDelete("{apartmentId:Guid}/messages")]
         [ProducesResponseType(200)]
-        [ProducesResponseType(400)]
-        public async Task<IActionResult> Delete([FromRoute] Guid accommodationId)
+        [ProducesResponseType(404)]
+        public async Task<IActionResult> Delete([FromRoute] Guid apartmentId)
         {
-            var command = new DeleteApartmentByIdCommand(accommodationId);
+            var command = new DeleteApartmentByIdCommand(apartmentId);
             var result = await _apartmentsService.DeleteById(command);
 
             if (result.IsFailure)

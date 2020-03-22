@@ -6,7 +6,7 @@ namespace YourApartment.Domain
 {
     public static class ApartmentEnums
     {
-        enum Type : ushort
+        public enum Type : ushort
         {
             Decomandat = 0,
             Semidecomandat = 1,
@@ -15,7 +15,7 @@ namespace YourApartment.Domain
             CameraCamin = 4
         }
 
-        enum PostedBy : ushort
+        public enum PostedBy : ushort
         {
             Agentii = 0,
             Particulari = 1,
