@@ -47,7 +47,7 @@ namespace YourApartment.Business
             EnsureArg.IsNotNull(query);
             return (await readRepository.GetById(query.AccommodationId))
                 .ToResult("Accommodation not found")
-                .Map(a => new ApartmentDetailsModel(a));
+                .Map(a => new ApartmentDetailsModel(a));// CAn be implemented with AUTO mapper
         }
 
         public async Task<Result> DeleteById(DeleteApartmentByIdCommand command)
@@ -63,7 +63,7 @@ namespace YourApartment.Business
         {
             return await readRepository.GetById(command.Id)
                 .ToResult("Accommodation not found")
-                .Tap(a => a.Title = command.Title) // CAn be implemented with AUTO mapper
+                .Tap(a => a.Update(command.Title)) 
                 .Tap(_ => writeRepository.Commit());
         }
     }

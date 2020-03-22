@@ -31,16 +31,37 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
+                    b.Property<int>("Building")
+                        .HasColumnType("int");
+
                     b.Property<int>("Confort")
                         .HasColumnType("int");
 
                     b.Property<int>("ConstructionYear")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
+                    b.Property<string>("Landmark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("NumberOfRooms")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PartitioningType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostedFor")
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
@@ -48,6 +69,9 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
 
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("TotalNumberOfFloors")
+                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
