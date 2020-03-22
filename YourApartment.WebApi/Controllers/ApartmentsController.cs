@@ -38,7 +38,6 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> Get([FromRoute] Guid apartmentId)
         {
             var query = new GetSpecifiedApartmentQuery(apartmentId);
-
             var result = await _apartmentsService.GetDetailedById(query);
 
             return result.IsFailure
@@ -51,6 +50,7 @@ namespace YourApartment.WebApi.Controllers
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> CreateApartment([FromBody] CreateApartmentModel createApartmentModel)
+
         {
             var command = new CreateAparmentCommand(createApartmentModel.Title);
             var result = await _apartmentsService.Create(command);
