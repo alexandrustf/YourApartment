@@ -9,8 +9,6 @@ namespace YourApartment.Domain
 {
     public class Apartment : Entity
     {
-        private readonly ICollection<Guid> apartmentImagesIds = new List<Guid>();
-
         public Apartment(string title)
         {
             this.Title = title;
@@ -49,8 +47,6 @@ namespace YourApartment.Domain
         public ApartmentEnums.Building Building { get; private set; }
         public ApartmentEnums.PostedFor PostedFor { get; private set; }
         public DateTime AddedAt { get; private set; }
-
-        public IEnumerable<Guid> ImagesIds => apartmentImagesIds;
 
         public Result Update(string title)
         {

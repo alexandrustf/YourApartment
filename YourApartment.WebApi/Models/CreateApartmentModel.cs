@@ -8,5 +8,7 @@ namespace YourApartment.WebApi
     public class CreateApartmentModel
     {
         public string Title { get; set; }
+
+        public byte[] ImageBytes { get; set; }
     }
 }

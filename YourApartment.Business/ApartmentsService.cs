@@ -15,24 +15,30 @@ namespace YourApartment.Business
         private readonly IReadRepository<Apartment> readRepository;
         private readonly IWriteRepository<Apartment> writeRepository;
         private readonly IPaginationService<Apartment, ApartmentModel> paginationService;
+        private readonly IImageRepository imageRepository;
 
 
-        public ApartmentsService(IWriteRepository<Apartment> writeRepository, IReadRepository<Apartment> readRepository, IPaginationService<Apartment, ApartmentModel> paginationService)
+        public ApartmentsService(IWriteRepository<Apartment> writeRepository, IReadRepository<Apartment> readRepository, IPaginationService<Apartment, ApartmentModel> paginationService, IImageRepository imageRepository)
         {
             EnsureArg.IsNotNull(readRepository);
             EnsureArg.IsNotNull(writeRepository);
             EnsureArg.IsNotNull(paginationService);
+            EnsureArg.IsNotNull(imageRepository);
 
             this.readRepository = readRepository;
             this.writeRepository = writeRepository;
             this.paginationService = paginationService;
+            this.imageRepository = imageRepository;
         }
 
-        public async Task<Result> Create(CreateAparmentCommand command)
+        public async Task<Result> Create(CreateApartmentCommand command)
         {
             EnsureArg.IsNotNull(command);
             return await Result.Success(Apartment.Create(command.Title))
-                .Tap(s => writeRepository.Create(s.Value))
+                .Map(a => a.Value)
+                .Tap(s => writeRepository.Create(s))
+                .Tap(s => imageRepository.AddImage(s.Id, command.ImageBytes))
+                .Tap(a => imageRepository.SaveChanges())
                 .Tap(_ => writeRepository.Commit());
         }
 
@@ -47,7 +53,7 @@ namespace YourApartment.Business
             EnsureArg.IsNotNull(query);
             return (await readRepository.GetById(query.AccommodationId))
                 .ToResult("Accommodation not found")
-                .Map(a => new ApartmentDetailsModel(a));// CAn be implemented with AUTO mapper
+                .Map(a => new ApartmentDetailsModel(a, imageRepository.GetImagesForApartment(a.Id).Result));// CAn be implemented with AUTO mapper
         }
 
         public async Task<Result> DeleteById(DeleteApartmentByIdCommand command)
