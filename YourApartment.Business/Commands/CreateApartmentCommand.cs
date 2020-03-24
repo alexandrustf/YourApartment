@@ -10,9 +10,12 @@ namespace YourApartment.Business
         public CreateApartmentCommand(string title, IEnumerable<byte[]> imageBytes)
         {
             EnsureArg.IsNotNullOrEmpty(title);
-            EnsureArg.IsNotNull(imageBytes);
 
             Title = title;
+            if (imageBytes == null)
+            {
+                imageBytes = new List<byte[]>();
+            }
             ImageBytes = imageBytes;
         }
 

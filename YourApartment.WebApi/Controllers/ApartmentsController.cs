@@ -79,7 +79,7 @@ namespace YourApartment.WebApi.Controllers
         }
 
         //DELETE: api/ApiWithActions/5
-        [HttpDelete("{apartmentId:Guid}/messages")]
+        [HttpDelete("{apartmentId:Guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Delete([FromRoute] Guid apartmentId)
