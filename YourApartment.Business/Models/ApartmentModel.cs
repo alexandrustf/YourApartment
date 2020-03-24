@@ -18,6 +18,7 @@ namespace YourApartment.Business
             Price = apartment.Price;
             Area = apartment.Area;
             NumberOfRooms = apartment.NumberOfRooms;
+            Reper = apartment.Landmark;
         }
 
         public Guid Id { get; set; }
@@ -25,5 +26,6 @@ namespace YourApartment.Business
         public int Price { get; set; }
         public int Area { get; set; }
         public int NumberOfRooms { get; set; }
+        public string Reper { get; set; }
     }
 }

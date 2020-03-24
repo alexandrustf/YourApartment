@@ -52,7 +52,7 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> CreateApartment([FromBody] CreateApartmentModel createApartmentModel)
 
         {
-            var command = new CreateAparmentCommand(createApartmentModel.Title);
+            var command = new CreateApartmentCommand(createApartmentModel.Title, createApartmentModel.ImagesBytes);
             var result = await _apartmentsService.Create(command);
             
             if (result.IsFailure)
@@ -79,7 +79,7 @@ namespace YourApartment.WebApi.Controllers
         }
 
         //DELETE: api/ApiWithActions/5
-        [HttpDelete("{apartmentId:Guid}/messages")]
+        [HttpDelete("{apartmentId:Guid}")]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Delete([FromRoute] Guid apartmentId)

@@ -6,7 +6,7 @@ namespace YourApartment.Domain
 {
     public static class ApartmentEnums
     {
-        public enum Type : ushort
+        public enum PartitioningType : ushort
         {
             Decomandat = 0,
             Semidecomandat = 1,
@@ -20,6 +20,20 @@ namespace YourApartment.Domain
             Agentii = 0,
             Particulari = 1,
             Dezvoltatori = 2
+        }
+
+        public enum Building : ushort
+        {
+            BlocApartament = 0,
+            House = 1,
+            Comercial= 2,
+            Teren = 3
+        }
+
+        public enum PostedFor : ushort
+        {
+            Rent = 0,
+            Buy = 1
         }
     }
 }
