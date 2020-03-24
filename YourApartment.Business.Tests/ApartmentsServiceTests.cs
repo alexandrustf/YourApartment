@@ -17,6 +17,7 @@ namespace YourApartment.Business.Tests
         private Mock<IReadRepository<Apartment>> readRepositoryMock;
         private Mock<IWriteRepository<Apartment>> writeRepositoryMock;
         private Mock<IPaginationService<Apartment, ApartmentModel>> paginationMock;
+        private Mock<IImageRepository> imageRepository;
 
         [Fact]
         public async Task Given_Create_When_ApartmentIsValid_Then_ShouldSucceed()
@@ -33,8 +34,8 @@ namespace YourApartment.Business.Tests
             result.IsSuccess.Should().BeTrue();
         }
 
-        private CreateAparmentCommand GetCreateApartmentCommand()
-            => new CreateAparmentCommand("My new Apartment");
+        private CreateApartmentCommand GetCreateApartmentCommand()
+            => new CreateApartmentCommand("My new Apartment", new List<byte[]>{ new byte[] { } });
 
         protected override void SetupMocks(MockRepository mockRepository)
         {
@@ -44,6 +45,6 @@ namespace YourApartment.Business.Tests
         }
 
         protected override IApartmentsService CreateSystemUnderTest()
-            => new ApartmentsService(writeRepositoryMock.Object, readRepositoryMock.Object, paginationMock.Object);
+            => new ApartmentsService(writeRepositoryMock.Object, readRepositoryMock.Object, paginationMock.Object, imageRepository.Object);
     }
 }

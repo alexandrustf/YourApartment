@@ -39,6 +39,8 @@ namespace YourApartment.Infrastructure.SieveConfiguration
                 .CanFilter()
                 .CanSort()
                 .HasName(nameof(Apartment.ConstructionYear));
+            
+            // TODO ALL PROPERTIES TO BE ADDED!
         }
     }
 }

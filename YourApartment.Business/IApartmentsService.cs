@@ -9,7 +9,7 @@ namespace YourApartment.Business
 {
     public interface IApartmentsService
     {
-        Task<Result> Create(CreateAparmentCommand command);
+        Task<Result> Create(CreateApartmentCommand command);
 
         Task<PageModel<ApartmentModel>> GetAll(SieveQuery query);
 

@@ -7,7 +7,7 @@ namespace YourApartment.Business
 {
     public sealed class ApartmentDetailsModel
     {
-        public ApartmentDetailsModel(Apartment apartment)
+        public ApartmentDetailsModel(Apartment apartment, IEnumerable<byte[]> images)
         {
             Id = apartment.Id;
             Title = apartment.Title;
@@ -15,20 +15,30 @@ namespace YourApartment.Business
             Area = apartment.Area;
             NumberOfRooms = apartment.NumberOfRooms;
             Floor = apartment.Floor;
+            TotalNumberOfFloors = apartment.TotalNumberOfFloors;
+            Reper = apartment.Landmark;
+            Adress = apartment.Location;
+            Description = apartment.Description;
             Confort = apartment.Confort;
             ConstructionYear = apartment.ConstructionYear;
             AddedAt = apartment.AddedAt;
-
+            Images = images;
         }
+
         public Guid Id { get; set; }
-        public string Title { get; set; }
-        public int Price { get; set; }
-        public int Area { get; set; }
-        public int NumberOfRooms { get; set; }
-        public int Floor { get; set; }
-        public int Confort { get; set; }
-        public int ConstructionYear { get; set; }
-        public DateTime AddedAt { get; set; }
+        public string Title { get; private set; }
+        public int Price { get; private set; }
+        public int Area { get; private set; }
+        public int NumberOfRooms { get; private set; }
+        public int Floor { get; private set; }
+        public int TotalNumberOfFloors { get; private set; }
+        public string Reper { get; private set; }
+        public string Adress { get; private set; }
+        public string Description { get; private set; }
+        public int Confort { get; private set; }
+        public int ConstructionYear { get; private set; }
+        public DateTime AddedAt { get; private set; }
+        public IEnumerable<byte[]> Images { get; private set; }
 
     }
 }
