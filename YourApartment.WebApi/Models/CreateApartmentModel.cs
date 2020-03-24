@@ -9,6 +9,6 @@ namespace YourApartment.WebApi
     {
         public string Title { get; set; }
 
-        public byte[] ImageBytes { get; set; }
+        public IEnumerable<byte[]> ImagesBytes { get; set; }
     }
 }

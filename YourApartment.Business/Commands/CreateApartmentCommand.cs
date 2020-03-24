@@ -7,7 +7,7 @@ namespace YourApartment.Business
 {
     public sealed class CreateApartmentCommand
     {
-        public CreateApartmentCommand(string title, byte[] imageBytes)
+        public CreateApartmentCommand(string title, IEnumerable<byte[]> imageBytes)
         {
             EnsureArg.IsNotNullOrEmpty(title);
             EnsureArg.IsNotNull(imageBytes);
@@ -18,6 +18,6 @@ namespace YourApartment.Business
 
         public string Title { get; set; }
 
-        public byte[] ImageBytes { get; set; }
+        public IEnumerable<byte[]> ImageBytes { get; set; }
     }
 }

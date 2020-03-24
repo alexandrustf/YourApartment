@@ -15,18 +15,18 @@ namespace YourApartment.Infrastructure
     public class ImageRepository : IImageRepository
     {
         readonly string folderPath;
-        readonly IDictionary<String, ApartmentImage> addImages;
+        readonly IDictionary<string, ApartmentImage> addImages;
         readonly ICollection<ApartmentImage> removeImages;
         private readonly ICollection<string> addedPaths = new List<string>();
 
         public IEnumerable<string> AddedImagePaths => addedPaths;
         public ImageRepository(IConfiguration configuration)
         {
-            this.addImages = new Dictionary<String, ApartmentImage>();
+            this.addImages = new Dictionary<string, ApartmentImage>();
             this.removeImages = new List<ApartmentImage>();
 
-            this.folderPath = configuration.GetValue<String>("Images:Folder");
-            if (String.IsNullOrWhiteSpace(this.folderPath))
+            this.folderPath = configuration.GetValue<string>("Images:Folder");
+            if (string.IsNullOrWhiteSpace(this.folderPath))
             {
                 //Throw exception  
             }
@@ -36,10 +36,13 @@ namespace YourApartment.Infrastructure
             }
         }
 
-        public async Task AddImage(Guid apartmentId, byte[] image)
+        public async Task AddImage(Guid apartmentId, IEnumerable<byte[]> images)
         {
-            var apartmentImage = new ApartmentImage(apartmentId) { Content = image }; // TODO MAKE WITH CREATE
-            await AddImage(apartmentImage);
+            foreach (var apartmentImage in images.Select(image => new ApartmentImage(apartmentId) { Content = image }))
+            {
+                await AddImage(apartmentImage);
+            }
+            //images.ToList().ForEach(async i => await AddImage(new ApartmentImage(apartmentId) { Content = i };));
         }
 
         public async Task DeleteImage(Guid apartmentId)
@@ -54,14 +57,14 @@ namespace YourApartment.Infrastructure
             await Task.CompletedTask;
         }
 
-        public async Task<byte[]> GetImage(Guid productId, String name)
+        public async Task<byte[]> GetImage(Guid apartmentId, String name)
         {
-            return await File.ReadAllBytesAsync(GetImagePath(productId, name));
+            return await File.ReadAllBytesAsync(GetImagePath(apartmentId, name));
         }
 
-        public async Task<IEnumerable<byte[]>> GetImagesForApartment(Guid productId)
+        public async Task<IEnumerable<byte[]>> GetImagesForApartment(Guid apartmentId)
         {
-            string[] fileEntries = Directory.GetFiles(GetApartmentImageFolder(productId));
+            string[] fileEntries = Directory.GetFiles(GetApartmentImageFolder(apartmentId));
             var images = new List<byte[]>();
             foreach (var fileEntry in fileEntries)
             {

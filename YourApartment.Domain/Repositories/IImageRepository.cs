@@ -6,7 +6,7 @@ namespace YourApartment.Domain
 {
     public interface IImageRepository
     {
-        Task AddImage(Guid apartmentId, byte[] image);
+        Task AddImage(Guid apartmentId, IEnumerable<byte[]> image);
         Task DeleteImage(Guid apartmentId);
         Task<IEnumerable<byte[]>> GetImagesForApartment(Guid apartmentId);
         Task SaveChanges();
