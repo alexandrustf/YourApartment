@@ -1,6 +1,22 @@
-<p>apartments-rent-list works!</p>
-<div class="apartments-container">
-  <div class="apartment-card" *ngFor="let apartment of apartmentsList">
-    {{ apartment.title }}
+<div class="apartments-rent-page-container">
+  <div class="subheader-rent-apartments">
+    <div class="search-bar-container">
+      <div class="icon-search"></div>
+      <div class="search-box-container"></div>
+    </div>
+    <div class="filters-bar-container">
+      <div class="left-filters"></div>
+      <div class="See-Map-button"></div>
+    </div>
   </div>
+
+  <div class="apartments-search-container">
+    <div class="number-of-apartments"></div>
+    <div class="apartments-list-container">
+      <div class="apartment-card" *ngFor="let apartment of apartmentsList">
+        {{ apartment.title }}
+      </div>
+    </div>
+  </div>
+  <div class="pagination-controls-container"></div>
 </div>

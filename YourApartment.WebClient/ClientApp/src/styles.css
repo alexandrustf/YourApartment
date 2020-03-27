@@ -14,3 +14,18 @@ code {
   background-color: #1b6ec2;
   border-color: #1861ac;
 }
+.container {
+  padding-left: 0;
+  margin-left: 0;
+  margin-right: 0;
+  padding-right: 0;
+  width: 100% !important;
+}
+.YourApartment-container {
+  position: relative;
+  width: 100%;
+}
+app-nav-menu {
+  position: absolute;
+  width: 100%;
+}
