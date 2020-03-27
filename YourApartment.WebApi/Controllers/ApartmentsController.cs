@@ -52,7 +52,19 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> CreateApartment([FromBody] CreateApartmentModel createApartmentModel)
 
         {
-            var command = new CreateApartmentCommand(createApartmentModel.Title, createApartmentModel.ImagesBytes);
+            var command = new CreateApartmentCommand(
+                createApartmentModel.Title,
+                createApartmentModel.Price, 
+                createApartmentModel.Area,
+                createApartmentModel.NumberOfRooms,
+                createApartmentModel.Floor,
+                createApartmentModel.TotalNumberOfFloors,
+                createApartmentModel.Reper,
+                createApartmentModel.Adress,
+                createApartmentModel.Description,
+                createApartmentModel.Confort,
+                createApartmentModel.ConstructionYear,
+                createApartmentModel.ImagesBytes);
             var result = await _apartmentsService.Create(command);
             
             if (result.IsFailure)

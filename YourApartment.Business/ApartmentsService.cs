@@ -45,7 +45,15 @@ namespace YourApartment.Business
         public async Task<PageModel<ApartmentModel>> GetAll(SieveQuery query)
         {
             EnsureArg.IsNotNull(query);
-            return paginationService.GetPage(query.Model);
+            var page = paginationService.GetPage(query.Model);
+            //foreach (var apartmentModel in page.Records)
+            //{
+            //    var ceva = await imageRepository.GetImagesForApartment(apartmentModel.Id);
+            //    ceva.ToList().ForEach(a => apartmentModel.Images.ap);
+            //    apartmentModel.Images = new List<byte[]>(ceva);
+            //}
+            //// page.Records.ToList().ForEach(a => a.Images = imageRepository.GetImagesForApartment(a.Id).Result);
+            return page;
         }
 
         public async Task<Result<ApartmentDetailsModel>> GetDetailedById(GetSpecifiedApartmentQuery query)

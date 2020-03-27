@@ -36,6 +36,20 @@ namespace YourApartment.Infrastructure
             }
         }
 
+        public ImageRepository(string path)
+        {
+            this.addImages = new Dictionary<string, ApartmentImage>();
+            this.removeImages = new List<ApartmentImage>();
+            this.folderPath = path;
+            if (string.IsNullOrWhiteSpace(this.folderPath))
+            {
+                //Throw exception  
+            }
+            else if (!Directory.Exists(folderPath))
+            {
+                Directory.CreateDirectory(folderPath);
+            }
+        }
         public async Task AddImage(Guid apartmentId, IEnumerable<byte[]> images)
         {
             foreach (var apartmentImage in images.Select(image => new ApartmentImage(apartmentId) { Content = image }))
