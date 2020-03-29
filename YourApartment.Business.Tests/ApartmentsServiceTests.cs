@@ -19,6 +19,7 @@ namespace YourApartment.Business.Tests
         private Mock<IPaginationService<Apartment, ApartmentModel>> paginationMock;
         private Mock<IImageRepository> imageRepository;
 
+
         [Fact]
         public async Task Given_Create_When_ApartmentIsValid_Then_ShouldSucceed()
         {
@@ -49,6 +50,7 @@ namespace YourApartment.Business.Tests
                 1980,
                 new List<byte[]>{ new byte[] { } });
 
+
         protected override void SetupMocks(MockRepository mockRepository)
         {
             readRepositoryMock = mockRepository.Create<IReadRepository<Apartment>>();
@@ -58,5 +60,6 @@ namespace YourApartment.Business.Tests
 
         protected override IApartmentsService CreateSystemUnderTest()
             => new ApartmentsService(writeRepositoryMock.Object, readRepositoryMock.Object, paginationMock.Object, imageRepository.Object);
+
     }
 }
