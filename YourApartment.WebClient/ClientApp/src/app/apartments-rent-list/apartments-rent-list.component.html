@@ -1,12 +1,40 @@
 <div class="apartments-rent-page-container">
   <div class="subheader-rent-apartments">
     <div class="search-bar-container">
-      <div class="icon-search"></div>
-      <div class="search-box-container"></div>
+      <div class="icon-search-container">
+        <div class="icon-search"></div>
+      </div>
+      <div class="search-box">
+        <label for="search-apartment"></label>
+        <input type="text" id="search-apartment" name="search-apartment" />
+      </div>
     </div>
     <div class="filters-bar-container">
-      <div class="left-filters"></div>
-      <div class="See-Map-button"></div>
+      <div class="left-filters">
+        <div class="filter-button">
+          <div class="number-of-rooms-icon-blue"></div>
+          <div class="filter-text">Rent</div>
+          <div class="icon-dropdown"></div>
+        </div>
+        <div class="filter-button">
+          <div class="number-of-rooms-icon-blue"></div>
+          <div class="filter-text">2 Rooms</div>
+          <div class="icon-dropdown"></div>
+        </div>
+        <div class="filter-button">
+          <div class="icon-area-blue"></div>
+          <div class="filter-text">30mp-300mp</div>
+          <div class="icon-dropdown"></div>
+        </div>
+        <div class="filter-button">
+          <div class="icon-price-blue"></div>
+          <div class="filter-text">Rent</div>
+          <div class="icon-dropdown"></div>
+        </div>
+      </div>
+      <div class="see-map-button">
+        See Map
+      </div>
     </div>
   </div>
 
@@ -14,7 +42,30 @@
     <div class="number-of-apartments"></div>
     <div class="apartments-list-container">
       <div class="apartment-card" *ngFor="let apartment of apartmentsList">
-        {{ apartment.title }}
+        <div class="image-card">
+          <img
+            mat-card-image
+            [src]="'data:image/png;base64,' + apartment.images[0]"
+            [alt]="apartment.name"
+          />
+        </div>
+        <div class="card-details">
+          <div class="card-price">{{ apartment.price }} EUR/month</div>
+          <div class="card-adress">
+            <div class="location-icon"></div>
+            Iasi, Podu Ros, Bv Socola, Nr.10
+          </div>
+          <div class="apartment-details">
+            <div class="card-number-of-rooms">
+              <div class="number-of-rooms-icon"></div>
+              {{ apartment.numberOfRooms }}
+            </div>
+            <div class="card-area">
+              <div class="icon-area"></div>
+              {{ apartment.area }}
+            </div>
+          </div>
+        </div>
       </div>
     </div>
   </div>
