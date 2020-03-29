@@ -7,9 +7,9 @@ namespace YourApartment.Tests.Common.Factories
 {
     public static class ApartmentFactory
     {
-        public static Apartment GetApartment(string title)
+        public static Apartment GetApartment(string title, string adress, int area, int confort, int constructionYear, int numberOfRooms, int price, string description, int floor, string reper, int totalNumberOfFloors)
         {
-            return Apartment.Create(title).Value;
+            return Apartment.Create(title, adress, area, numberOfRooms, floor, totalNumberOfFloors, price, adress, floor, reper, constructionYear).Value;
         }
     }
 }

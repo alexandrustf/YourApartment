@@ -36,7 +36,19 @@ namespace YourApartment.Business.Tests
         }
 
         private CreateApartmentCommand GetCreateApartmentCommand()
-            => new CreateApartmentCommand("My new Apartment", new List<byte[]>{ new byte[] { } });
+            => new CreateApartmentCommand(
+                "My new Apartment",
+                300,
+                75,
+                3,
+                2,
+                4,
+                "Pe sf. Lazar",
+                "Sf. Lazar nr.5",
+                "Foarte bine intretinut",
+                8,
+                1980,
+                new List<byte[]>{ new byte[] { } });
 
 
         protected override void SetupMocks(MockRepository mockRepository)

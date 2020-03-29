@@ -7,7 +7,7 @@ import { PageModel } from "../shared/models/page.model";
 @Component({
   selector: "app-apartments-rent-list",
   templateUrl: "./apartments-rent-list.component.html",
-  styleUrls: ["./apartments-rent-list.component.css"]
+  styleUrls: ["./apartments-rent-list.component.scss"]
 })
 export class ApartmentsRentListComponent implements OnInit {
   private page: number;
