@@ -1,8 +1,8 @@
 .apartments-rent-page-container {
   .subheader-rent-apartments {
     background: #ffffff 0% 0% no-repeat padding-box;
-    height: 297px;
-    padding-top: 120px;
+    height: 270px;
+    padding-top: 115px;
     display: flex;
     flex-direction: column;
     padding-left: 134px;
@@ -45,6 +45,18 @@
       .left-filters {
         display: flex;
         .filter-button {
+          select {
+            font-size: 16px;
+            line-height: 1;
+            border: 0;
+            border-radius: 5px;
+            height: 34px;
+            background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
+              no-repeat right #ffffff;
+            -webkit-appearance: none;
+            width: 200px;
+            padding-top: 1.5px;
+          }
           background: #ffffff 0% 0% no-repeat padding-box;
           border: 1px solid #d6d6d9;
           border-radius: 25px;
