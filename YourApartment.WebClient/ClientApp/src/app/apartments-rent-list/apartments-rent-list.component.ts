@@ -12,7 +12,7 @@ import { PageModel } from "../shared/models/page.model";
 export class ApartmentsRentListComponent implements OnInit {
   private page: number;
   private pageSize: number;
-  public apartments: PageModel<Apartment>;
+  public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
   constructor(private apartmentsService: ApartmentService) {}
 
@@ -20,13 +20,10 @@ export class ApartmentsRentListComponent implements OnInit {
     this.apartmentsService
       .getApartments()
       .pipe(first())
-      .subscribe(res => (this.apartmentsList = res.records));
-    console.log(this.apartments);
-    // this.apartmentsList = this.convertToList();
-  }
-
-  public convertToList() {
-    return this.apartments.records;
-    console.log(this.apartmentsList);
+      .subscribe(res => {
+        this.apartmentsPageModel = res;
+        this.apartmentsList = this.apartmentsPageModel.records;
+      });
+    console.log(this.apartmentsPageModel);
   }
 }
