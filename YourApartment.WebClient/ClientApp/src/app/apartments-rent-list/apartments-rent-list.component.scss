@@ -121,14 +121,27 @@
   }
   .apartments-search-container {
     opacity: 1;
+    background: #f8f7f7 0% 0% no-repeat padding-box;
+
+    .number-of-apartments {
+      padding-top: 32px;
+      margin-left: 134px;
+      text-align: left;
+      font: Medium 24px/32px Roboto;
+      font-family: Roboto;
+      font-size: 24px;
+      letter-spacing: 0px;
+      color: #5d5c62;
+      opacity: 1;
+    }
+
     .apartments-list-container {
       display: flex;
       flex-wrap: wrap;
-      padding-top: 100px;
+      padding-top: 0px;
       width: 100%;
       padding-left: 116px;
       margin-right: 116px;
-      background: #f8f7f7 0% 0% no-repeat padding-box;
 
       .apartment-card {
         width: 389px;
@@ -215,6 +228,11 @@
           }
         }
       }
+    }
+
+    .pagination-controls-container {
+      text-align: center;
+      padding: 120px 0px 120px 0px;
     }
   }
 }
