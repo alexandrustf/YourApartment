@@ -31,5 +31,6 @@ namespace YourApartment.Business
         public int NumberOfRooms { get; private set; }
         public string Reper { get; private set; }
         public IEnumerable<byte[]> Images { get; set; }
+
     }
 }

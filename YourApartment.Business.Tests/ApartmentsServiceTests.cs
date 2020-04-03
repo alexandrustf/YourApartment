@@ -51,6 +51,7 @@ namespace YourApartment.Business.Tests
                 new List<byte[]>{ new byte[] { } });
 
 
+
         protected override void SetupMocks(MockRepository mockRepository)
         {
             readRepositoryMock = mockRepository.Create<IReadRepository<Apartment>>();

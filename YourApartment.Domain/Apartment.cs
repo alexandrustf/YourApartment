@@ -43,6 +43,7 @@ namespace YourApartment.Domain
         public DateTime AddedAt { get; private set; }
 
         public Result Update(string title)
+
         {
             this.Title = title;
             return Result.Ok();

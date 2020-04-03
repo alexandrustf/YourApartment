@@ -18,6 +18,7 @@ namespace YourApartment.WebApi
         public string Description { get;  set; }
         public int Confort { get;  set; }
         public int ConstructionYear { get;  set; }
+
         public IEnumerable<byte[]> ImagesBytes { get; set; }
     }
 }

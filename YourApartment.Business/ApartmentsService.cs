@@ -36,6 +36,7 @@ namespace YourApartment.Business
             EnsureArg.IsNotNull(command);
             return await Result.Success(Apartment.Create(command.Title, command.Adress, command.Area, command.Confort, command.ConstructionYear, command.NumberOfRooms, command.Price,
                     command.Description, command.Floor, command.Reper, command.TotalNumberOfFloors))
+
                 .Map(a => a.Value)
                 .Tap(s => writeRepository.Create(s))
                 .Tap(s => imageRepository.AddImage(s.Id, command.ImageBytes))
