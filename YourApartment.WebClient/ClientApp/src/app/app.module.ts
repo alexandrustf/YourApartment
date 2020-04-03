@@ -11,6 +11,7 @@ import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-rent-list.component";
+import { JwPaginationComponent } from "jw-angular-pagination";
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-r
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ApartmentsRentListComponent
+    ApartmentsRentListComponent,
+    JwPaginationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
