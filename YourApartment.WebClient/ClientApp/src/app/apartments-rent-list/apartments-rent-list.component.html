@@ -51,7 +51,9 @@
   </div>
 
   <div class="apartments-search-container">
-    <div class="number-of-apartments"></div>
+    <div class="number-of-apartments">
+      {{ apartmentsPageModel.totalNumberOfRecords }} Rezultate
+    </div>
     <div class="apartments-list-container">
       <div class="apartment-card" *ngFor="let apartment of apartmentsList">
         <div class="image-card">
@@ -80,6 +82,6 @@
         </div>
       </div>
     </div>
+    <div class="pagination-controls-container">1 2 3 4</div>
   </div>
-  <div class="pagination-controls-container"></div>
 </div>
