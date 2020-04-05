@@ -1,6 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.IO;
+using System.Runtime.CompilerServices;
 using System.Text;
+using System.Threading.Tasks;
 using YourApartment.Domain;
 
 namespace YourApartment.Business
@@ -9,9 +12,8 @@ namespace YourApartment.Business
     {
         public ApartmentModel()
         {
-                
         }
-        public ApartmentModel(Apartment apartment)
+        public ApartmentModel(Apartment apartment, IEnumerable<byte[]> images)
         {
             Id = apartment.Id;
             Title = apartment.Title;
@@ -19,13 +21,16 @@ namespace YourApartment.Business
             Area = apartment.Area;
             NumberOfRooms = apartment.NumberOfRooms;
             Reper = apartment.Landmark;
+            Images = images;
         }
 
-        public Guid Id { get; set; }
-        public string Title { get; set; }
-        public int Price { get; set; }
-        public int Area { get; set; }
-        public int NumberOfRooms { get; set; }
-        public string Reper { get; set; }
+        public Guid Id { get; private set; }
+        public string Title { get; private set; }
+        public int Price { get; private set; }
+        public int Area { get; private set; }
+        public int NumberOfRooms { get; private set; }
+        public string Reper { get; private set; }
+        public IEnumerable<byte[]> Images { get; set; }
+
     }
 }

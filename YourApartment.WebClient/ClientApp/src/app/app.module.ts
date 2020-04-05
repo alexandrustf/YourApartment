@@ -11,6 +11,7 @@ import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-rent-list.component";
+import { MatPaginatorModule } from "@angular/material/paginator";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-r
       { path: "apartments-rent", component: ApartmentsRentListComponent },
       { path: "fetch-data", component: FetchDataComponent }
     ]),
-    AppRoutingModule
+    AppRoutingModule,
+    MatPaginatorModule
   ],
   providers: [],
   bootstrap: [AppComponent]

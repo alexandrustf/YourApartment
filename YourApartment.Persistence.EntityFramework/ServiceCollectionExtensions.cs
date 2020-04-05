@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 using YourApartment.Domain;
+using YourApartment.Persistence.EntityFramework.Repositories;
 
 namespace YourApartment.Persistence.EntityFramework
 {
@@ -15,7 +16,9 @@ namespace YourApartment.Persistence.EntityFramework
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
             services.AddScoped(typeof(IReadRepository<>), typeof(ApartmentsReadRepository<>));
             services.AddScoped<IReadRepository<Apartment>, ApartmentsReadRepository<Apartment>>();
+            services.AddScoped<IReadRepository<Location>, LocationReadRepository>();
             services.AddScoped<IWriteRepository<Apartment>, WriteRepository<Apartment>>();
+            services.AddScoped<IWriteRepository<Location>, WriteRepository<Location>>();
 
             return services;
         }
