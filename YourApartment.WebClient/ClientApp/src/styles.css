@@ -27,3 +27,9 @@ app-nav-menu {
   position: absolute;
   width: 100%;
 }
+
+html,
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+}
