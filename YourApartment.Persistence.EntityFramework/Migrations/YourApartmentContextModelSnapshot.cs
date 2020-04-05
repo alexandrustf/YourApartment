@@ -77,6 +77,42 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
 
                     b.ToTable("Apartments");
                 });
+
+            modelBuilder.Entity("YourApartment.Domain.Location", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AdressLocationPreciseAdress")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdressLocationPreciseAdress");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.PreciseLocation", b =>
+                {
+                    b.Property<string>("PreciseAdress")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PreciseAdress");
+
+                    b.ToTable("PreciseLocation");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.Location", b =>
+                {
+                    b.HasOne("YourApartment.Domain.PreciseLocation", "AdressLocation")
+                        .WithMany()
+                        .HasForeignKey("AdressLocationPreciseAdress");
+                });
 #pragma warning restore 612, 618
         }
     }
