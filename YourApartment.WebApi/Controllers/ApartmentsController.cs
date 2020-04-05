@@ -15,11 +15,11 @@ namespace YourApartment.WebApi.Controllers
     [ApiController]
     public class ApartmentsController : ControllerBase
     {
-        private readonly IApartmentsService _apartmentsService;
+        private readonly IApartmentsService apartmentsService;
 
         public ApartmentsController(IApartmentsService apartmentsService)
         {
-            this._apartmentsService = apartmentsService;
+            this.apartmentsService = apartmentsService;
         }
 
         // GET: api/Accommodations
@@ -28,7 +28,7 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> Get([FromQuery]Sieve.Models.SieveModel sieveModel)
         {
             var query = new SieveQuery(sieveModel);
-            return Ok(await _apartmentsService.GetAll(query));
+            return Ok(await apartmentsService.GetAll(query));
         }
 
         // GET: api/Accommodations/5
@@ -38,7 +38,7 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> Get([FromRoute] Guid apartmentId)
         {
             var query = new GetSpecifiedApartmentQuery(apartmentId);
-            var result = await _apartmentsService.GetDetailedById(query);
+            var result = await apartmentsService.GetDetailedById(query);
 
             return result.IsFailure
                 ? (IActionResult) BadRequest(Result.Failure(result.Error))
@@ -66,14 +66,11 @@ namespace YourApartment.WebApi.Controllers
                 createApartmentModel.ConstructionYear,
                 createApartmentModel.ImagesBytes);
 
-            var result = await _apartmentsService.Create(command);
-            
-            if (result.IsFailure)
-            {
-                return BadRequest(result.Error);
-            }
+            var result = await apartmentsService.Create(command);
 
-            return CreatedAtAction(null,"Created!");
+            return result.IsFailure
+                ? (IActionResult) BadRequest(result.Error)
+                : CreatedAtAction(null, "Created Apartment!");
         }
 
         // PUT: api/Accommodations/5
@@ -84,7 +81,7 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> UpdateApartment([FromRoute] Guid apartmentId, [FromBody] UpdateApartmentModel updateApartmentModel)
         {
             var command = new UpdateApartmentCommand(apartmentId, updateApartmentModel.Title);
-            var result = await _apartmentsService.UpdateApartment(command);
+            var result = await apartmentsService.UpdateApartment(command);
 
             return result.IsFailure
                 ? (IActionResult) BadRequest(Result.Failure(result.Error))
@@ -98,7 +95,7 @@ namespace YourApartment.WebApi.Controllers
         public async Task<IActionResult> Delete([FromRoute] Guid apartmentId)
         {
             var command = new DeleteApartmentByIdCommand(apartmentId);
-            var result = await _apartmentsService.DeleteById(command);
+            var result = await apartmentsService.DeleteById(command);
 
             if (result.IsFailure)
             {
