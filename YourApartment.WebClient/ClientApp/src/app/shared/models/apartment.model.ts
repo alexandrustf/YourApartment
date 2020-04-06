@@ -1,9 +1,9 @@
 export class Apartment {
   public id: string;
   public name: string;
-  public price: Int16Array;
-  public area: Int16Array;
-  public numberOfRooms: Int16Array;
+  public price: number;
+  public area: number;
+  public numberOfRooms: number;
   public adress: string;
   public images: [];
 }

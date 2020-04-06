@@ -20,7 +20,10 @@
         </div>
         <div class="filter-button">
           <div class="number-of-rooms-icon-blue"></div>
-          <select class="filter-button">
+          <select
+            (change)="filterByRooms($event.target.value)"
+            class="filter-button"
+          >
             <option selected value="">Number of Rooms</option>
             <option value="1">1 Room</option>
             <option value="2">2 Rooms</option>

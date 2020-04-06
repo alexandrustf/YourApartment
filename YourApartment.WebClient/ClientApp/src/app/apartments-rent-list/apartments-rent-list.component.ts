@@ -5,6 +5,7 @@ import { first } from "rxjs/operators";
 import { PageModel } from "../shared/models/page.model";
 import { LocationService } from "../shared/services/location.service";
 import { LocationModel } from "../shared/models/location.model";
+import { FilterModel } from "../shared/models/filter.model";
 
 @Component({
   selector: "app-apartments-rent-list",
@@ -12,8 +13,7 @@ import { LocationModel } from "../shared/models/location.model";
   styleUrls: ["./apartments-rent-list.component.scss"],
 })
 export class ApartmentsRentListComponent implements OnInit {
-  public pageSize: number;
-  public pageIndex: number;
+  public filterModel: FilterModel;
   public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
   public locations: LocationModel[];
@@ -22,17 +22,18 @@ export class ApartmentsRentListComponent implements OnInit {
     private apartmentsService: ApartmentService,
     private locationService: LocationService
   ) {
-    this.pageSize = 8;
-    this.pageIndex = 1;
+    this.filterModel = new FilterModel();
+    this.filterModel.pageSize = 8;
+    this.filterModel.page = 1;
   }
 
   ngOnInit() {
-    this.getFilteredApartments(this.pageSize, this.pageIndex);
+    this.getFilteredApartments();
     this.getZoneLocations();
   }
-  private getFilteredApartments(pageSize: number, pageIndex: number) {
+  private getFilteredApartments() {
     this.apartmentsService
-      .getApartments("", pageIndex, pageSize)
+      .getApartments(this.filterModel)
       .pipe(first())
       .subscribe((res) => {
         this.apartmentsPageModel = res;
@@ -49,8 +50,14 @@ export class ApartmentsRentListComponent implements OnInit {
   }
 
   public paginateResults(event): void {
-    this.pageIndex = event.pageIndex + 1;
-    this.pageSize = event.pageSize;
-    this.getFilteredApartments(this.pageSize, this.pageIndex);
+    console.log(event);
+    this.filterModel.page = event.pageIndex + 1;
+    this.filterModel.pageSize = event.pageSize;
+    this.getFilteredApartments();
+  }
+
+  public filterByRooms(event) {
+    this.filterModel.numberOfRooms = event;
+    this.getFilteredApartments();
   }
 }
