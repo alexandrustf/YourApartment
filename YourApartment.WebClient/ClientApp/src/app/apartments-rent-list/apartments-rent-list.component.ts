@@ -3,6 +3,8 @@ import { ApartmentService } from "../shared/services/apartment.service";
 import { Apartment } from "../shared/models/apartment.model";
 import { first } from "rxjs/operators";
 import { PageModel } from "../shared/models/page.model";
+import { LocationService } from "../shared/services/location.service";
+import { LocationModel } from "../shared/models/location.model";
 
 @Component({
   selector: "app-apartments-rent-list",
@@ -10,38 +12,45 @@ import { PageModel } from "../shared/models/page.model";
   styleUrls: ["./apartments-rent-list.component.scss"],
 })
 export class ApartmentsRentListComponent implements OnInit {
-  public page;
   public pageSize: number;
   public pageIndex: number;
   public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
+  public locations: LocationModel[];
 
-  constructor(private apartmentsService: ApartmentService) {
-    this.pageSize = 4;
+  constructor(
+    private apartmentsService: ApartmentService,
+    private locationService: LocationService
+  ) {
+    this.pageSize = 8;
     this.pageIndex = 1;
   }
 
   ngOnInit() {
     this.getFilteredApartments(this.pageSize, this.pageIndex);
-    console.log(this.apartmentsPageModel);
+    this.getZoneLocations();
   }
-  getFilteredApartments(pageSize: number, pageIndex: number) {
+  private getFilteredApartments(pageSize: number, pageIndex: number) {
     this.apartmentsService
       .getApartments("", pageIndex, pageSize)
       .pipe(first())
       .subscribe((res) => {
         this.apartmentsPageModel = res;
         this.apartmentsList = this.apartmentsPageModel.records;
-        console.log(this.apartmentsList);
       });
   }
-  public getlogs() {
-    console.log(this.page);
+
+  private getZoneLocations() {
+    this.locationService
+      .getZoneLocations()
+      .pipe(first())
+      .subscribe((res) => (this.locations = res));
+    console.log(this.locations);
   }
-  public paginateResults(): void {
-    console.log(this.page);
-    this.pageSize = 5;
-    this.pageIndex = 2;
+
+  public paginateResults(event): void {
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
     this.getFilteredApartments(this.pageSize, this.pageIndex);
   }
 }
