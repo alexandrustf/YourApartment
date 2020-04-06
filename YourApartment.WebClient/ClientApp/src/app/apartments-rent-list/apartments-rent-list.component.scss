@@ -45,6 +45,15 @@
       .left-filters {
         display: flex;
         .filter-button {
+          .location-icon {
+            margin: 7px 0px 0px 16px;
+
+            height: 40px;
+            width: 30px;
+            background: transparent
+              url("../../assets/icons/location_on-24px.svg") 0% 0% no-repeat
+              padding-box;
+          }
           select {
             font-size: 16px;
             line-height: 1;
@@ -54,7 +63,7 @@
             background: url(http://cdn1.iconfinder.com/data/icons/cc_mono_icon_set/blacks/16x16/br_down.png)
               no-repeat right #ffffff;
             -webkit-appearance: none;
-            width: 200px;
+            width: 160px;
             padding-top: 1.5px;
           }
           background: #ffffff 0% 0% no-repeat padding-box;

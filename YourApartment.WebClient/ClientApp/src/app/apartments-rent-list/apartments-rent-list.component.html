@@ -32,15 +32,34 @@
         <div class="filter-button">
           <div class="icon-area-blue"></div>
           <select class="filter-button">
-            <option selected value="rent">Rent</option>
-            <option value="buy">Buy</option>
+            <option selected value="">Area</option>
+            <option value="200">200mp</option>
           </select>
         </div>
         <div class="filter-button">
           <div class="icon-price-blue"></div>
           <select class="filter-button">
-            <option selected value="rent">Rent</option>
-            <option value="buy">Buy</option>
+            <option selected value="">Price</option>
+            <option value="&lt200"> &lt; 200 Euro</option>
+            <option value="200-250"> 200-250 Euro </option>
+            <option value="250-300"> 250-300 Euro </option>
+            <option value="300-350"> 300-350 Euro</option>
+            <option value="350-400"> 350-400 Euro</option>
+            <option value="400-450"> 400-450 Euro</option>
+            <option value="450-500"> 450-500 Euro</option>
+            <option value="&gt500"> &gt; 500 Euro</option>
+          </select>
+        </div>
+        <div class="filter-button">
+          <div class="location-icon"></div>
+          <select aria-placeholder="Zone" class="filter-button">
+            <option value="" selected>Zone</option>
+            <option
+              *ngFor="let location of locations"
+              value="{{ location.id }}"
+            >
+              {{ location.name }}</option
+            >
           </select>
         </div>
       </div>
@@ -51,7 +70,7 @@
   </div>
 
   <div class="apartments-search-container">
-    <div class="number-of-apartments">
+    <div *ngIf="apartmentsPageModel" class="number-of-apartments">
       {{ apartmentsPageModel.totalNumberOfRecords }} Rezultate
     </div>
     <div class="apartments-list-container">
@@ -85,6 +104,7 @@
     <div class="pagination-controls-container">
       <mat-paginator
         class="paginator"
+        *ngIf="apartmentsPageModel"
         [length]="this.apartmentsPageModel.totalNumberOfRecords"
         [pageSize]="this.pageSize"
         [pageSizeOptions]="[8, 16, 32]"
