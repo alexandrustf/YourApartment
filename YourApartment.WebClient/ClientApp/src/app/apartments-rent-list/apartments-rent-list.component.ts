@@ -10,20 +10,18 @@ import { PageModel } from "../shared/models/page.model";
   styleUrls: ["./apartments-rent-list.component.scss"],
 })
 export class ApartmentsRentListComponent implements OnInit {
-  public page;
   public pageSize: number;
   public pageIndex: number;
   public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
 
   constructor(private apartmentsService: ApartmentService) {
-    this.pageSize = 4;
+    this.pageSize = 8;
     this.pageIndex = 1;
   }
 
   ngOnInit() {
     this.getFilteredApartments(this.pageSize, this.pageIndex);
-    console.log(this.apartmentsPageModel);
   }
   getFilteredApartments(pageSize: number, pageIndex: number) {
     this.apartmentsService
@@ -32,16 +30,12 @@ export class ApartmentsRentListComponent implements OnInit {
       .subscribe((res) => {
         this.apartmentsPageModel = res;
         this.apartmentsList = this.apartmentsPageModel.records;
-        console.log(this.apartmentsList);
       });
   }
-  public getlogs() {
-    console.log(this.page);
-  }
-  public paginateResults(): void {
-    console.log(this.page);
-    this.pageSize = 5;
-    this.pageIndex = 2;
+
+  public paginateResults(event): void {
+    this.pageIndex = event.pageIndex + 1;
+    this.pageSize = event.pageSize;
     this.getFilteredApartments(this.pageSize, this.pageIndex);
   }
 }

@@ -83,22 +83,14 @@
       </div>
     </div>
     <div class="pagination-controls-container">
-      1 2 3 4
       <mat-paginator
-        [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[20]"
-        (page)="pageEvent = $event"
-        (page)="this.page = $event"
-        (page)="paginateResults()"
+        class="paginator"
+        [length]="this.apartmentsPageModel.totalNumberOfRecords"
+        [pageSize]="this.pageSize"
+        [pageSizeOptions]="[8, 16, 32]"
+        (page)="paginateResults($event)"
       >
       </mat-paginator>
-      <div *ngIf="pageEvent">
-        <h5>Page Change Event</h5>
-        <div>List length: {{ pageEvent.length }}</div>
-        <div>Page size: {{ pageEvent.pageSize }}</div>
-        <div>Page index: {{ pageEvent.pageIndex }}</div>
-      </div>
     </div>
   </div>
 </div>

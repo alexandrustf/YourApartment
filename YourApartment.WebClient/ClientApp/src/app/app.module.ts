@@ -12,6 +12,7 @@ import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-rent-list.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [
@@ -20,7 +21,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ApartmentsRentListComponent
+    ApartmentsRentListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -30,12 +31,13 @@ import { MatPaginatorModule } from "@angular/material/paginator";
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "counter", component: CounterComponent },
       { path: "apartments-rent", component: ApartmentsRentListComponent },
-      { path: "fetch-data", component: FetchDataComponent }
+      { path: "fetch-data", component: FetchDataComponent },
     ]),
     AppRoutingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserAnimationsModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
