@@ -8,7 +8,7 @@ namespace YourApartment.Business
     public sealed class CreateApartmentCommand
     {
         public CreateApartmentCommand(string title, int price, int area, int numberOfRooms, int floor, int totalNumberOfFloors, 
-            string reper, string adress, string description, int confort, int constructionYear,  
+            Guid locationId, string exactAdress, string description, int confort, int constructionYear,  
             IEnumerable<byte[]> imageBytes)
         {
             Title = title;
@@ -17,8 +17,8 @@ namespace YourApartment.Business
             NumberOfRooms = numberOfRooms;
             Floor = floor;
             TotalNumberOfFloors = totalNumberOfFloors;
-            Reper = reper;
-            Adress = adress;
+            LocationId = locationId;
+            ExactAdress = exactAdress;
             Description = description;
             Confort = confort;
             ConstructionYear = constructionYear;
@@ -30,8 +30,8 @@ namespace YourApartment.Business
         public int NumberOfRooms { get; set; }
         public int Floor { get; set; }
         public int TotalNumberOfFloors { get; set; }
-        public string Reper { get; set; }
-        public string Adress { get; set; }
+        public Guid LocationId { get; set; }
+        public string ExactAdress { get; set; }
         public string Description { get; set; }
         public int Confort { get; set; }
         public int ConstructionYear { get; set; }

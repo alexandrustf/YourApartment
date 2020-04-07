@@ -20,7 +20,8 @@ namespace YourApartment.Business
             Price = apartment.Price;
             Area = apartment.Area;
             NumberOfRooms = apartment.NumberOfRooms;
-            Reper = apartment.Landmark;
+            Location = apartment.Location.Name;
+            ExactAdress = apartment.ExactAdress;
             Images = images;
         }
 
@@ -29,7 +30,8 @@ namespace YourApartment.Business
         public int Price { get; private set; }
         public int Area { get; private set; }
         public int NumberOfRooms { get; private set; }
-        public string Reper { get; private set; }
+        public string Location { get; private set; }
+        public string ExactAdress { get; private set; }
         public IEnumerable<byte[]> Images { get; set; }
 
     }

@@ -89,7 +89,10 @@
           <div class="card-price">{{ apartment.price }} EUR/month</div>
           <div class="card-adress">
             <div class="location-icon"></div>
-            Iasi, Podu Ros, Bv Socola, Nr.10
+            <div>{{ apartment.location }}</div>
+            <div *ngIf="apartment.exactAdress">
+              , {{ apartment.exactAdress }}
+            </div>
           </div>
           <div class="apartment-details">
             <div class="card-number-of-rooms">
