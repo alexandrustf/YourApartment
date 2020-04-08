@@ -86,7 +86,20 @@
       {{ apartmentsPageModel.totalNumberOfRecords }} Rezultate
     </div>
     <div class="apartments-list-container">
-      <div class="apartment-card" *ngFor="let apartment of apartmentsList">
+      <div
+        class="image-no-result"
+        *ngIf="
+          !apartmentsPageModel || apartmentsPageModel.totalNumberOfRecords == 0
+        "
+      >
+        <img src="../../assets/images/NoResult.svg" alt="No Result" />
+        <div class="no-results-text">No Results Found</div>
+      </div>
+      <div
+        class="apartment-card"
+        *ngFor="let apartment of apartmentsList"
+        [routerLink]="['./detail/' + apartment.id]"
+      >
         <div class="image-card">
           <img
             mat-card-image

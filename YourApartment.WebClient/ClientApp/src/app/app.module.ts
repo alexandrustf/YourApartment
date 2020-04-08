@@ -13,6 +13,7 @@ import { AppRoutingModule } from "./app-routing.module";
 import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-rent-list.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/apartment-detail.component";
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     CounterComponent,
     FetchDataComponent,
     ApartmentsRentListComponent,
+    ApartmentDetailComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -31,6 +33,10 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "counter", component: CounterComponent },
       { path: "apartments-rent", component: ApartmentsRentListComponent },
+      {
+        path: "apartments-rent/detail/:id",
+        component: ApartmentDetailComponent,
+      },
       { path: "fetch-data", component: FetchDataComponent },
     ]),
     AppRoutingModule,
