@@ -14,6 +14,12 @@ import { ConditionalExpr } from "@angular/compiler";
 export class ApartmentService {
   public constructor(private http: HttpClient) {}
 
+  public getApartmentById(id: string): Observable<Apartment> {
+    return this.http.get<Apartment>(
+      `${environment.YourApartmentUrl}/Apartments/${id}`
+    );
+  }
+
   public getApartments(
     filterModel: FilterModel
   ): Observable<PageModel<Apartment>> {
