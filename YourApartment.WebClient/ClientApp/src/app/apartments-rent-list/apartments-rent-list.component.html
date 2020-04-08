@@ -41,21 +41,30 @@
         </div>
         <div class="filter-button">
           <div class="icon-price-blue"></div>
-          <select class="filter-button">
-            <option selected value="">Price</option>
-            <option value="&lt200"> &lt; 200 Euro</option>
-            <option value="200-250"> 200-250 Euro </option>
-            <option value="250-300"> 250-300 Euro </option>
-            <option value="300-350"> 300-350 Euro</option>
-            <option value="350-400"> 350-400 Euro</option>
-            <option value="400-450"> 400-450 Euro</option>
-            <option value="450-500"> 450-500 Euro</option>
-            <option value="&gt500"> &gt; 500 Euro</option>
-          </select>
+          <label for="min-price" class="label-price">Price Min:</label>
+          <input
+            type="number"
+            name="min-price"
+            min="0"
+            class="input-price"
+            (change)="filterByMinPrice($event.target.value)"
+          />
+          <label for="max-price" class="label-price">Price Max:</label>
+          <input
+            type="number"
+            name="max-price"
+            min="0"
+            class="input-price"
+            (change)="filterByMaxPrice($event.target.value)"
+          />
         </div>
         <div class="filter-button">
           <div class="location-icon"></div>
-          <select aria-placeholder="Zone" class="filter-button">
+          <select
+            aria-placeholder="Zone"
+            class="filter-button"
+            (change)="filterByLocation($event.target.value)"
+          >
             <option value="" selected>Zone</option>
             <option
               *ngFor="let location of locations"

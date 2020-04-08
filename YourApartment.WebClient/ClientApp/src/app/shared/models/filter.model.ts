@@ -7,5 +7,5 @@ export class FilterModel {
   public priceMax?: number;
   public areaMin?: number;
   public areaMax?: number;
-  public zoneids: [];
+  public location: string;
 }

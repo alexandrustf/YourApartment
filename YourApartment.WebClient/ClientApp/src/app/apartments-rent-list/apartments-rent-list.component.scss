@@ -45,6 +45,16 @@
       .left-filters {
         display: flex;
         .filter-button {
+          align-items: center;
+          .label-price {
+            padding: 10px 16px 0px 2px;
+          }
+          .input-price {
+            justify-content: center;
+            width: 60px;
+            height: 30px;
+            margin-right: 15px;
+          }
           .location-icon {
             margin: 7px 0px 0px 16px;
 

@@ -60,4 +60,19 @@ export class ApartmentsRentListComponent implements OnInit {
     this.filterModel.numberOfRooms = event;
     this.getFilteredApartments();
   }
+
+  public filterByMinPrice(event) {
+    this.filterModel.priceMin = event;
+    this.getFilteredApartments();
+  }
+
+  public filterByMaxPrice(event) {
+    this.filterModel.priceMax = event;
+    this.getFilteredApartments();
+  }
+
+  public filterByLocation(event) {
+    this.filterModel.location = event;
+    this.getFilteredApartments();
+  }
 }
