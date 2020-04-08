@@ -9,8 +9,13 @@ namespace YourApartment.Domain
 {
     public class Apartment : Entity
     {
+        private Apartment()
+        {
 
-        public Apartment(string title, int price, int area, int numberOfRooms, int floor, int totalNumberOfFloors, string location, string description, int constructionYear)
+        }
+        public Apartment(string title, Location location, string exactAdress, int price, 
+            int area, int numberOfRooms, int floor, int totalNumberOfFloors, 
+            string description, int constructionYear, int confort)
         {
             Title = title;
             Price = price;
@@ -19,7 +24,9 @@ namespace YourApartment.Domain
             Floor = floor;
             TotalNumberOfFloors = totalNumberOfFloors;
             Location = location;
+            ExactAdress = exactAdress;
             Description = description;
+            Confort = confort;
             ConstructionYear = constructionYear;
             AddedAt = DateTime.Now;
         }
@@ -29,8 +36,9 @@ namespace YourApartment.Domain
         public int NumberOfRooms { get; private set; }
         public int Floor { get; private set; }
         public int TotalNumberOfFloors { get; private set; }
-        public string Landmark { get; private set; }
-        public string Location { get; private set; }
+        public Location Location { get; private set; }
+
+        public string ExactAdress { get; private set; }
 
         public string Description { get; private set; }
         public int Confort { get; private set; }
@@ -48,10 +56,9 @@ namespace YourApartment.Domain
             this.Title = title;
             return Result.Ok();
         }
-        public static Result<Apartment> Create(string title, string adress, int area, int confort, int constructionYear, int numberOfRooms, int price, string description, int floor, string reper, int totalNumberOfFloors)
+        public static Result<Apartment> Create(string title,Location location, string exactAdress, int area, int confort, int constructionYear, int numberOfRooms, int price, string description, int floor, int totalNumberOfFloors)
         {
-            return Result.Success<Apartment>(new Apartment(title, price, area, numberOfRooms, floor, totalNumberOfFloors,  adress, description,  constructionYear));
-
+            return Result.Success<Apartment>(new Apartment(title, location, exactAdress, price, area, numberOfRooms, floor, totalNumberOfFloors, description,  constructionYear, confort));
         }
     }
 }

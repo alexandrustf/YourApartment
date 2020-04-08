@@ -14,6 +14,8 @@ namespace YourApartment.Persistence.EntityFramework.Configurations
         {
             builder.ToTable("Apartments");
             builder.HasKey(p => p.Id);
+
+            builder.HasOne(l => l.Location);
         }
     }
 }

@@ -13,8 +13,8 @@ namespace YourApartment.WebApi
         public int NumberOfRooms { get;  set; }
         public int Floor { get;  set; }
         public int TotalNumberOfFloors { get;  set; }
-        public string Reper { get;  set; }
-        public string Adress { get;  set; }
+        public Guid LocationId { get;  set; }
+        public string ExactAdress { get;  set; }
         public string Description { get;  set; }
         public int Confort { get;  set; }
         public int ConstructionYear { get;  set; }
