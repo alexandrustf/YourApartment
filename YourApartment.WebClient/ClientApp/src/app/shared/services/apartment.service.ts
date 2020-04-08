@@ -2,10 +2,11 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Apartment } from "../models/apartment.model";
-import { map } from "rxjs/operators";
+import { map, filter } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { PageModel } from "../models/page.model";
 import { FilterModel } from "../models/filter.model";
+import { ConditionalExpr } from "@angular/compiler";
 
 @Injectable({
   providedIn: "root",
@@ -18,11 +19,25 @@ export class ApartmentService {
   ): Observable<PageModel<Apartment>> {
     let filters: string = "";
     filters = name
-      ? filters.concat(`Name@=${filterModel.name}`)
+      ? filters.concat(`Name@=${filterModel.name},`)
       : filters.concat();
-
+    console.log(filters);
+    filters = filterModel.priceMin
+      ? filters.concat(`price>=${filterModel.priceMin},`)
+      : filters.concat();
+    filters = filterModel.priceMax
+      ? filters.concat(`price<=${filterModel.priceMax},`)
+      : filters.concat();
+    console.log("suntem aici : " + filterModel.priceMin);
+    console.log("filterModel " + filterModel);
     for (let property of Object.keys(filterModel)) {
-      if (property !== "page" && property !== "pageSize" && property !== "Name")
+      if (
+        property !== "page" &&
+        property !== "pageSize" &&
+        property !== "Name" &&
+        property !== "priceMin" &&
+        property !== "priceMax"
+      )
         filters = filters.concat(`${property}==${filterModel[property]},`);
     }
 
