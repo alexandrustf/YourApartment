@@ -14,6 +14,8 @@ import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-r
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/apartment-detail.component";
+import { AddApartmentModule } from "./add-apartment/add-apartment.module";
+import { AddApartmentComponent } from "./add-apartment/add-apartment/add-apartment.component";
 
 @NgModule({
   declarations: [
@@ -23,7 +25,6 @@ import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/ap
     CounterComponent,
     FetchDataComponent,
     ApartmentsRentListComponent,
-    ApartmentDetailComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -31,6 +32,7 @@ import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/ap
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
+      { path: "add-apartment", component: AddApartmentComponent },
       { path: "counter", component: CounterComponent },
       { path: "apartments-rent", component: ApartmentsRentListComponent },
       {
@@ -42,6 +44,7 @@ import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/ap
     AppRoutingModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    AddApartmentModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

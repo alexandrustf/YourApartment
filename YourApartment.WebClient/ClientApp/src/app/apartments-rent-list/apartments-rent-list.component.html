@@ -108,7 +108,9 @@
           />
         </div>
         <div class="card-details">
-          <div class="card-price">{{ apartment.price }} EUR/month</div>
+          <div class="card-price">
+            {{ apartment.price | currency: "EUR":true }} EUR/month
+          </div>
           <div class="card-adress">
             <div class="location-icon"></div>
             <div>{{ apartment.location }}</div>
