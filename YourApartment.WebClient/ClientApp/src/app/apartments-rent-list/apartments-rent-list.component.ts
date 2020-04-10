@@ -3,6 +3,9 @@ import { ApartmentService } from "../shared/services/apartment.service";
 import { Apartment } from "../shared/models/apartment.model";
 import { first } from "rxjs/operators";
 import { PageModel } from "../shared/models/page.model";
+import { LocationService } from "../shared/services/location.service";
+import { LocationModel } from "../shared/models/location.model";
+import { FilterModel } from "../shared/models/filter.model";
 
 @Component({
   selector: "app-apartments-rent-list",
@@ -10,38 +13,66 @@ import { PageModel } from "../shared/models/page.model";
   styleUrls: ["./apartments-rent-list.component.scss"],
 })
 export class ApartmentsRentListComponent implements OnInit {
-  public page;
-  public pageSize: number;
-  public pageIndex: number;
+  public filterModel: FilterModel;
   public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
+  public locations: LocationModel[];
 
-  constructor(private apartmentsService: ApartmentService) {
-    this.pageSize = 4;
-    this.pageIndex = 1;
+  constructor(
+    private apartmentsService: ApartmentService,
+    private locationService: LocationService
+  ) {
+    this.filterModel = new FilterModel();
+    this.filterModel.pageSize = 8;
+    this.filterModel.page = 1;
   }
 
   ngOnInit() {
-    this.getFilteredApartments(this.pageSize, this.pageIndex);
-    console.log(this.apartmentsPageModel);
+    this.getFilteredApartments();
+    this.getZoneLocations();
   }
-  getFilteredApartments(pageSize: number, pageIndex: number) {
+  private getFilteredApartments() {
     this.apartmentsService
-      .getApartments("", pageIndex, pageSize)
+      .getApartments(this.filterModel)
       .pipe(first())
       .subscribe((res) => {
         this.apartmentsPageModel = res;
         this.apartmentsList = this.apartmentsPageModel.records;
-        console.log(this.apartmentsList);
       });
   }
-  public getlogs() {
-    console.log(this.page);
+
+  private getZoneLocations() {
+    this.locationService
+      .getZoneLocations()
+      .pipe(first())
+      .subscribe((res) => (this.locations = res));
+    console.log(this.locations);
   }
-  public paginateResults(): void {
-    console.log(this.page);
-    this.pageSize = 5;
-    this.pageIndex = 2;
-    this.getFilteredApartments(this.pageSize, this.pageIndex);
+
+  public paginateResults(event): void {
+    console.log(event);
+    this.filterModel.page = event.pageIndex + 1;
+    this.filterModel.pageSize = event.pageSize;
+    this.getFilteredApartments();
+  }
+
+  public filterByRooms(event) {
+    this.filterModel.numberOfRooms = event;
+    this.getFilteredApartments();
+  }
+
+  public filterByMinPrice(event) {
+    this.filterModel.priceMin = event;
+    this.getFilteredApartments();
+  }
+
+  public filterByMaxPrice(event) {
+    this.filterModel.priceMax = event;
+    this.getFilteredApartments();
+  }
+
+  public filterByLocation(event) {
+    this.filterModel.location = event;
+    this.getFilteredApartments();
   }
 }

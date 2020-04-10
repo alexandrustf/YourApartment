@@ -1,9 +1,12 @@
+import { LocationModel } from "./location.model";
+
 export class Apartment {
   public id: string;
   public name: string;
-  public price: Int16Array;
-  public area: Int16Array;
-  public numberOfRooms: Int16Array;
-  public adress: string;
+  public price: number;
+  public area: number;
+  public numberOfRooms: number;
+  public location: string;
+  public exactAdress: string;
   public images: [];
 }

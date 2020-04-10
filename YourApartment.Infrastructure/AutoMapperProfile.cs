@@ -15,7 +15,10 @@ namespace YourApartment.Infrastructure
         public AutoMapperProfile()
         {
             CreateMap<Apartment, ApartmentModel>()
-                .ForMember(p => p.Images, map => map.MapFrom(s => GetImagesForApartment(s.Id).Result));
+                .ForMember(p => p.Images, map => map.MapFrom(s => GetImagesForApartment(s.Id).Result))
+                .ForMember(a => a.Location, map => map.MapFrom(l => l.Location.Name))
+                .ForMember(a => a.ExactAdress, map => map.MapFrom(l => l.ExactAdress));
+
             CreateMap<Apartment, ApartmentDetailsModel>()
                 .ReverseMap();
         }

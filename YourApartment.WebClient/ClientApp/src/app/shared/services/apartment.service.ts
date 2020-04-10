@@ -2,23 +2,59 @@ import { Injectable } from "@angular/core";
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Observable } from "rxjs";
 import { Apartment } from "../models/apartment.model";
-import { map } from "rxjs/operators";
+import { map, filter } from "rxjs/operators";
 import { environment } from "src/environments/environment";
 import { PageModel } from "../models/page.model";
+import { FilterModel } from "../models/filter.model";
+import { ConditionalExpr } from "@angular/compiler";
 
 @Injectable({
-  providedIn: "root"
+  providedIn: "root",
 })
 export class ApartmentService {
   public constructor(private http: HttpClient) {}
 
+  public getApartmentById(id: string): Observable<Apartment> {
+    return this.http.get<Apartment>(
+      `${environment.YourApartmentUrl}/Apartments/${id}`
+    );
+  }
+
   public getApartments(
-    name?: string,
-    page?: number,
-    pageSize?: number
+    filterModel: FilterModel
   ): Observable<PageModel<Apartment>> {
     let filters: string = "";
-    filters = name ? filters.concat(`Name@=${name}`) : filters.concat();
+    filters = name
+      ? filters.concat(`Name@=${filterModel.name},`)
+      : filters.concat();
+    console.log(filters);
+    filters = filterModel.priceMin
+      ? filters.concat(`price>=${filterModel.priceMin},`)
+      : filters.concat();
+    filters = filterModel.priceMax
+      ? filters.concat(`price<=${filterModel.priceMax},`)
+      : filters.concat();
+    console.log("suntem aici : " + filterModel.priceMin);
+    console.log("filterModel " + filterModel);
+    for (let property of Object.keys(filterModel)) {
+      if (
+        property !== "page" &&
+        property !== "pageSize" &&
+        property !== "Name" &&
+        property !== "priceMin" &&
+        property !== "priceMax"
+      )
+        filters = filters.concat(`${property}==${filterModel[property]},`);
+    }
+
+    let params: HttpParams = new HttpParams().append("filters", filters);
+
+    params = filterModel.page
+      ? params.append("page", filterModel.page.toString())
+      : params;
+    params = filterModel.pageSize
+      ? params.append("pageSize", filterModel.pageSize.toString())
+      : params;
 
     let params: HttpParams = new HttpParams().append("filters", filters);
 
@@ -27,13 +63,13 @@ export class ApartmentService {
 
     return this.http
       .get<PageModel<Apartment>>(`${environment.YourApartmentUrl}/Apartments`, {
-        params: params
+        params: params,
       })
       .pipe(
-        map(res => {
+        map((res) => {
           const pageModel: PageModel<Apartment> = new PageModel<Apartment>();
           pageModel.totalNumberOfRecords = res.totalNumberOfRecords;
-          pageModel.records = res.records.map(s =>
+          pageModel.records = res.records.map((s) =>
             Object.assign(new Apartment(), s)
           );
           return pageModel;

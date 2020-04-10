@@ -1,0 +1,13 @@
+<div class="apartment-detail-container">
+  <div *ngIf="apartment">
+    <img
+      mat-card-image
+      [src]="'data:image/png;base64,' + apartment.images[0]"
+      [alt]="apartment.name"
+    />
+
+    {{ apartment.title }} <br />
+    {{ apartment.location }}<br />
+    {{ apartment.price }}<br />
+  </div>
+</div>

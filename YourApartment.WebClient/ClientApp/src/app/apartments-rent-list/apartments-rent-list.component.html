@@ -20,7 +20,10 @@
         </div>
         <div class="filter-button">
           <div class="number-of-rooms-icon-blue"></div>
-          <select class="filter-button">
+          <select
+            (change)="filterByRooms($event.target.value)"
+            class="filter-button"
+          >
             <option selected value="">Number of Rooms</option>
             <option value="1">1 Room</option>
             <option value="2">2 Rooms</option>
@@ -32,15 +35,43 @@
         <div class="filter-button">
           <div class="icon-area-blue"></div>
           <select class="filter-button">
-            <option selected value="rent">Rent</option>
-            <option value="buy">Buy</option>
+            <option selected value="">Area</option>
+            <option value="200">200mp</option>
           </select>
         </div>
         <div class="filter-button">
           <div class="icon-price-blue"></div>
-          <select class="filter-button">
-            <option selected value="rent">Rent</option>
-            <option value="buy">Buy</option>
+          <label for="min-price" class="label-price">Price Min:</label>
+          <input
+            type="number"
+            name="min-price"
+            min="0"
+            class="input-price"
+            (change)="filterByMinPrice($event.target.value)"
+          />
+          <label for="max-price" class="label-price">Price Max:</label>
+          <input
+            type="number"
+            name="max-price"
+            min="0"
+            class="input-price"
+            (change)="filterByMaxPrice($event.target.value)"
+          />
+        </div>
+        <div class="filter-button">
+          <div class="location-icon"></div>
+          <select
+            aria-placeholder="Zone"
+            class="filter-button"
+            (change)="filterByLocation($event.target.value)"
+          >
+            <option value="" selected>Zone</option>
+            <option
+              *ngFor="let location of locations"
+              value="{{ location.id }}"
+            >
+              {{ location.name }}</option
+            >
           </select>
         </div>
       </div>
@@ -51,11 +82,24 @@
   </div>
 
   <div class="apartments-search-container">
-    <div class="number-of-apartments">
+    <div *ngIf="apartmentsPageModel" class="number-of-apartments">
       {{ apartmentsPageModel.totalNumberOfRecords }} Rezultate
     </div>
     <div class="apartments-list-container">
-      <div class="apartment-card" *ngFor="let apartment of apartmentsList">
+      <div
+        class="image-no-result"
+        *ngIf="
+          !apartmentsPageModel || apartmentsPageModel.totalNumberOfRecords == 0
+        "
+      >
+        <img src="../../assets/images/NoResult.svg" alt="No Result" />
+        <div class="no-results-text">No Results Found</div>
+      </div>
+      <div
+        class="apartment-card"
+        *ngFor="let apartment of apartmentsList"
+        [routerLink]="['./detail/' + apartment.id]"
+      >
         <div class="image-card">
           <img
             mat-card-image
@@ -64,10 +108,15 @@
           />
         </div>
         <div class="card-details">
-          <div class="card-price">{{ apartment.price }} EUR/month</div>
+          <div class="card-price">
+            {{ apartment.price | currency: "EUR":true }} EUR/month
+          </div>
           <div class="card-adress">
             <div class="location-icon"></div>
-            Iasi, Podu Ros, Bv Socola, Nr.10
+            <div>{{ apartment.location }}</div>
+            <div *ngIf="apartment.exactAdress">
+              , {{ apartment.exactAdress }}
+            </div>
           </div>
           <div class="apartment-details">
             <div class="card-number-of-rooms">
@@ -83,22 +132,15 @@
       </div>
     </div>
     <div class="pagination-controls-container">
-      1 2 3 4
       <mat-paginator
-        [length]="100"
-        [pageSize]="10"
-        [pageSizeOptions]="[20]"
-        (page)="pageEvent = $event"
-        (page)="this.page = $event"
-        (page)="paginateResults()"
+        class="paginator"
+        *ngIf="apartmentsPageModel"
+        [length]="this.apartmentsPageModel.totalNumberOfRecords"
+        [pageSize]="this.pageSize"
+        [pageSizeOptions]="[8, 16, 32]"
+        (page)="paginateResults($event)"
       >
       </mat-paginator>
-      <div *ngIf="pageEvent">
-        <h5>Page Change Event</h5>
-        <div>List length: {{ pageEvent.length }}</div>
-        <div>Page size: {{ pageEvent.pageSize }}</div>
-        <div>Page index: {{ pageEvent.pageIndex }}</div>
-      </div>
     </div>
   </div>
 </div>

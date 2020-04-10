@@ -43,14 +43,14 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("ExactAdress")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
-                    b.Property<string>("Landmark")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Location")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<Guid?>("LocationId")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<int>("NumberOfRooms")
                         .HasColumnType("int");
@@ -74,6 +74,8 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                         .HasColumnType("int");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LocationId");
 
                     b.ToTable("Apartments");
                 });
@@ -105,6 +107,13 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.HasKey("PreciseAdress");
 
                     b.ToTable("PreciseLocation");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.Apartment", b =>
+                {
+                    b.HasOne("YourApartment.Domain.Location", "Location")
+                        .WithMany()
+                        .HasForeignKey("LocationId");
                 });
 
             modelBuilder.Entity("YourApartment.Domain.Location", b =>

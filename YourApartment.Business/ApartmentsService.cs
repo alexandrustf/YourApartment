@@ -14,17 +14,24 @@ namespace YourApartment.Business
     {
         private readonly IReadRepository<Apartment> readRepository;
         private readonly IWriteRepository<Apartment> writeRepository;
+        private readonly IReadRepository<Location> readLocationRepository;
         private readonly IPaginationService<Apartment, ApartmentModel> paginationService;
         private readonly IImageRepository imageRepository;
 
 
-        public ApartmentsService(IWriteRepository<Apartment> writeRepository, IReadRepository<Apartment> readRepository, IPaginationService<Apartment, ApartmentModel> paginationService, IImageRepository imageRepository)
+        public ApartmentsService(IWriteRepository<Apartment> writeRepository, 
+            IReadRepository<Apartment> readRepository, 
+            IReadRepository<Location> readLocationRepository,
+            IPaginationService<Apartment, ApartmentModel> paginationService, 
+            IImageRepository imageRepository)
         {
             EnsureArg.IsNotNull(readRepository);
             EnsureArg.IsNotNull(writeRepository);
             EnsureArg.IsNotNull(paginationService);
             EnsureArg.IsNotNull(imageRepository);
+            EnsureArg.IsNotNull(readLocationRepository);
 
+            this.readLocationRepository = readLocationRepository;
             this.readRepository = readRepository;
             this.writeRepository = writeRepository;
             this.paginationService = paginationService;
@@ -34,11 +41,14 @@ namespace YourApartment.Business
         public async Task<Result> Create(CreateApartmentCommand command)
         {
             EnsureArg.IsNotNull(command);
-            return await Result.Success(Apartment.Create(command.Title, command.Adress, command.Area, command.Confort,
+
+            var adressResult = (await readLocationRepository.GetById(command.LocationId))
+                .ToResult("Location does not exist!");
+
+            return await Result.FirstFailureOrSuccess(adressResult)
+                .Map(() => Apartment.Create(command.Title, adressResult.Value, command.ExactAdress, command.Area, command.Confort,
                     command.ConstructionYear, command.NumberOfRooms, command.Price,
-                    command.Description, command.Floor, command.Reper, 
-                    command.TotalNumberOfFloors))
-                .Map(a => a.Value)
+                    command.Description, command.Floor, command.TotalNumberOfFloors).Value)
                 .Tap(s => writeRepository.Create(s))
                 .Tap(s => imageRepository.AddImage(s.Id, command.ImageBytes))
                 .Tap(a => imageRepository.SaveChanges())

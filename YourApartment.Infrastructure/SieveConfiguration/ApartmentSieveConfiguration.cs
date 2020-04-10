@@ -40,6 +40,15 @@ namespace YourApartment.Infrastructure.SieveConfiguration
                 .CanSort()
                 .HasName(nameof(Apartment.ConstructionYear));
 
+            mapper.Property<Apartment>(s => s.Area)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.Area));
+
+            mapper.Property<Apartment>(s => s.Location.Id)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.Location));
 
             // TODO ALL PROPERTIES TO BE ADDED!
         }

@@ -18,6 +18,7 @@ namespace YourApartment.Business.Tests
         private Mock<IWriteRepository<Apartment>> writeRepositoryMock;
         private Mock<IPaginationService<Apartment, ApartmentModel>> paginationMock;
         private Mock<IImageRepository> imageRepository;
+        private Mock<IReadRepository<Location>> readLocationRepositoryMock;
 
 
         [Fact]
@@ -43,7 +44,7 @@ namespace YourApartment.Business.Tests
                 3,
                 2,
                 4,
-                "Pe sf. Lazar",
+                Guid.NewGuid(),
                 "Sf. Lazar nr.5",
                 "Foarte bine intretinut",
                 8,
@@ -57,10 +58,11 @@ namespace YourApartment.Business.Tests
             readRepositoryMock = mockRepository.Create<IReadRepository<Apartment>>();
             writeRepositoryMock = MockWriteRepositoryFactory<Apartment>.Create(mockRepository);
             paginationMock = mockRepository.Create<IPaginationService<Apartment, ApartmentModel>>();
+            readLocationRepositoryMock = mockRepository.Create<IReadRepository<Location>>();
         }
 
         protected override IApartmentsService CreateSystemUnderTest()
-            => new ApartmentsService(writeRepositoryMock.Object, readRepositoryMock.Object, paginationMock.Object, imageRepository.Object);
+            => new ApartmentsService(writeRepositoryMock.Object, readRepositoryMock.Object, readLocationRepositoryMock.Object, paginationMock.Object, imageRepository.Object);
 
     }
 }

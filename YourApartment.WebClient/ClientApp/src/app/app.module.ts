@@ -12,6 +12,13 @@ import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { AppRoutingModule } from "./app-routing.module";
 import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-rent-list.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/apartment-detail.component";
+import { AddApartmentModule } from "./add-apartment/add-apartment.module";
+import { AddApartmentComponent } from "./add-apartment/add-apartment/add-apartment.component";
+import { ApartmentDetailModule } from "./apartment-detail/apartment-detail.module";
+import { ApartmentsListModule } from "./apartments-list/apartments-list.module";
+import { ApartmentsListComponent } from "./apartments-list/apartments-list/apartments-list.component";
 
 @NgModule({
   declarations: [
@@ -20,7 +27,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ApartmentsRentListComponent
+    ApartmentsRentListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -28,14 +35,23 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     FormsModule,
     RouterModule.forRoot([
       { path: "", component: HomeComponent, pathMatch: "full" },
+      { path: "add-apartment", component: AddApartmentComponent },
       { path: "counter", component: CounterComponent },
-      { path: "apartments-rent", component: ApartmentsRentListComponent },
-      { path: "fetch-data", component: FetchDataComponent }
+      { path: "apartments-rent", component: ApartmentsListComponent },
+      {
+        path: "apartments-rent/detail/:id",
+        component: ApartmentDetailComponent,
+      },
+      { path: "fetch-data", component: FetchDataComponent },
     ]),
     AppRoutingModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    BrowserAnimationsModule,
+    ApartmentsListModule,
+    ApartmentDetailModule,
+    AddApartmentModule,
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
 export class AppModule {}
