@@ -37,11 +37,12 @@ import { ApartmentsListComponent } from "./apartments-list/apartments-list/apart
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "add-apartment", component: AddApartmentComponent },
       { path: "counter", component: CounterComponent },
-      { path: "apartments-rent", component: ApartmentsListComponent },
       {
         path: "apartments-rent/detail/:id",
         component: ApartmentDetailComponent,
       },
+      { path: "apartments-rent", component: ApartmentsListComponent },
+
       { path: "fetch-data", component: FetchDataComponent },
     ]),
     AppRoutingModule,
