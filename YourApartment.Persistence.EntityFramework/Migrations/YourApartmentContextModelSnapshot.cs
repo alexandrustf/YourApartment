@@ -31,16 +31,37 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.Property<int>("Area")
                         .HasColumnType("int");
 
+                    b.Property<int>("Building")
+                        .HasColumnType("int");
+
                     b.Property<int>("Confort")
                         .HasColumnType("int");
 
                     b.Property<int>("ConstructionYear")
                         .HasColumnType("int");
 
+                    b.Property<string>("Description")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
+                    b.Property<string>("Landmark")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("Location")
+                        .HasColumnType("nvarchar(max)");
+
                     b.Property<int>("NumberOfRooms")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PartitioningType")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostedBy")
+                        .HasColumnType("int");
+
+                    b.Property<int>("PostedFor")
                         .HasColumnType("int");
 
                     b.Property<int>("Price")
@@ -49,9 +70,48 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.Property<string>("Title")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("TotalNumberOfFloors")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.ToTable("Apartments");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.Location", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("AdressLocationPreciseAdress")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AdressLocationPreciseAdress");
+
+                    b.ToTable("Locations");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.PreciseLocation", b =>
+                {
+                    b.Property<string>("PreciseAdress")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("PreciseAdress");
+
+                    b.ToTable("PreciseLocation");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.Location", b =>
+                {
+                    b.HasOne("YourApartment.Domain.PreciseLocation", "AdressLocation")
+                        .WithMany()
+                        .HasForeignKey("AdressLocationPreciseAdress");
                 });
 #pragma warning restore 612, 618
         }

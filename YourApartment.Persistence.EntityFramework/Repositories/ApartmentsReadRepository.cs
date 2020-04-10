@@ -5,10 +5,10 @@ using YourApartment.Domain;
 
 namespace YourApartment.Persistence.EntityFramework
 {
-    internal sealed class AccommodationsReadRepository<T> : BaseReadRepository<T>
+    internal sealed class ApartmentsReadRepository<T> : BaseReadRepository<T>
         where T : Entity
     {
-        public AccommodationsReadRepository(YourApartmentContext context)
+        public ApartmentsReadRepository(YourApartmentContext context)
             : base(context)
         {
         }

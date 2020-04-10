@@ -2,6 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using AutoMapper;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -13,6 +14,7 @@ using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
 using YourApartment.Business;
+using YourApartment.Infrastructure;
 using YourApartment.Persistence.EntityFramework;
 
 namespace YourApartment.WebApi
@@ -31,9 +33,12 @@ namespace YourApartment.WebApi
         {
             services.AddCors()
                 .AddPersistence(Configuration.GetConnectionString("YourApartment"));
+            services.AddApiVersioning();
+            services.AddAutoMapper(InfrastructureAssembly.Value);
             services.AddControllers();
             services.AddSwagger();
             services.AddBusiness();
+            services.AddInfrastructure();
             services.AddMvc();
         }
 

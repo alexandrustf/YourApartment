@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace YourApartment.WebApi
 {
-    public class CreateAccommodationModel
+    public class UpdateApartmentModel
     {
         public string Title { get; set; }
     }

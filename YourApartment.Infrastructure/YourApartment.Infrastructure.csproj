@@ -1,7 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
   </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper" Version="9.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\YourApartment.Business\YourApartment.Business.csproj" />
+    <ProjectReference Include="..\YourApartment.Common\YourApartment.Common.csproj" />
+    <ProjectReference Include="..\YourApartment.Persistence.EntityFramework\YourApartment.Persistence.EntityFramework.csproj" />
+  </ItemGroup>
 
 </Project>
