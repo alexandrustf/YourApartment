@@ -3,14 +3,12 @@ import { NgModule } from "@angular/core";
 import { FormsModule } from "@angular/forms";
 import { HttpClientModule, HTTP_INTERCEPTORS } from "@angular/common/http";
 import { RouterModule } from "@angular/router";
-
 import { AppComponent } from "./app.component";
 import { NavMenuComponent } from "./nav-menu/nav-menu.component";
 import { HomeComponent } from "./home/home.component";
 import { CounterComponent } from "./counter/counter.component";
 import { FetchDataComponent } from "./fetch-data/fetch-data.component";
 import { AppRoutingModule } from "./app-routing.module";
-import { ApartmentsRentListComponent } from "./apartments-rent-list/apartments-rent-list.component";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/apartment-detail.component";
@@ -19,6 +17,8 @@ import { AddApartmentComponent } from "./add-apartment/add-apartment/add-apartme
 import { ApartmentDetailModule } from "./apartment-detail/apartment-detail.module";
 import { ApartmentsListModule } from "./apartments-list/apartments-list.module";
 import { ApartmentsListComponent } from "./apartments-list/apartments-list/apartments-list.component";
+import { PerfectHomeComponent } from "./perfect-home/perfect-home/perfect-home.component";
+import { PerfectHomeModule } from "./perfect-home/perfect-home.module";
 
 @NgModule({
   declarations: [
@@ -27,7 +27,6 @@ import { ApartmentsListComponent } from "./apartments-list/apartments-list/apart
     HomeComponent,
     CounterComponent,
     FetchDataComponent,
-    ApartmentsRentListComponent,
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
@@ -43,7 +42,7 @@ import { ApartmentsListComponent } from "./apartments-list/apartments-list/apart
       },
       { path: "apartments-rent", component: ApartmentsListComponent },
 
-      { path: "fetch-data", component: FetchDataComponent },
+      { path: "perfect-home", component: PerfectHomeComponent },
     ]),
     AppRoutingModule,
     MatPaginatorModule,
@@ -51,6 +50,7 @@ import { ApartmentsListComponent } from "./apartments-list/apartments-list/apart
     ApartmentsListModule,
     ApartmentDetailModule,
     AddApartmentModule,
+    PerfectHomeModule,
   ],
   providers: [],
   bootstrap: [AppComponent],

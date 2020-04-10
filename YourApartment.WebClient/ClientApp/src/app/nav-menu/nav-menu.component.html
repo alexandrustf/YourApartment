@@ -1,7 +1,7 @@
 <div>
   <div class="header-container">
     <div class="logo-container">
-      <a class="logo" [routerLink]="['/']">YourApartment</a>
+      <a class="logo" [routerLink]="['/']">Your Apartment</a>
     </div>
     <div class="container-navigation-bar">
       <div
@@ -9,7 +9,7 @@
         [routerLinkActive]="['link-active']"
         [routerLinkActiveOptions]="{ exact: true }"
       >
-        <a class="navigation-bar-item" [routerLink]="['/']">Home</a>
+        <a class="navigation-bar-item" [routerLink]="['/']">Acasa</a>
       </div>
       <div
         class="navigation-bar-item-container"
@@ -23,14 +23,16 @@
         class="navigation-bar-item-container"
         [routerLinkActive]="['link-active']"
       >
-        <a class="navigation-bar-item" [routerLink]="['/counter']">Counter</a>
+        <a class="navigation-bar-item" [routerLink]="['/add-apartment']"
+          >Adauga Anunt</a
+        >
       </div>
       <div
         class="navigation-bar-item-container"
         [routerLinkActive]="['link-active']"
       >
-        <a class="navigation-bar-item" [routerLink]="['/fetch-data']"
-          >Fetch data
+        <a class="navigation-bar-item" [routerLink]="['/perfect-home']"
+          >Your perfect home
         </a>
       </div>
     </div>
