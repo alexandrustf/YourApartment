@@ -45,10 +45,40 @@ namespace YourApartment.Infrastructure.SieveConfiguration
                 .CanSort()
                 .HasName(nameof(Apartment.Area));
 
+            mapper.Property<Apartment>(s => s.PartitioningType)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.PartitioningType));
+
+            mapper.Property<Apartment>(s => s.TotalNumberOfFloors)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.TotalNumberOfFloors));
+
+            mapper.Property<Apartment>(s => s.PostedBy)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.PostedBy));
+
+            mapper.Property<Apartment>(s => s.PostedFor)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.PostedFor));
+
+            mapper.Property<Apartment>(s => s.Description)
+                .CanFilter()
+                .CanSort()
+                .HasName(nameof(Apartment.Description));
+
             mapper.Property<Apartment>(s => s.Location.Id)
                 .CanFilter()
                 .CanSort()
                 .HasName(nameof(Apartment.Location));
+
+            mapper.Property<Apartment>(s => s.Location.Name)
+                .CanFilter()
+                .CanSort()
+                .HasName("LocationName");
 
             // TODO ALL PROPERTIES TO BE ADDED!
         }
