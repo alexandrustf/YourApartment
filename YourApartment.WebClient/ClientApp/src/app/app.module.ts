@@ -16,6 +16,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { ApartmentDetailComponent } from "./apartment-detail/apartment-detail/apartment-detail.component";
 import { AddApartmentModule } from "./add-apartment/add-apartment.module";
 import { AddApartmentComponent } from "./add-apartment/add-apartment/add-apartment.component";
+import { ApartmentDetailModule } from "./apartment-detail/apartment-detail.module";
+import { ApartmentsListModule } from "./apartments-list/apartments-list.module";
+import { ApartmentsListComponent } from "./apartments-list/apartments-list/apartments-list.component";
 
 @NgModule({
   declarations: [
@@ -34,7 +37,7 @@ import { AddApartmentComponent } from "./add-apartment/add-apartment/add-apartme
       { path: "", component: HomeComponent, pathMatch: "full" },
       { path: "add-apartment", component: AddApartmentComponent },
       { path: "counter", component: CounterComponent },
-      { path: "apartments-rent", component: ApartmentsRentListComponent },
+      { path: "apartments-rent", component: ApartmentsListComponent },
       {
         path: "apartments-rent/detail/:id",
         component: ApartmentDetailComponent,
@@ -44,6 +47,8 @@ import { AddApartmentComponent } from "./add-apartment/add-apartment/add-apartme
     AppRoutingModule,
     MatPaginatorModule,
     BrowserAnimationsModule,
+    ApartmentsListModule,
+    ApartmentDetailModule,
     AddApartmentModule,
   ],
   providers: [],

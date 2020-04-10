@@ -1,0 +1,27 @@
+<div class="image-card">
+  <img
+    mat-card-image
+    [src]="'data:image/png;base64,' + apartment.images[0]"
+    [alt]="apartment.name"
+  />
+</div>
+<div class="card-details">
+  <div class="card-price">
+    {{ apartment.price | currency: "EUR":true }} EUR/month
+  </div>
+  <div class="card-adress">
+    <div class="location-icon"></div>
+    <div>{{ apartment.location }}</div>
+    <div *ngIf="apartment.exactAdress">, {{ apartment.exactAdress }}</div>
+  </div>
+  <div class="apartment-details">
+    <div class="card-number-of-rooms">
+      <div class="number-of-rooms-icon"></div>
+      {{ apartment.numberOfRooms }}
+    </div>
+    <div class="card-area">
+      <div class="icon-area"></div>
+      {{ apartment.area }}
+    </div>
+  </div>
+</div>

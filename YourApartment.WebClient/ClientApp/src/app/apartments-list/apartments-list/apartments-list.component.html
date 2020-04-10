@@ -1,0 +1,16 @@
+<div class="apartments-rent-page-container">
+  <div class="subheader-rent-apartments">
+    <app-filters (filteredModel)="this.filterModel = $event"></app-filters>
+  </div>
+  <div class="apartments-search-container">
+    <app-cards-list [filteredModel]="this.filterModel"></app-cards-list>
+  </div>
+</div>
+<div class="pagination-controls-container">
+  <app-pagination
+    *ngIf="apartmentsPageModel"
+    [filterModel]="this.filterModel"
+    [totalNumberOfRecords]="this.apartmentsPageModel.totalNumberOfRecords"
+    (filteredModel)="this.filterModel = $event"
+  ></app-pagination>
+</div>
