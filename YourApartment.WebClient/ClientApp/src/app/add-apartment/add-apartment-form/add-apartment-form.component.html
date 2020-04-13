@@ -1,0 +1,106 @@
+<form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
+  <div class="add-apartment-container">
+    <div class="add-images-container">
+      <input type="file" formControlName="image" required />
+    </div>
+    <div class="add-location-container">
+      <label>
+        Adresa exacta:
+        <input type="text" formControlName="exactAdress" />
+      </label>
+    </div>
+    <div class="add-properties-container">
+      <label>
+        Titlu: *
+        <input type="text" formControlName="title" required />
+      </label>
+
+      <label>
+        Numarul de camere: *
+        <input
+          type="number"
+          name="min-price"
+          min="0"
+          max="100"
+          formControlName="numberOfRooms"
+          required
+        />
+      </label>
+
+      <label>
+        Suprafata Utila: *
+        <input
+          type="number"
+          name="min-price"
+          min="0"
+          formControlName="area"
+          required
+        />
+      </label>
+
+      <label>
+        Descriere:
+        <input type="text" formControlName="description" />
+      </label>
+
+      <label>
+        Etaj:
+        <input type="number" name="min-price" min="0" formControlName="floor" />
+      </label>
+
+      <label>
+        Numarul de etaje al cladirii:
+        <input
+          type="number"
+          name="min-price"
+          min="0"
+          formControlName="totalNumberOfFloors"
+        />
+      </label>
+
+      <label>
+        Numarul de bai:
+        <input
+          type="number"
+          name="min-price"
+          min="0"
+          formControlName="numberOfBathRooms"
+        />
+      </label>
+      <label>
+        Anul in care a fost contruita cladirea:
+        <input
+          type="number"
+          name="min-price"
+          min="1920"
+          max="2020"
+          formControlName="constructionYear"
+        />
+      </label>
+      <label>
+        Nivelul de confort:
+        <input
+          type="number"
+          name="min-price"
+          min="1"
+          max="10"
+          formControlName="confort"
+        />
+      </label>
+      <label>
+        Numarul de telefon: *
+        <input type="tel" formControlName="phone" required />
+      </label>
+      <label>
+        Pret: *
+        <input type="number" min="1" formControlName="price" required />
+        <div class="corect-price-container">
+          <!-- <button disabled>Check the Ideal Price</button> -->
+        </div>
+      </label>
+      <button (click)="findInvalidControls()"></button>
+    </div>
+    <button type="submit" [disabled]="!apartmentForm.valid">Submit</button>
+  </div>
+</form>
+<p>Form Status: {{ apartmentForm.status }}</p>
