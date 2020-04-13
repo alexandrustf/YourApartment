@@ -8,26 +8,29 @@ namespace YourApartment.Domain
     {
         public enum PartitioningType : ushort
         {
-            Decomandat = 0,
-            Semidecomandat = 1,
-            Nedecomandat = 2,
-            Garsoniera = 3,
-            CameraCamin = 4
+            UnSpecified = 0,
+            Decomandat = 1,
+            Semidecomandat = 2,
+            Nedecomandat = 3,
+            Garsoniera = 4,
+            CameraCamin = 5,
         }
 
         public enum PostedBy : ushort
         {
-            Agentii = 0,
-            Particulari = 1,
-            Dezvoltatori = 2
+            UnSpecified = 0,
+            Agentii = 1,
+            Particulari = 2,
+            Dezvoltatori = 3
         }
 
         public enum Building : ushort
         {
-            BlocApartament = 0,
-            House = 1,
-            Comercial= 2,
-            Teren = 3
+            UnSpecified = 0,
+            BlocApartament = 1,
+            House = 2,
+            Comercial= 3,
+            Teren = 4
         }
 
         public enum PostedFor : ushort

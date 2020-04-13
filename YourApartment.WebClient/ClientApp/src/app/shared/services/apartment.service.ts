@@ -7,6 +7,7 @@ import { environment } from "src/environments/environment";
 import { PageModel } from "../models/page.model";
 import { FilterModel } from "../models/filter.model";
 import { ConditionalExpr } from "@angular/compiler";
+import { ApartmentDetails } from "../models/apartment-details.model";
 
 @Injectable({
   providedIn: "root",
@@ -14,8 +15,8 @@ import { ConditionalExpr } from "@angular/compiler";
 export class ApartmentService {
   public constructor(private http: HttpClient) {}
 
-  public getApartmentById(id: string): Observable<Apartment> {
-    return this.http.get<Apartment>(
+  public getApartmentById(id: string): Observable<ApartmentDetails> {
+    return this.http.get<ApartmentDetails>(
       `${environment.YourApartmentUrl}/Apartments/${id}`
     );
   }

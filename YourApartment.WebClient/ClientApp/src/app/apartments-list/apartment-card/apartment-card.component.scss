@@ -32,6 +32,13 @@
       background: transparent url("../../../assets/icons/location_on-24px.svg")
         0% 0% no-repeat padding-box;
     }
+    .zone-text {
+      white-space: nowrap;
+      text-align: left;
+    }
+    .location-text {
+      display: flex;
+    }
   }
 
   .apartment-details {
