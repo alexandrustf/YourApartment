@@ -1,9 +1,9 @@
 import { Component, OnInit } from "@angular/core";
 import { ApartmentService } from "src/app/shared/services/apartment.service";
-import { Apartment } from "src/app/shared/models/apartment.model";
 import { ActivatedRoute } from "@angular/router";
 import { Subscription } from "rxjs";
 import { first } from "rxjs/operators";
+import { ApartmentDetails } from "src/app/shared/models/apartment-details.model";
 
 @Component({
   selector: "app-apartment-detail",
@@ -11,7 +11,7 @@ import { first } from "rxjs/operators";
   styleUrls: ["./apartment-detail.component.scss"],
 })
 export class ApartmentDetailComponent implements OnInit {
-  public apartment: Apartment;
+  public apartment: ApartmentDetails;
 
   constructor(
     private route: ActivatedRoute,

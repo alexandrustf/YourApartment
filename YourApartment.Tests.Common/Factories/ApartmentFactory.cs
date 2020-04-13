@@ -9,9 +9,10 @@ namespace YourApartment.Tests.Common.Factories
     {
         public static Apartment GetApartment(string title, Location location, PreciseLocation exactAdress, int price,
             int area, int numberOfRooms, int floor, int totalNumberOfFloors,
-            string description, int constructionYear, int confort)
+            string description, int constructionYear, int confort, int numberOfBathrooms)
         {
-            return Apartment.Create(title, location, exactAdress.PreciseAdress, area, confort, constructionYear, numberOfRooms, price, description, floor, totalNumberOfFloors).Value;
+            return Apartment.Create(title, location, exactAdress.PreciseAdress, area, confort, constructionYear, 
+                numberOfRooms, price, description, floor, totalNumberOfFloors, numberOfBathrooms).Value;
         }
     }
 }

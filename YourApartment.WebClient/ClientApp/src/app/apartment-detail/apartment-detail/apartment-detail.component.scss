@@ -2,4 +2,32 @@
   padding-top: 115px;
   padding-left: 134px;
   padding-right: 134px;
+  display: flex;
+  justify-content: center;
+  .images-container {
+    padding-top: 30px;
+  }
+  .description-container {
+    margin-left: 100px;
+    margin-top: 50px;
+    .description-text {
+      margin-left: 50px;
+    }
+  }
+  .spefications-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 100px;
+    .spefication-container {
+      padding-left: 50px;
+
+      display: inline-block;
+      .spefication-title {
+        display: inline-block;
+      }
+      .spefication-value {
+        display: inline-block;
+      }
+    }
+  }
 }

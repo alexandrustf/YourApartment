@@ -44,6 +44,7 @@ namespace YourApartment.Business.Tests
                 3,
                 2,
                 4,
+                2,
                 Guid.NewGuid(),
                 "Sf. Lazar nr.5",
                 "Foarte bine intretinut",

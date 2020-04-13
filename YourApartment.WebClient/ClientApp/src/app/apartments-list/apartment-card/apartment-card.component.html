@@ -11,8 +11,12 @@
   </div>
   <div class="card-adress">
     <div class="location-icon"></div>
-    <div>{{ apartment.location }}</div>
-    <div *ngIf="apartment.exactAdress">, {{ apartment.exactAdress }}</div>
+    <div class="location-text">
+      <div class="zone-text">{{ apartment.location }}</div>
+      <div class="location-card" *ngIf="apartment.exactAdress">
+        , {{ apartment.exactAdress }}
+      </div>
+    </div>
   </div>
   <div class="apartment-details">
     <div class="card-number-of-rooms">

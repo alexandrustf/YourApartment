@@ -59,6 +59,7 @@ namespace YourApartment.WebApi.Controllers
                 createApartmentModel.NumberOfRooms,
                 createApartmentModel.Floor,
                 createApartmentModel.TotalNumberOfFloors,
+                createApartmentModel.NumberOfBathRooms,
                 createApartmentModel.LocationId,
                 createApartmentModel.ExactAdress,
                 createApartmentModel.Description,

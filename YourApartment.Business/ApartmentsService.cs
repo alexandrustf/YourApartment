@@ -48,7 +48,8 @@ namespace YourApartment.Business
             return await Result.FirstFailureOrSuccess(adressResult)
                 .Map(() => Apartment.Create(command.Title, adressResult.Value, command.ExactAdress, command.Area, command.Confort,
                     command.ConstructionYear, command.NumberOfRooms, command.Price,
-                    command.Description, command.Floor, command.TotalNumberOfFloors).Value)
+                    command.Description, command.Floor, command.TotalNumberOfFloors,
+                    command.NumberOfBathRooms).Value)
                 .Tap(s => writeRepository.Create(s))
                 .Tap(s => imageRepository.AddImage(s.Id, command.ImageBytes))
                 .Tap(a => imageRepository.SaveChanges())
