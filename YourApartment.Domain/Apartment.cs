@@ -14,7 +14,7 @@ namespace YourApartment.Domain
 
         }
         public Apartment(string title, Location location, string exactAdress, int price, 
-            int area, int numberOfRooms, int floor, int totalNumberOfFloors, 
+            int area, int numberOfRooms, int floor, int totalNumberOfFloors, int numberOfBathrooms,
             string description, int constructionYear, int confort)
         {
             Title = title;
@@ -22,6 +22,7 @@ namespace YourApartment.Domain
             Area = area;
             NumberOfRooms = numberOfRooms;
             Floor = floor;
+            NumberOfBathrooms = numberOfBathrooms;
             TotalNumberOfFloors = totalNumberOfFloors;
             Location = location;
             ExactAdress = exactAdress;
@@ -34,6 +35,8 @@ namespace YourApartment.Domain
         public int Price { get; private set; }
         public int Area { get; private set; }
         public int NumberOfRooms { get; private set; }
+
+        public int NumberOfBathrooms { get; private set; }
         public int Floor { get; private set; }
         public int TotalNumberOfFloors { get; private set; }
         public Location Location { get; private set; }
@@ -44,7 +47,7 @@ namespace YourApartment.Domain
         public int Confort { get; private set; }
         public int ConstructionYear { get; private set; }
 
-        public ApartmentEnums.PartitioningType PartitioningType { get; set; }
+        public ApartmentEnums.PartitioningType PartitioningType { get; private set; }
         public ApartmentEnums.PostedBy PostedBy { get; private set; }
         public ApartmentEnums.Building Building { get; private set; }
         public ApartmentEnums.PostedFor PostedFor { get; private set; }
@@ -56,9 +59,12 @@ namespace YourApartment.Domain
             this.Title = title;
             return Result.Ok();
         }
-        public static Result<Apartment> Create(string title,Location location, string exactAdress, int area, int confort, int constructionYear, int numberOfRooms, int price, string description, int floor, int totalNumberOfFloors)
+        public static Result<Apartment> Create(string title,Location location, string exactAdress, int area, int confort, 
+            int constructionYear, int numberOfRooms, int price, string description, 
+            int floor, int totalNumberOfFloors, int numberOfBathrooms)
         {
-            return Result.Success<Apartment>(new Apartment(title, location, exactAdress, price, area, numberOfRooms, floor, totalNumberOfFloors, description,  constructionYear, confort));
+            return Result.Success<Apartment>(new Apartment(title, location, exactAdress, price, area, numberOfRooms, 
+                floor, totalNumberOfFloors, numberOfBathrooms, description,  constructionYear, confort));
         }
     }
 }

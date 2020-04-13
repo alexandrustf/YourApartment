@@ -52,6 +52,9 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.Property<Guid?>("LocationId")
                         .HasColumnType("uniqueidentifier");
 
+                    b.Property<int>("NumberOfBathrooms")
+                        .HasColumnType("int");
+
                     b.Property<int>("NumberOfRooms")
                         .HasColumnType("int");
 

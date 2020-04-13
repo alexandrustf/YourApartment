@@ -17,10 +17,14 @@ namespace YourApartment.Business
             Floor = apartment.Floor;
             TotalNumberOfFloors = apartment.TotalNumberOfFloors;
             Location = apartment.Location.Name;
-            // ExactAdress = apartment.ExactAdress.PreciseAdress;
+            ExactAdress = apartment.ExactAdress;
             Description = apartment.Description;
             Confort = apartment.Confort;
             ConstructionYear = apartment.ConstructionYear;
+            NumberOfBathrooms = apartment.NumberOfBathrooms;
+            PartitioningType = apartment.PartitioningType.ToString();
+            PostedBy = apartment.PostedBy.ToString();
+            Building = apartment.Building.ToString();
             AddedAt = apartment.AddedAt;
             Images = images;
         }
@@ -33,10 +37,14 @@ namespace YourApartment.Business
         public int Floor { get; private set; }
         public int TotalNumberOfFloors { get; private set; }
         public string Location { get; private set; }
-        // public string ExactAdress { get; private set; }
+        public string ExactAdress { get; private set; }
         public string Description { get; private set; }
         public int Confort { get; private set; }
         public int ConstructionYear { get; private set; }
+        public int NumberOfBathrooms { get; private set; }
+        public string PartitioningType { get; private set; }
+        public string PostedBy { get; private set; }
+        public string Building { get; private set; }
         public DateTime AddedAt { get; private set; }
         public IEnumerable<byte[]> Images { get; private set; }
 

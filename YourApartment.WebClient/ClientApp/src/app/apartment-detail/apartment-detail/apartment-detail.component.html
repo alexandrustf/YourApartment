@@ -1,13 +1,85 @@
 <div class="apartment-detail-container">
   <div *ngIf="apartment">
-    <img
-      mat-card-image
-      [src]="'data:image/png;base64,' + apartment.images[0]"
-      [alt]="apartment.name"
-    />
+    <div class="title-container">
+      <h1>{{ apartment.title }}</h1>
+    </div>
+    <div class="images-container">
+      <img
+        mat-card-image
+        [src]="'data:image/png;base64,' + apartment.images[0]"
+        [alt]="apartment.name"
+      />
+    </div>
 
-    {{ apartment.title }} <br />
-    {{ apartment.location }}<br />
-    {{ apartment.price }}<br />
+    <div class="description-container">
+      <h2>Description</h2>
+      <div class="description-text">
+        <h4>{{ apartment.description }}</h4>
+      </div>
+    </div>
+
+    <div class="spefications-container">
+      <h2>Spefications</h2>
+      <div class="spefication-container">
+        <h4 class="spefication-title">Location:</h4>
+        <h4 class="spefication-value">{{ apartment.location }}</h4>
+      </div>
+
+      <div class="spefication-container">
+        <h4 class="spefication-title">Price:</h4>
+        <h4 class="spefication-value">{{ apartment.price }}</h4>
+      </div>
+      <div class="spefication-container">
+        <h4 class="spefication-title">Number of Rooms:</h4>
+        <h4 class="spefication-value">{{ apartment.numberOfRooms }}</h4>
+      </div>
+      <div class="spefication-container">
+        <h4 class="spefication-title">Area:</h4>
+        <h4 class="spefication-value">{{ apartment.area }}</h4>
+      </div>
+      <div *ngIf="apartment.exactAdress" class="spefication-container">
+        <h4 class="spefication-title">Adress:</h4>
+        <h4 class="spefication-value">{{ apartment.exactAdress }}</h4>
+      </div>
+      <div *ngIf="apartment.floor" class="spefication-container">
+        <h4 class="spefication-title">Floor:</h4>
+        <h4 class="spefication-value">{{ apartment.floor }}</h4>
+      </div>
+      <div *ngIf="apartment.totalNumberOfFloors" class="spefication-container">
+        <h4 class="spefication-title">
+          Total number of floors of the building:
+        </h4>
+        <h4 class="spefication-value">{{ apartment.totalNumberOfFloors }}</h4>
+      </div>
+      <div *ngIf="apartment.confort" class="spefication-container">
+        <h4 class="spefication-title">Confort level:</h4>
+        <h4 class="spefication-value">{{ apartment.confort }}</h4>
+      </div>
+      <div *ngIf="apartment.constructionYear" class="spefication-container">
+        <h4 class="spefication-title">Construction Year:</h4>
+        <h4 class="spefication-value">{{ apartment.constructionYear }}</h4>
+      </div>
+      <div *ngIf="apartment.numberOfBathrooms" class="spefication-container">
+        <h4 class="spefication-title">Number of Bathrooms:</h4>
+        <h4 class="spefication-value">{{ apartment.numberOfBathrooms }}</h4>
+      </div>
+      <div
+        *ngIf="
+          apartment.partitioningType &&
+          apartment.partitioningType !== 'UnSpecified'
+        "
+        class="spefication-container"
+      >
+        <h4 class="spefication-title">Partitiong type:</h4>
+        <h4 class="spefication-value">{{ apartment.partitioningType }}</h4>
+      </div>
+      <div
+        *ngIf="apartment.building && apartment.building !== 'UnSpecified'"
+        class="spefication-container"
+      >
+        <h4 class="spefication-title">Building:</h4>
+        <h4 class="spefication-value">{{ apartment.building }}</h4>
+      </div>
+    </div>
   </div>
 </div>
