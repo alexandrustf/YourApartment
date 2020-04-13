@@ -1,5 +1,5 @@
 export class FilterModel {
-  public name?: string;
+  public searchBar?: string;
   public page?: number;
   public pageSize?: number;
   public numberOfRooms?: number;

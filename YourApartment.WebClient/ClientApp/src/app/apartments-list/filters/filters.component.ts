@@ -56,5 +56,10 @@ export class FiltersComponent implements OnInit {
   filtered() {
     this.filteredModel.emit(Object.assign({}, this.filterModel));
     console.log("Am emis : " + this.filteredModel);
+    console.log(this.filterModel);
+  }
+  update(value: string) {
+    this.filterModel.searchBar = value;
+    this.filtered();
   }
 }

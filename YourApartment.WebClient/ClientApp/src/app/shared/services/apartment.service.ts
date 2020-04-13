@@ -24,28 +24,27 @@ export class ApartmentService {
     filterModel: FilterModel
   ): Observable<PageModel<Apartment>> {
     let filters: string = "";
-    filters = name
-      ? filters.concat(`Name@=${filterModel.name},`)
+
+    filters = filterModel.searchBar
+      ? filters.concat(this.evaluateSearchBar(filterModel.searchBar))
       : filters.concat();
-    console.log(filters);
     filters = filterModel.priceMin
       ? filters.concat(`price>=${filterModel.priceMin},`)
       : filters.concat();
     filters = filterModel.priceMax
       ? filters.concat(`price<=${filterModel.priceMax},`)
       : filters.concat();
-    console.log("suntem aici : " + filterModel.priceMin);
-    console.log("filterModel " + filterModel);
     for (let property of Object.keys(filterModel)) {
       if (
         property !== "page" &&
         property !== "pageSize" &&
-        property !== "Name" &&
+        property !== "searchBar" &&
         property !== "priceMin" &&
         property !== "priceMax"
       )
         filters = filters.concat(`${property}==${filterModel[property]},`);
     }
+    console.log(filters);
 
     let params: HttpParams = new HttpParams().append("filters", filters);
 
@@ -75,5 +74,28 @@ export class ApartmentService {
           return pageModel;
         })
       );
+  }
+
+  private evaluateSearchBar(value: string): string {
+    var splitted = value.split(" ");
+    console.log(splitted);
+    var result = "";
+    var listFilters = ["locationName"];
+    var ok = 0;
+    listFilters.forEach((element) => {
+      for (let index = 0; index < splitted.length; index++) {
+        console.log("wtf" + splitted[index]);
+        if (ok === 0) {
+          ok = 1;
+          result = result.concat(`${element}@=${splitted[index]}`);
+        } else {
+          result = result.concat(`|${element}@=${splitted[index]}`);
+        }
+      }
+    });
+
+    result = result.concat(",");
+    console.log(result);
+    return result;
   }
 }

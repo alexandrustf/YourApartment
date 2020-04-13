@@ -4,7 +4,14 @@
   </div>
   <div class="search-box">
     <label for="search-apartment"></label>
-    <input type="text" id="search-apartment" name="search-apartment" />
+    <input
+      #box
+      (keyup.enter)="update(box.value)"
+      (blur)="update(box.value)"
+      type="text"
+      id="search-apartment"
+      name="search-apartment"
+    />
   </div>
 </div>
 <div class="filters-bar-container">
