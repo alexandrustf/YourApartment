@@ -4,8 +4,8 @@ using System.Text;
 
 namespace YourApartment.Business
 {
-    public class AppSettings
+    public interface ITokenProvider
     {
-        public string Secret { get; set; }
+        AuthenticationToken CreateTokenForUser(Guid id, string email, string name);
     }
 }

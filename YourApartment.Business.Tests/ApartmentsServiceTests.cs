@@ -50,7 +50,7 @@ namespace YourApartment.Business.Tests
                 "Foarte bine intretinut",
                 8,
                 1980,
-                new List<byte[]>{ new byte[] { } });
+                new byte[] { } );
 
 
 

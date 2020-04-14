@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourApartment.Business;
+using YourApartment.Domain;
 using YourApartment.WebApi.Models;
 
 namespace YourApartment.WebApi.Controllers
@@ -25,9 +26,9 @@ namespace YourApartment.WebApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
-        public IActionResult Authenticate([FromBody]AuthenticateModel model)
+        public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
         {
-            var user = userService.Authenticate(model.Username, model.Password);
+            var user = await userService.Authenticate(model.Username, model.Password);
 
             if (user == null)
                 return BadRequest(new { message = "Username or password is incorrect" });
@@ -35,11 +36,30 @@ namespace YourApartment.WebApi.Controllers
             return Ok(user);
         }
 
-        [HttpGet]
-        public IActionResult GetAll()
+        [AllowAnonymous]
+        [HttpPost("register")]
+        [ProducesResponseType(201)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> Register([FromBody]RegisterModel model)
         {
-            var users = userService.GetAll();
-            return Ok(users);
+            // map model to entity
+
+            var command = new CreateUserCommand(model.Name, model.Email, model.PhoneNumber, model.Password);
+
+            var result = await userService.Create(command);
+
+            return result.IsFailure
+                ? (IActionResult)BadRequest(result.Error)
+                : CreatedAtAction(null, "Created User!");
         }
+
+
+
+        //[HttpGet]
+        //public IActionResult GetAll()
+        //{
+        //    var users = userService.GetAll();
+        //    return Ok(users);
+        //}
     }
 }

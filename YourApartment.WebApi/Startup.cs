@@ -41,10 +41,10 @@ namespace YourApartment.WebApi
 
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
-            services.Configure<AppSettings>(appSettingsSection);
+            services.Configure<JwtSettings>(appSettingsSection);
 
             // configure jwt authentication
-            var appSettings = appSettingsSection.Get<AppSettings>();
+            var appSettings = appSettingsSection.Get<JwtSettings>();
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
                 {

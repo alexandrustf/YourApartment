@@ -32,12 +32,12 @@ namespace YourApartment.WebApi
                     Title = "Auth API",
                 });
 
-                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                c.AddSecurityDefinition("bearer", new OpenApiSecurityScheme
                 {
                     Name = "Authorization",
                     Description = "JWT Authorization header using the Bearer scheme.",
-                    Type = SecuritySchemeType.ApiKey,
-                    In = ParameterLocation.Header,
+                    Type = SecuritySchemeType.Http,
+                    Scheme = "bearer"
                 });
             });
 
