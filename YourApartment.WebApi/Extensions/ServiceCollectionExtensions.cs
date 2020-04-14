@@ -6,6 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using YourApartment.Domain;
 
 namespace YourApartment.WebApi
 {
@@ -30,6 +31,14 @@ namespace YourApartment.WebApi
                     Version = "v1",
                     Title = "Auth API",
                 });
+
+                c.AddSecurityDefinition("oauth2", new OpenApiSecurityScheme
+                {
+                    Name = "Authorization",
+                    Description = "JWT Authorization header using the Bearer scheme.",
+                    Type = SecuritySchemeType.ApiKey,
+                    In = ParameterLocation.Header,
+                });
             });
 
             return services;
@@ -53,6 +62,8 @@ namespace YourApartment.WebApi
 
             return services;
         }
+
+
 
     }
 }
