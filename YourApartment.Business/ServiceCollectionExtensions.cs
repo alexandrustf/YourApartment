@@ -9,6 +9,8 @@ namespace YourApartment.Business
     {
         public static IServiceCollection AddBusiness(this IServiceCollection services)
         {
+            services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IAuthService, AuthService>();
             services.AddScoped<IApartmentsService, ApartmentsService>();
             services.AddScoped<ILocationsService, LocationService>();
             

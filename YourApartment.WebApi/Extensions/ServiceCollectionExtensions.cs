@@ -6,11 +6,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using YourApartment.Domain;
+using YourApartment.Persistence.EntityFramework;
+using Microsoft.IdentityModel.Tokens;
 
 namespace YourApartment.WebApi
 {
     public static class ServiceCollectionExtensions
     {
+        public static IServiceCollection AddIdentity(this IServiceCollection services)
+        {
+            services.AddIdentity<User, ApplicationRole>()
+                .AddRoles<ApplicationRole>()
+                .AddEntityFrameworkStores<YourApartmentContext>();
+
+            return services;
+        }
         public static IServiceCollection AddCors(this IServiceCollection services)
         {
             services.AddCors(options =>
