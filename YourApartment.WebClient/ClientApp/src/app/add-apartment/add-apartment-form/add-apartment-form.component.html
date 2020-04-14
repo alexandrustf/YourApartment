@@ -1,7 +1,15 @@
 <form [formGroup]="apartmentForm" (ngSubmit)="onSubmit()">
   <div class="add-apartment-container">
     <div class="add-images-container">
-      <input type="file" formControlName="image" required />
+      <div class="form-group">
+        <label for="file">Choose File</label>
+        <input
+          type="file"
+          (change)="onFileChanged($event)"
+          formControlName="image"
+          accept="image/jpg,image/jpeg"
+        />
+      </div>
     </div>
     <div class="add-location-container">
       <label>

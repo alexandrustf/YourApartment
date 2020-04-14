@@ -10,7 +10,7 @@ namespace YourApartment.Business
         public CreateApartmentCommand(string title, int price, int area, int numberOfRooms, int floor, int totalNumberOfFloors, 
             int numberOfBathRooms,
             Guid locationId, string exactAdress, string description, int confort, int constructionYear,  
-            IEnumerable<byte[]> imageBytes)
+            byte[] imageBytes)
         {
             Title = title;
             Price = price;
@@ -24,7 +24,7 @@ namespace YourApartment.Business
             Description = description;
             Confort = confort;
             ConstructionYear = constructionYear;
-            ImageBytes = imageBytes;
+            ImageBytes = new List<byte[]>{imageBytes};
         }
         public string Title { get; set; }
         public int Price { get; set; }
