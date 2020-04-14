@@ -66,7 +66,6 @@ namespace YourApartment.WebApi.Controllers
                 createApartmentModel.Confort,
                 createApartmentModel.ConstructionYear,
                 createApartmentModel.ImagesBytes);
-
             var result = await apartmentsService.Create(command);
 
             return result.IsFailure
