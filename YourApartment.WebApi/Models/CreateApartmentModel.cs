@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Newtonsoft.Json;
 
 namespace YourApartment.WebApi
 {
@@ -20,6 +21,6 @@ namespace YourApartment.WebApi
         public int Confort { get;  set; }
         public int ConstructionYear { get;  set; }
 
-        public IEnumerable<byte[]> ImagesBytes { get; set; }
+        public byte[] ImagesBytes { get; set; }
     }
 }
