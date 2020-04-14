@@ -103,10 +103,9 @@
         Pret: *
         <input type="number" min="1" formControlName="price" required />
         <div class="corect-price-container">
-          <!-- <button disabled>Check the Ideal Price</button> -->
+          <button disabled>Check the Ideal Price</button>
         </div>
       </label>
-      <button (click)="findInvalidControls()"></button>
     </div>
     <button type="submit" [disabled]="!apartmentForm.valid">Submit</button>
   </div>
