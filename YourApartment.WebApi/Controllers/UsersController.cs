@@ -7,7 +7,6 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourApartment.Business;
 using YourApartment.Domain;
-using YourApartment.WebApi.Models;
 
 namespace YourApartment.WebApi.Controllers
 {
@@ -26,14 +25,17 @@ namespace YourApartment.WebApi.Controllers
 
         [AllowAnonymous]
         [HttpPost("authenticate")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
         public async Task<IActionResult> Authenticate([FromBody]AuthenticateModel model)
         {
-            var user = await userService.Authenticate(model.Username, model.Password);
+            var command = new AuthenticateUserCommand(model.Email, model.Password);
 
-            if (user == null)
-                return BadRequest(new { message = "Username or password is incorrect" });
+            var result = await userService.Authenticate(command);
 
-            return Ok(user);
+            return result.IsFailure
+                ? (IActionResult)BadRequest(result.Error)
+                : Ok(result.Value);
         }
 
         [AllowAnonymous]

@@ -30,21 +30,21 @@ namespace YourApartment.Business.Users
             this.tokenProvider = tokenProvider;
         }
 
-        public async Task<AuthenticationToken> Authenticate(string email, string password)
+        public async Task<Result<AuthenticationToken>> Authenticate(AuthenticateUserCommand command)
         {
+            var email = command.Email;
+            var password = command.Password;
+
             EnsureArg.IsNotNullOrEmpty(email);
             EnsureArg.IsNotNullOrEmpty(password);
 
-            var userOrNull = (await readRepository.FindOne(x => x.Email.ToLower() == email.ToLower()));
-            if (userOrNull.HasNoValue)
-                return null;
-
-            var user = userOrNull.Value;
-
-            if (!PasswordHasher.VerifyPasswordHash(password, user.PasswordHash, user.PasswordSalt))
-                return null;
-
-            return tokenProvider.CreateTokenForUser(user.Id, user.Email, user.Name);
+            var userOrNull = (await readRepository.FindOne(x => x.Email.ToLower() == email.ToLower()))
+                .ToResult("User does not exist!");
+            
+            return Result.FirstFailureOrSuccess(userOrNull)
+                .Map(() => userOrNull.Value)
+                .Ensure(u => PasswordHasher.VerifyPasswordHash(password, u.PasswordHash, u.PasswordSalt), "Incorrect email or password!")
+                .Map(u => tokenProvider.CreateTokenForUser(u.Id, u.Email, u.Name));
         }
 
         public async Task<Result> Create(CreateUserCommand command)

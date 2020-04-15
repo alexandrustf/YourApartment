@@ -7,7 +7,7 @@ namespace YourApartment.Business
 {
     public interface IUserService
     {
-        Task<AuthenticationToken> Authenticate(string username, string password);
+        Task<Result<AuthenticationToken>> Authenticate(AuthenticateUserCommand command);
         // IEnumerable<UserModel> GetAll();
         // UserModel GetById(int id);
         Task<Result> Create(CreateUserCommand command);
