@@ -50,6 +50,7 @@ namespace YourApartment.Business.Users
         public async Task<Result> Create(CreateUserCommand command)
         {
             EnsureArg.IsNotNull(command);
+
             var userDuplicated = (await readRepository.FindOne(x => x.Email.ToLower() == command.Email.ToLower()))
                 .ToInverseResult("User Already Exists");
 

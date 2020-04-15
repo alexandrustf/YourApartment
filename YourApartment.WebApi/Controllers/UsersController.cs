@@ -56,7 +56,6 @@ namespace YourApartment.WebApi.Controllers
         }
 
 
-
         [HttpGet]
         [Authorize(Roles = AppRole.User)]
         [ProducesResponseType(200)]
