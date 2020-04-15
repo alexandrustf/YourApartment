@@ -40,6 +40,17 @@
         class="navigation-bar-item-container"
         [routerLinkActive]="['link-active']"
       >
+        <a
+          class="navigation-bar-item"
+          [routerLink]="['/my-account']"
+          (click)="logout()"
+          >Log Out</a
+        >
+      </div>
+      <div
+        class="navigation-bar-item-container"
+        [routerLinkActive]="['link-active']"
+      >
         <a class="navigation-bar-item" [routerLink]="['/add-apartment']"
           >Adauga Anunt</a
         >
