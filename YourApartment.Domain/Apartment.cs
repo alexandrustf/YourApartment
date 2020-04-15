@@ -27,7 +27,6 @@ namespace YourApartment.Domain
             Location = location;
             ExactAdress = exactAdress;
             Description = description;
-            Confort = confort;
             ConstructionYear = constructionYear;
             AddedAt = DateTime.Now;
         }
