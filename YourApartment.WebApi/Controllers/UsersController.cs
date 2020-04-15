@@ -57,11 +57,20 @@ namespace YourApartment.WebApi.Controllers
 
 
 
-        //[HttpGet]
-        //public IActionResult GetAll()
-        //{
-        //    var users = userService.GetAll();
-        //    return Ok(users);
-        //}
+        [HttpGet]
+        [Authorize(Roles = AppRole.User)]
+        [ProducesResponseType(200)]
+        public IActionResult GetAll()
+        {
+            
+            return Ok("Numai un user poate accesa asta!");
+        }
+
+        [HttpGet("admin")]
+        [Authorize(Roles = AppRole.Admin)]
+        public IActionResult GetSome()
+        {
+            return Ok("Doar cei ca admin logati pot accesa asta!");
+        }
     }
 }

@@ -18,7 +18,7 @@ namespace YourApartment.Infrastructure
         {
             this.jwtSettings = jwtSettings.Value;
         }
-        public AuthenticationToken CreateTokenForUser(Guid id, string email, string name)
+        public AuthenticationToken CreateTokenForUser(User user)
         {
             var expiresAt = DateTime.UtcNow.AddDays(2);
             var tokenHandler = new JwtSecurityTokenHandler();
@@ -27,9 +27,10 @@ namespace YourApartment.Infrastructure
             {
                 Subject = new ClaimsIdentity(new Claim[]
                 {
-                    new Claim(ClaimTypes.NameIdentifier, id.ToString()),
-                    new Claim(ClaimTypes.Email, email),
-                    new Claim(ClaimTypes.Name, name)
+                    new Claim(ClaimTypes.NameIdentifier, user.Id.ToString()),
+                    new Claim(ClaimTypes.Email, user.Email),
+                    new Claim(ClaimTypes.Name, user.Name),
+                    new Claim(ClaimTypes.Role, user.Role), 
                 }),
                 Expires = expiresAt,
                 SigningCredentials = new SigningCredentials(new SymmetricSecurityKey(key), SecurityAlgorithms.HmacSha256Signature)

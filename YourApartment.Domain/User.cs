@@ -20,9 +20,12 @@ namespace YourApartment.Domain
             PhoneNumber = phoneNumber;
             PasswordHash = passwordHash;
             PasswordSalt = passwordSalt;
+
+            Role = AppRole.User;
         }
         public string Name { get;  set; }
         public string Email { get;  set; }
+        public string Role { get; set; }
         public string PhoneNumber { get;  set; }
 
         public byte[] PasswordHash { get;  set; }

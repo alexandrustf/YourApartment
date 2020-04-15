@@ -44,7 +44,7 @@ namespace YourApartment.Business.Users
             return Result.FirstFailureOrSuccess(userOrNull)
                 .Map(() => userOrNull.Value)
                 .Ensure(u => PasswordHasher.VerifyPasswordHash(password, u.PasswordHash, u.PasswordSalt), "Incorrect email or password!")
-                .Map(u => tokenProvider.CreateTokenForUser(u.Id, u.Email, u.Name));
+                .Map(u => tokenProvider.CreateTokenForUser(u));
         }
 
         public async Task<Result> Create(CreateUserCommand command)
