@@ -21,6 +21,9 @@ namespace YourApartment.Infrastructure
 
             CreateMap<Apartment, ApartmentDetailsModel>()
                 .ReverseMap();
+
+            CreateMap<User, UserModel>();
+            CreateMap<UpdateModel, User>();
         }
 
         private static async Task<IEnumerable<byte[]>> GetImagesForApartment(Guid apartmentId)
