@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourApartment.Business;
@@ -33,6 +34,7 @@ namespace YourApartment.WebApi.Controllers
 
         // POST: api/Locations
         [HttpPost]
+        [Authorize]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> Post([FromBody] CreateLocationModel createLocationModel)

@@ -16,9 +16,11 @@ namespace YourApartment.Persistence.EntityFramework
             services.AddScoped(typeof(IWriteRepository<>), typeof(WriteRepository<>));
             // services.AddScoped(typeof(IReadRepository<>), typeof(ApartmentsReadRepository<>));
             services.AddScoped<IReadRepository<Apartment>, ApartmentsReadRepository>();
+            services.AddScoped<IReadRepository<User>, UsersReadRepository>();
             services.AddScoped<IReadRepository<Location>, LocationReadRepository>();
             services.AddScoped<IWriteRepository<Apartment>, WriteRepository<Apartment>>();
             services.AddScoped<IWriteRepository<Location>, WriteRepository<Location>>();
+            services.AddScoped<IWriteRepository<User>, WriteRepository<User>>();
 
             return services;
         }
