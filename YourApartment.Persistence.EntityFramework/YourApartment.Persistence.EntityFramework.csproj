@@ -5,6 +5,15 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="Migrations\20200416133104_add-relation-many-to-many.cs" />
+    <Compile Remove="Migrations\20200416133104_add-relation-many-to-many.Designer.cs" />
+    <Compile Remove="Migrations\20200416134725_some-tomanyy.cs" />
+    <Compile Remove="Migrations\20200416134725_some-tomanyy.Designer.cs" />
+    <Compile Remove="Migrations\20200416134902_add-to-many.cs" />
+    <Compile Remove="Migrations\20200416134902_add-to-many.Designer.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="3.1.1" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Design" Version="3.1.1">
       <PrivateAssets>all</PrivateAssets>

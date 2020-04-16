@@ -4,6 +4,20 @@
   padding-right: 134px;
   display: flex;
   justify-content: center;
+  .favorite-container {
+    .heart {
+      background-image: url("../../../assets/icons/icons8-heart-100.png");
+      background-size: 100%;
+      background-repeat: no-repeat;
+      width: 40px;
+      height: 40px;
+      cursor: pointer;
+      fill: red;
+    }
+    svg {
+      fill: blueviolet;
+    }
+  }
   .images-container {
     padding-top: 30px;
   }

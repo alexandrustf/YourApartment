@@ -19,6 +19,7 @@ namespace YourApartment.Persistence.EntityFramework
         public DbSet<Apartment> Apartments { get; private set; }
         public DbSet<Location> Locations { get; private set; }
         public DbSet<User> Users { get; private set; }
+        public DbSet<UserApartment> UserApartments{ get; private set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
@@ -31,6 +32,7 @@ namespace YourApartment.Persistence.EntityFramework
             {
                 modelBuilder.ApplyConfiguration((dynamic)configuration);
             }
+
         }
     }
 }

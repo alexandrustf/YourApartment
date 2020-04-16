@@ -141,6 +141,21 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.ToTable("Users");
                 });
 
+            modelBuilder.Entity("YourApartment.Domain.UserApartment", b =>
+                {
+                    b.Property<Guid>("UserId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<Guid>("ApartmentId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.HasKey("UserId", "ApartmentId");
+
+                    b.HasIndex("ApartmentId");
+
+                    b.ToTable("UserApartments");
+                });
+
             modelBuilder.Entity("YourApartment.Domain.Apartment", b =>
                 {
                     b.HasOne("YourApartment.Domain.Location", "Location")
@@ -153,6 +168,21 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.HasOne("YourApartment.Domain.PreciseLocation", "AdressLocation")
                         .WithMany()
                         .HasForeignKey("AdressLocationPreciseAdress");
+                });
+
+            modelBuilder.Entity("YourApartment.Domain.UserApartment", b =>
+                {
+                    b.HasOne("YourApartment.Domain.User", "User")
+                        .WithMany("FavoriteApartments")
+                        .HasForeignKey("ApartmentId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("YourApartment.Domain.Apartment", "Apartment")
+                        .WithMany("FavoriteForUsers")
+                        .HasForeignKey("UserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }
