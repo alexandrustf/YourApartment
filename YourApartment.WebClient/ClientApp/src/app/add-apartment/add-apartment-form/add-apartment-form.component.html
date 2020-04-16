@@ -4,6 +4,7 @@
       <div class="form-group">
         <label for="file">Choose File</label>
         <input
+          class="form-control"
           type="file"
           (change)="onFileChanged($event)"
           formControlName="image"
@@ -14,30 +15,37 @@
     <div class="add-location-container">
       <label>
         Adresa exacta:
-        <input type="text" formControlName="exactAdress" />
+        <input class="form-control" type="text" formControlName="exactAdress" />
       </label>
     </div>
     <div class="add-properties-container">
       <label>
         Titlu: *
-        <input type="text" formControlName="title" required />
-      </label>
-
-      <label>
-        Numarul de camere: *
         <input
-          type="number"
-          name="min-price"
-          min="0"
-          max="100"
-          formControlName="numberOfRooms"
+          class="form-control"
+          type="text"
+          formControlName="title"
           required
         />
       </label>
-
+      <div class="form-group">
+        <label for="number-of-rooms"
+          >Numarul de camere: *
+          <input
+            class="form-control"
+            type="number"
+            name="min-price"
+            min="0"
+            max="100"
+            formControlName="numberOfRooms"
+            required
+          />
+        </label>
+      </div>
       <label>
         Suprafata Utila: *
         <input
+          class="form-control"
           type="number"
           name="min-price"
           min="0"
@@ -48,17 +56,24 @@
 
       <label>
         Descriere:
-        <input type="text" formControlName="description" />
+        <input class="form-control" type="text" formControlName="description" />
       </label>
 
       <label>
         Etaj:
-        <input type="number" name="min-price" min="0" formControlName="floor" />
+        <input
+          class="form-control"
+          type="number"
+          name="min-price"
+          min="0"
+          formControlName="floor"
+        />
       </label>
 
       <label>
         Numarul de etaje al cladirii:
         <input
+          class="form-control"
           type="number"
           name="min-price"
           min="0"
@@ -69,6 +84,7 @@
       <label>
         Numarul de bai:
         <input
+          class="form-control"
           type="number"
           name="min-price"
           min="0"
@@ -78,6 +94,7 @@
       <label>
         Anul in care a fost contruita cladirea:
         <input
+          class="form-control"
           type="number"
           name="min-price"
           min="1920"
@@ -88,6 +105,7 @@
       <label>
         Nivelul de confort:
         <input
+          class="form-control"
           type="number"
           name="min-price"
           min="1"
@@ -97,11 +115,22 @@
       </label>
       <label>
         Numarul de telefon: *
-        <input type="tel" formControlName="phone" required />
+        <input
+          class="form-control"
+          type="tel"
+          formControlName="phone"
+          required
+        />
       </label>
       <label>
         Pret: *
-        <input type="number" min="1" formControlName="price" required />
+        <input
+          class="form-control"
+          type="number"
+          min="1"
+          formControlName="price"
+          required
+        />
         <div class="corect-price-container">
           <button disabled>Check the Ideal Price</button>
         </div>

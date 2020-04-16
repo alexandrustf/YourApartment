@@ -46,7 +46,7 @@ namespace YourApartment.WebApi.Controllers
         {
             // map model to entity
 
-            var command = new CreateUserCommand(model.Name, model.Email, model.PhoneNumber, model.Password);
+            var command = new CreateUserCommand(model.Name, model.Email, model.Phone, model.Password);
 
             var result = await userService.Create(command);
 
