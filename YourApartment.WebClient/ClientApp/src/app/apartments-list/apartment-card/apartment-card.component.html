@@ -16,6 +16,15 @@
       <div class="location-card" *ngIf="apartment.exactAdress">
         , {{ apartment.exactAdress }}
       </div>
+      <div class="favorite-container">
+        <input
+          id="heart"
+          type="checkbox"
+          [checked]="this.status"
+          (change)="changeStatus(this.status)"
+        />
+        <label for="heart">❤</label>
+      </div>
     </div>
   </div>
   <div class="apartment-details">

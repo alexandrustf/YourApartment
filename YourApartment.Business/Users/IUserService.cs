@@ -11,6 +11,8 @@ namespace YourApartment.Business
         // IEnumerable<UserModel> GetAll();
         // UserModel GetById(int id);
         Task<Result> Create(CreateUserCommand command);
+        Task<Result> AddFavoriteApartment(AddToFavoriteCommand command);
+
         // void Update(User user, string password = null);
         // void Delete(int id);
     }

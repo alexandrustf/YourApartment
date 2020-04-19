@@ -19,6 +19,11 @@ import { ApartmentsListModule } from "./apartments-list/apartments-list.module";
 import { ApartmentsListComponent } from "./apartments-list/apartments-list/apartments-list.component";
 import { PerfectHomeComponent } from "./perfect-home/perfect-home/perfect-home.component";
 import { PerfectHomeModule } from "./perfect-home/perfect-home.module";
+import { AuthComponent } from "./auth/auth/auth.component";
+import { AuthModule } from "./auth/auth.module";
+import { AuthGuard } from "./shared/guards/auth.guard";
+import { AuthService } from "./shared/services/auth.service";
+import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -33,7 +38,12 @@ import { PerfectHomeModule } from "./perfect-home/perfect-home.module";
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
-      { path: "", component: HomeComponent, pathMatch: "full" },
+      {
+        path: "",
+        component: HomeComponent,
+        pathMatch: "full",
+        canActivate: [AuthGuard],
+      },
       { path: "add-apartment", component: AddApartmentComponent },
       { path: "counter", component: CounterComponent },
       {
@@ -43,6 +53,7 @@ import { PerfectHomeModule } from "./perfect-home/perfect-home.module";
       { path: "apartments-rent", component: ApartmentsListComponent },
 
       { path: "perfect-home", component: PerfectHomeComponent },
+      { path: "my-account", component: AuthComponent },
     ]),
     AppRoutingModule,
     MatPaginatorModule,
@@ -51,8 +62,16 @@ import { PerfectHomeModule } from "./perfect-home/perfect-home.module";
     ApartmentDetailModule,
     AddApartmentModule,
     PerfectHomeModule,
+    AuthModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

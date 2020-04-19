@@ -18,16 +18,23 @@ namespace YourApartment.Business.Users
     public class UserService : IUserService
     {
         private readonly IMapper _mapper;
-        private readonly IReadRepository<User> readRepository; 
+        private readonly IReadRepository<User> readRepository;
         private readonly IWriteRepository<User> writeRepository;
+        private readonly IReadRepository<Apartment> readApartmentRepository;
+        private readonly IWriteRepository<Apartment> writeApartmentRepository;
+
         private readonly ITokenProvider tokenProvider;
 
-        public UserService(IMapper mapper, IReadRepository<User> readRepository, IWriteRepository<User> writeRepository, ITokenProvider tokenProvider)
+        public UserService(IMapper mapper, IReadRepository<User> readRepository, IWriteRepository<User> writeRepository, IReadRepository<Apartment> readApartmentRepository, IWriteRepository<Apartment> writeApartmentRepository, ITokenProvider tokenProvider)
+
         {
             _mapper = mapper;
             this.readRepository = readRepository;
             this.writeRepository = writeRepository;
-            this.tokenProvider = tokenProvider;
+            this.readApartmentRepository = readApartmentRepository;
+            this.writeApartmentRepository = writeApartmentRepository;
+            this.tokenProvider = tokenProvider; 
+
         }
 
         public async Task<Result<AuthenticationToken>> Authenticate(AuthenticateUserCommand command)
@@ -60,5 +67,24 @@ namespace YourApartment.Business.Users
                 .Tap(u => writeRepository.Create(u.Value))
                 .Tap(_ => writeRepository.Commit());
         }
+
+        public async Task<Result> AddFavoriteApartment(AddToFavoriteCommand command)
+        {
+            EnsureArg.IsNotNull(command);
+
+            var userOrNull = (await readRepository.FindOne(u => u.Email == command.Email))
+                .ToResult("User does not exist!");
+
+            var apartmentOrNull = await readApartmentRepository.GetById(command.ApartmentId)
+                .ToResult("Apartment does not exist!");
+
+            return await Result.FirstFailureOrSuccess(apartmentOrNull, userOrNull)
+                .Map(() => userOrNull.Value)
+                .Ensure(u => u.FavoriteApartments.FirstOrDefault(p => p.Apartment == apartmentOrNull.Value
+                                            && p.User == u) == null, "Apartment already in favorite list of this user!")
+                .Map(u => u.AddToFavorite(apartmentOrNull.Value))
+                .Tap(u => writeApartmentRepository.Commit());
+        }
+
     }
 }

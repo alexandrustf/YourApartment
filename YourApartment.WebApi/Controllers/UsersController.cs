@@ -7,6 +7,8 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourApartment.Business;
 using YourApartment.Domain;
+using YourApartment.WebApi.Models;
+
 
 namespace YourApartment.WebApi.Controllers
 {
@@ -44,9 +46,7 @@ namespace YourApartment.WebApi.Controllers
         [ProducesResponseType(400)]
         public async Task<IActionResult> Register([FromBody]RegisterModel model)
         {
-            // map model to entity
-
-            var command = new CreateUserCommand(model.Name, model.Email, model.PhoneNumber, model.Password);
+            var command = new CreateUserCommand(model.Name, model.Email, model.Phone, model.Password);
 
             var result = await userService.Create(command);
 
@@ -54,6 +54,22 @@ namespace YourApartment.WebApi.Controllers
                 ? (IActionResult)BadRequest(result.Error)
                 : CreatedAtAction(null, "Created User!");
         }
+
+        [Authorize]
+        [HttpPost("favorite")]
+        [ProducesResponseType(200)]
+        [ProducesResponseType(400)]
+        public async Task<IActionResult> AddFavorite([FromBody] FavoriteModel favoriteModel)
+        {
+            var command = new AddToFavoriteCommand(favoriteModel.IdApartment, HttpContext.ExtractEmail());
+
+            var result = await userService.AddFavoriteApartment(command);
+
+            return result.IsFailure
+                ? (IActionResult)BadRequest(result.Error)
+                : CreatedAtAction(null, "Added favorite apartment to user!");
+        }
+
 
 
         [HttpGet]

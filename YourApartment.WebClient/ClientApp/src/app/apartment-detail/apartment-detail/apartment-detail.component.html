@@ -10,7 +10,16 @@
         [alt]="apartment.name"
       />
     </div>
-
+    <div class="favorite-container">
+      <h3>Adauga produsul la favorite in contul tau:</h3>
+      <input
+        id="heart"
+        type="checkbox"
+        [checked]="this.status"
+        (change)="changeStatus(this.status)"
+      />
+      <label for="heart">❤</label>
+    </div>
     <div class="description-container">
       <h2>Description</h2>
       <div class="description-text">

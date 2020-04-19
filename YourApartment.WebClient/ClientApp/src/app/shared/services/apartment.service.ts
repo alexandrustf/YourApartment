@@ -56,11 +56,6 @@ export class ApartmentService {
       ? params.append("pageSize", filterModel.pageSize.toString())
       : params;
 
-    let params: HttpParams = new HttpParams().append("filters", filters);
-
-    params = page ? params.append("page", page.toString()) : params;
-    params = pageSize ? params.append("pageSize", pageSize.toString()) : params;
-
     return this.http
       .get<PageModel<Apartment>>(`${environment.YourApartmentUrl}/Apartments`, {
         params: params,
