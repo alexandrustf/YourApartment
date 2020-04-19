@@ -22,6 +22,8 @@ import { PerfectHomeModule } from "./perfect-home/perfect-home.module";
 import { AuthComponent } from "./auth/auth/auth.component";
 import { AuthModule } from "./auth/auth.module";
 import { AuthGuard } from "./shared/guards/auth.guard";
+import { AuthService } from "./shared/services/auth.service";
+import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
 
 @NgModule({
   declarations: [
@@ -62,7 +64,14 @@ import { AuthGuard } from "./shared/guards/auth.guard";
     PerfectHomeModule,
     AuthModule,
   ],
-  providers: [],
+  providers: [
+    AuthService,
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: JwtInterceptor,
+      multi: true,
+    },
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

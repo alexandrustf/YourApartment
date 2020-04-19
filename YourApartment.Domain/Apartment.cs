@@ -1,6 +1,7 @@
 ﻿using CSharpFunctionalExtensions;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -51,6 +52,8 @@ namespace YourApartment.Domain
         public ApartmentEnums.Building Building { get; private set; }
         public ApartmentEnums.PostedFor PostedFor { get; private set; }
         public DateTime AddedAt { get; private set; }
+
+        public IEnumerable<UserApartment> FavoriteForUsers { get; set; }
 
         public Result Update(string title)
 
