@@ -14,7 +14,7 @@ import { Favorite } from "src/app/shared/models/favorite.model";
 })
 export class ApartmentDetailComponent implements OnInit {
   public apartment: ApartmentDetails;
-
+  public status: boolean;
   constructor(
     private route: ActivatedRoute,
     private apartmentsService: ApartmentService,
@@ -22,18 +22,31 @@ export class ApartmentDetailComponent implements OnInit {
   ) {}
 
   ngOnInit() {
+    this.status = false;
     const id: string = this.route.snapshot.paramMap.get("id");
     this.apartmentsService
       .getApartmentById(id)
       .pipe(first())
       .subscribe((res) => (this.apartment = res));
   }
+  dosth(event) {
+    console.log(event);
+  }
 
+  changeStatus(value) {
+    this.status = !this.status;
+    console.log(this.status);
+    this.addFavorite();
+  }
   addFavorite() {
     console.log("adaugam la favorite");
-    var favorite = new Favorite();
-    favorite.idApartment = this.apartment.id;
-    favorite.favorite = true;
-    this.favoriteService.addFavorite(favorite).subscribe();
+    if (this.status === true) {
+      var favorite = new Favorite();
+      favorite.idApartment = this.apartment.id;
+      favorite.favorite = this.status;
+      this.favoriteService.addFavorite(favorite).subscribe();
+    } else {
+      console.log("aici dam call ca sa scoatem de la favorite");
+    }
   }
 }
