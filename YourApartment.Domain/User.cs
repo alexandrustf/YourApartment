@@ -10,6 +10,7 @@ namespace YourApartment.Domain
     public class User : Entity
     {
         private readonly ICollection<UserApartment> favoriteApartments = new List<UserApartment>();
+
         private User()
         {
             
@@ -55,5 +56,6 @@ namespace YourApartment.Domain
             }
             return Result.Failure("Apartment Already In favorite list");
         }
+
     }
 }

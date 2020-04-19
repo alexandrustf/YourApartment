@@ -156,6 +156,7 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.ToTable("UserApartments");
                 });
 
+
             modelBuilder.Entity("YourApartment.Domain.Apartment", b =>
                 {
                     b.HasOne("YourApartment.Domain.Location", "Location")

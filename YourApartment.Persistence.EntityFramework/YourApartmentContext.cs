@@ -21,6 +21,7 @@ namespace YourApartment.Persistence.EntityFramework
         public DbSet<User> Users { get; private set; }
         public DbSet<UserApartment> UserApartments{ get; private set; }
 
+
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             var configurations = typeof(YourApartmentContext)

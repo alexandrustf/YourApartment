@@ -26,6 +26,7 @@ namespace YourApartment.Business.Users
         private readonly ITokenProvider tokenProvider;
 
         public UserService(IMapper mapper, IReadRepository<User> readRepository, IWriteRepository<User> writeRepository, IReadRepository<Apartment> readApartmentRepository, IWriteRepository<Apartment> writeApartmentRepository, ITokenProvider tokenProvider)
+
         {
             _mapper = mapper;
             this.readRepository = readRepository;
@@ -33,6 +34,7 @@ namespace YourApartment.Business.Users
             this.readApartmentRepository = readApartmentRepository;
             this.writeApartmentRepository = writeApartmentRepository;
             this.tokenProvider = tokenProvider; 
+
         }
 
         public async Task<Result<AuthenticationToken>> Authenticate(AuthenticateUserCommand command)
@@ -83,5 +85,6 @@ namespace YourApartment.Business.Users
                 .Map(u => u.AddToFavorite(apartmentOrNull.Value))
                 .Tap(u => writeApartmentRepository.Commit());
         }
+
     }
 }

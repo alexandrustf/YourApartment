@@ -9,6 +9,7 @@ using YourApartment.Business;
 using YourApartment.Domain;
 using YourApartment.WebApi.Models;
 
+
 namespace YourApartment.WebApi.Controllers
 {
     [Authorize]
@@ -68,6 +69,7 @@ namespace YourApartment.WebApi.Controllers
                 ? (IActionResult)BadRequest(result.Error)
                 : CreatedAtAction(null, "Added favorite apartment to user!");
         }
+
 
 
         [HttpGet]

@@ -87,7 +87,10 @@ namespace YourApartment.WebApi
             app.UseAuthorization();
 
             app.UseAuthorization();
-            app.UseCors("AllowAll")
+            app.UseCors(x => x
+                    .AllowAnyOrigin()
+                    .AllowAnyMethod()
+                    .AllowAnyHeader())
                 .UseSwagger()
                 .UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth"); options.RoutePrefix = string.Empty; });
 
