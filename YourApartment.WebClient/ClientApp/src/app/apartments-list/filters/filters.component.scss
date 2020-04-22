@@ -47,6 +47,7 @@
 
   .left-filters {
     display: flex;
+    flex-wrap: wrap;
     .filter-button {
       align-items: center;
       .label-price {

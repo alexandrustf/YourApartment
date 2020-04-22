@@ -12,24 +12,31 @@
   flex-direction: row;
   flex-wrap: nowrap;
   justify-content: space-between;
-  /* position: relative; */
+  // background-color: #536890;
 
   .container-navigation-bar {
     display: flex;
 
     .navigation-bar-item-container {
       /* width: 120px; */
-      padding: 0px 40px 0px 40px;
+      padding: 0px 20px 0px 20px;
       text-align: left;
       font: Medium 17px/23px Roboto;
       letter-spacing: 0;
-      color: #5d5c62 !important;
+      // color: white !important;
       opacity: 1;
 
       a {
         margin-top: 12px;
-        color: #5d5c62;
+        color: #536890;
         white-space: nowrap;
+        font-weight: 500;
+      }
+      a:hover {
+        color: chocolate;
+      }
+      .active-link {
+        color: rgb(210, 51, 30);
       }
     }
   }

@@ -1,7 +1,36 @@
 .add-apartment-container {
+  margin: 25px 25px 25px 25px;
+
+  .add-location-container {
+    .location-icon {
+      margin: 16px 0px 0px 16px;
+
+      height: 40px;
+      width: 30px;
+      background: transparent url("../../../assets/icons/location_on-24px.svg")
+        0% 0% no-repeat padding-box;
+    }
+  }
+
   .add-properties-container {
     label {
       display: flex;
     }
   }
+}
+.ideal-price-button {
+  background-color: #4caf50;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 4px 2px;
+  cursor: pointer;
+  border-radius: 30px;
+}
+.form-group {
+  padding-top: 10px;
 }

@@ -5,6 +5,10 @@ import { CreateApartmentModel } from "src/app/shared/models/add-apartment.model"
 import { AddApartmentService } from "src/app/shared/services/add-apartment.service";
 import { first } from "rxjs/operators";
 import { ServiceResponse } from "src/app/shared/models/service-reponse.model";
+import { ApartmentIdealPrice } from "../../shared/models/apartment-ideal-price";
+import { IdealPriceService } from "src/app/shared/services/ideal-price.service";
+import { LocationService } from "src/app/shared/services/location.service";
+import { LocationModel } from "src/app/shared/models/location.model";
 
 export const NAME_MAX_LENGTH: number = 50;
 export const DESCRIPTION_MAX_LENGTH: number = 1000;
@@ -69,9 +73,51 @@ export class AddApartmentFormComponent implements OnInit {
       updateOn: "change",
     }),
   });
-  constructor(private addApartmentService: AddApartmentService) {}
+  constructor(
+    private locationService: LocationService,
+    private addApartmentService: AddApartmentService,
+    private idealPriceService: IdealPriceService
+  ) {}
 
-  ngOnInit() {}
+  public locations: LocationModel[];
+
+  ngOnInit() {
+    this.getZoneLocations();
+  }
+
+  private getZoneLocations() {
+    this.locationService
+      .getZoneLocations()
+      .pipe(first())
+      .subscribe((res) => (this.locations = res));
+    console.log(this.locations);
+  }
+
+  imageContent: string;
+
+  onFileChanged(event) {
+    const reader = new FileReader();
+    reader.readAsDataURL(event.target.files[0]);
+    reader.onload = (event) => {
+      var imageResult = event.target["result"].toString();
+      this.imageContent = imageResult.slice(23, imageResult.length - 4);
+    };
+  }
+  public idealPrice: any;
+  public checkIdealPrice() {
+    var apartment = new ApartmentIdealPrice();
+    apartment.Area = [this.apartmentForm.get("area").value];
+    apartment.Rooms = [this.apartmentForm.get("numberOfRooms").value];
+    apartment.Location = ["nicolina"];
+    apartment.BlocNou = ["Bloc Nou"];
+    apartment.Compartimentare = ["Decomandat"];
+    apartment.Ap_Etaj = [this.apartmentForm.get("floor").value];
+
+    this.idealPriceService
+      .getIdealPrice(apartment)
+      .pipe(first())
+      .subscribe((res) => (this.idealPrice = res));
+  }
 
   onSubmit() {
     console.warn(this.apartmentForm.value);
@@ -115,15 +161,5 @@ export class AddApartmentFormComponent implements OnInit {
       .AddApartment(apartment)
       .pipe(first())
       .subscribe((res) => (this.response = res));
-  }
-  imageContent: string;
-
-  onFileChanged(event) {
-    const reader = new FileReader();
-    reader.readAsDataURL(event.target.files[0]);
-    reader.onload = (event) => {
-      var imageResult = event.target["result"].toString();
-      this.imageContent = imageResult.slice(23, imageResult.length - 4);
-    };
   }
 }
