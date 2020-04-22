@@ -7,6 +7,7 @@ import { PaginationComponent } from "./pagination/pagination.component";
 import { CardsListComponent } from "./cards-list/cards-list.component";
 import { RouterModule } from "@angular/router";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MapComponent } from "./map/map.component";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     ApartmentCardComponent,
     PaginationComponent,
     CardsListComponent,
+    MapComponent,
   ],
   imports: [CommonModule, RouterModule, MatPaginatorModule],
 })

@@ -1,9 +1,17 @@
 <div class="apartments-rent-page-container">
   <div class="subheader-rent-apartments">
     <app-filters (filteredModel)="this.filterModel = $event"></app-filters>
+    <div class="see-map-toggle">
+      <h5>Harta</h5>
+      <label class="switch">
+        <input type="checkbox" (change)="this.map = !this.map" />
+        <span class="slider round"></span>
+      </label>
+    </div>
   </div>
   <div class="apartments-search-container">
     <app-cards-list [filteredModel]="this.filterModel"></app-cards-list>
+    <app-map *ngIf="this.map === true">say MSADASDASDsdsdsds</app-map>
   </div>
 </div>
 <div class="pagination-controls-container">
