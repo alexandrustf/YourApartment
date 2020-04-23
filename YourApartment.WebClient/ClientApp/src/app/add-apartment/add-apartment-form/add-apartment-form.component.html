@@ -18,11 +18,7 @@
         <div class="form-group">
           <label for="number-of-rooms">Zona: *</label>
           <div class="location-icon"></div>
-          <select
-            aria-placeholder="Zone"
-            class="filter-button"
-            (change)="filterByLocation($event.target.value)"
-          >
+          <select aria-placeholder="Zone" class="filter-button">
             <option value="" selected>Zone</option>
             <option
               *ngFor="let location of locations"
@@ -122,7 +118,6 @@
             max="2020"
             formControlName="constructionYear"
           />
-
         </div>
         <div class="form-group">
           <label> Nivelul de confort:</label>

@@ -4,19 +4,22 @@
     <div class="see-map-toggle">
       <h5>Harta</h5>
       <label class="switch">
-        <input type="checkbox" (change)="this.map = !this.map" />
+        <input type="checkbox" (change)="this.mapToggle = !this.mapToggle" />
         <span class="slider round"></span>
       </label>
     </div>
   </div>
   <div class="apartments-search-container">
     <app-cards-list [filteredModel]="this.filterModel"></app-cards-list>
-    <app-map *ngIf="this.map === true">say MSADASDASDsdsdsds</app-map>
+    <app-map
+      class="map-container-component"
+      *ngIf="this.mapToggle === true"
+    ></app-map>
   </div>
 </div>
 <div class="pagination-controls-container">
   <app-pagination
-    *ngIf="apartmentsPageModel"
+    *ngIf="this.apartmentsPageModel"
     [filterModel]="this.filterModel"
     [totalNumberOfRecords]="this.apartmentsPageModel.totalNumberOfRecords"
     (filteredModel)="this.filterModel = $event"
