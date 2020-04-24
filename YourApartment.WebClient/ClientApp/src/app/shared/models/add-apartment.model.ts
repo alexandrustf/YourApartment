@@ -15,4 +15,6 @@ export class CreateApartmentModel {
   // public postedBy: string;
   // public building: string;
   public imagesBytes: string;
+  public lat: number;
+  public lng: number;
 }

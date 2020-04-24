@@ -9,6 +9,7 @@ import { ApartmentIdealPrice } from "../../shared/models/apartment-ideal-price";
 import { IdealPriceService } from "src/app/shared/services/ideal-price.service";
 import { LocationService } from "src/app/shared/services/location.service";
 import { LocationModel } from "src/app/shared/models/location.model";
+import { LocationCoordinates } from "../map-add-apartment/location-coordinates.model";
 
 export const NAME_MAX_LENGTH: number = 50;
 export const DESCRIPTION_MAX_LENGTH: number = 1000;
@@ -19,6 +20,8 @@ export const DESCRIPTION_MAX_LENGTH: number = 1000;
 })
 export class AddApartmentFormComponent implements OnInit {
   public response: ServiceResponse;
+  public PreciseLocation: LocationCoordinates;
+  public selectedLocation: string;
   public apartmentForm: FormGroup = new FormGroup({
     image: new FormControl("", {
       validators: [Validators.required],
@@ -103,7 +106,12 @@ export class AddApartmentFormComponent implements OnInit {
       this.imageContent = imageResult.slice(23, imageResult.length - 4);
     };
   }
-  public idealPrice: any;
+
+  selectChangeHandler(event: any) {
+    this.selectedLocation = event.target.value;
+  }
+
+  public idealPrice: number;
   public checkIdealPrice() {
     var apartment = new ApartmentIdealPrice();
     apartment.Area = [this.apartmentForm.get("area").value];
@@ -116,7 +124,9 @@ export class AddApartmentFormComponent implements OnInit {
     this.idealPriceService
       .getIdealPrice(apartment)
       .pipe(first())
-      .subscribe((res) => (this.idealPrice = res));
+      .subscribe(
+        (res) => (this.idealPrice = Math.ceil(Number(res.toString())))
+      );
   }
 
   onSubmit() {
@@ -154,12 +164,18 @@ export class AddApartmentFormComponent implements OnInit {
           "constructionYear"
         ).value)
       : 0;
-    apartment.locationId = "8bb2b4e1-c768-45b9-9b6f-aa61a86d7a59";
+
+    apartment.locationId = this.selectedLocation;
+    console.log("aici");
+    console.log(apartment.locationId);
+    apartment.lat = this.PreciseLocation.lat;
+    apartment.lng = this.PreciseLocation.lng;
     apartment.price = this.apartmentForm.get("price").value;
     apartment.imagesBytes = this.imageContent;
-    this.addApartmentService
-      .AddApartment(apartment)
-      .pipe(first())
-      .subscribe((res) => (this.response = res));
+    console.log(apartment);
+    // this.addApartmentService
+    //   .AddApartment(apartment)
+    //   .pipe(first())
+    //   .subscribe((res) => (this.response = res));
   }
 }

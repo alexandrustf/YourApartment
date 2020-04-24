@@ -3,7 +3,7 @@
     <div class="add-apartment-container">
       <div class="add-images-container">
         <div class="form-group">
-          <label for="file">Choose File</label>
+          <label for="file">Adauga pozele cu apartamentul tau: *</label>
           <input
             class="form-control"
             type="file"
@@ -16,9 +16,13 @@
 
       <div class="add-location-container" class="form-group">
         <div class="form-group">
-          <label for="number-of-rooms">Zona: *</label>
+          <label for="zona">Zona: *</label>
           <div class="location-icon"></div>
-          <select aria-placeholder="Zone" class="filter-button">
+          <select
+            aria-placeholder="Zone"
+            class="filter-button"
+            (change)="selectChangeHandler($event)"
+          >
             <option value="" selected>Zone</option>
             <option
               *ngFor="let location of locations"
@@ -30,12 +34,14 @@
         </div>
       </div>
       <div class="form-group">
-        <label>Adresa exacta:</label>
-        <input class="form-control" type="text" formControlName="exactAdress" />
+        <label>Adresa exacta(Muta pin-ul in locatia exacta): *</label>
+        <app-map-add-apartment
+          (selectedLocation)="this.PreciseLocation = $event"
+        ></app-map-add-apartment>
       </div>
       <div class="add-properties-container">
         <div class="form-group">
-          <label for="title">Title: *</label>
+          <label for="title">Titlul anuntului: *</label>
           <input
             class="form-control"
             type="text"
@@ -140,16 +146,17 @@
           />
         </div>
         <div class="form-group">
-          <label> Pret: *</label>
+          <label> Vezi pretul apartamentului tau conform pietei *</label>
           <div class="corect-price-container">
-            <button
+            <a
               mat-button
               color="primary"
               class="ideal-price-button"
               (click)="checkIdealPrice()"
             >
-              Check the Ideal Price
-            </button>
+              Vezi pretul ideal
+            </a>
+            <label> Pret: *</label>
             <h4 *ngIf="this.idealPrice">
               Pretul pietei este: {{ this.idealPrice }}
             </h4>

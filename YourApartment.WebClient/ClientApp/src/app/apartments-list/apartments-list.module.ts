@@ -8,6 +8,7 @@ import { CardsListComponent } from "./cards-list/cards-list.component";
 import { RouterModule } from "@angular/router";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MapComponent } from "./map/map.component";
+import { AgmCoreModule } from "@agm/core";
 
 @NgModule({
   declarations: [
