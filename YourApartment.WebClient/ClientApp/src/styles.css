@@ -33,3 +33,8 @@ body {
   margin: 0;
   font-family: Roboto, "Helvetica Neue", sans-serif;
 }
+.gm-style .gm-style-iw {
+  width: 100%;
+  max-height: 450px;
+  max-width: 420px !important;
+}

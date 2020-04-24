@@ -19,6 +19,13 @@ import { AgmCoreModule } from "@agm/core";
     CardsListComponent,
     MapComponent,
   ],
-  imports: [CommonModule, RouterModule, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatPaginatorModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBVmIevOIYNBX1c4ZKEcNArXL04WS_JVO0",
+    }),
+  ],
 })
 export class ApartmentsListModule {}

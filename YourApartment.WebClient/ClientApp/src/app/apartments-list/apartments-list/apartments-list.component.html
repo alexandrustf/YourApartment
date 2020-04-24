@@ -10,8 +10,12 @@
     </div>
   </div>
   <div class="apartments-search-container">
-    <app-cards-list [filteredModel]="this.filterModel"></app-cards-list>
+    <app-cards-list
+      [filteredModel]="this.filterModel"
+      (apartmentsListEmit)="this.apartmentsList = $event"
+    ></app-cards-list>
     <app-map
+      [apartmentsList]="this.apartmentsList"
       class="map-container-component"
       *ngIf="this.mapToggle === true"
     ></app-map>

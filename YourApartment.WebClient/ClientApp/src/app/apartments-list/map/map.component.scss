@@ -1,8 +1,24 @@
-.map-container {
+agm-map {
+  height: 690px;
   width: 1000px;
-  justify-content: end;
-  #map {
-    height: 690px;
-    width: 100%;
-  }
+}
+.gm-style .gm-style-iw-c {
+  max-width: 400px;
+}
+.details-button {
+  background: #557a95 0% 0% no-repeat padding-box;
+  border-radius: 25px;
+  height: 40px;
+  width: 120px;
+  color: white;
+  opacity: 1;
+  font-size: 16px;
+  display: block;
+  padding-top: -40px;
+  margin: auto;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+  font-weight: 600;
+}
+.details-button:hover {
+  color: rgb(255, 72, 0);
 }
