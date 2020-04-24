@@ -14,6 +14,8 @@ export class AddApartmentService {
   public AddApartment(
     createApartment: CreateApartmentModel
   ): Observable<ServiceResponse> {
+    console.log("din serviciu");
+    console.log(createApartment);
     return this.http.post<ServiceResponse>(
       `${environment.YourApartmentUrl}/apartments`,
       createApartment

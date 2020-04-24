@@ -49,8 +49,14 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
                     b.Property<int>("Floor")
                         .HasColumnType("int");
 
+                    b.Property<double>("Latitude")
+                        .HasColumnType("float");
+
                     b.Property<Guid?>("LocationId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<double>("Longitude")
+                        .HasColumnType("float");
 
                     b.Property<int>("NumberOfBathrooms")
                         .HasColumnType("int");
@@ -155,7 +161,6 @@ namespace YourApartment.Persistence.EntityFramework.Migrations
 
                     b.ToTable("UserApartments");
                 });
-
 
             modelBuilder.Entity("YourApartment.Domain.Apartment", b =>
                 {

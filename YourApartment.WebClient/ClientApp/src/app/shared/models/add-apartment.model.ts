@@ -11,10 +11,10 @@ export class CreateApartmentModel {
   public description: string;
   public confort: number;
   public constructionYear: number;
+  public lat: number;
+  public lng: number;
   // public partitioningType: string;
   // public postedBy: string;
   // public building: string;
   public imagesBytes: string;
-  public lat: number;
-  public lng: number;
 }

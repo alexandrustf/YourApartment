@@ -130,8 +130,8 @@ export class AddApartmentFormComponent implements OnInit {
   }
 
   onSubmit() {
-    console.warn(this.apartmentForm.value);
-    window.alert("A fost apasat butonu de submit" + this.apartmentForm.value);
+    // console.warn(this.apartmentForm.value);
+    // window.alert("A fost apasat butonu de submit" + this.apartmentForm.value);
     var apartment = new CreateApartmentModel();
     apartment.title = this.apartmentForm.get("title").value;
     apartment.area = this.apartmentForm.get("area").value;
@@ -173,9 +173,10 @@ export class AddApartmentFormComponent implements OnInit {
     apartment.price = this.apartmentForm.get("price").value;
     apartment.imagesBytes = this.imageContent;
     console.log(apartment);
-    // this.addApartmentService
-    //   .AddApartment(apartment)
-    //   .pipe(first())
-    //   .subscribe((res) => (this.response = res));
+
+    this.addApartmentService
+      .AddApartment(apartment)
+      .pipe(first())
+      .subscribe((res) => (this.response = res));
   }
 }
