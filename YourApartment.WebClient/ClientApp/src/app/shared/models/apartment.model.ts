@@ -8,5 +8,7 @@ export class Apartment {
   public numberOfRooms: number;
   public location: string;
   public exactAdress: string;
+  public lat: number;
+  public lng: number;
   public images: [];
 }

@@ -49,7 +49,9 @@ namespace YourApartment.Business.Tests
                 "Sf. Lazar nr.5",
                 "Foarte bine intretinut",
                 8,
-                1980,
+                1980, 
+                47.161494, 
+                27.5840504,
                 new byte[] { } );
 
 

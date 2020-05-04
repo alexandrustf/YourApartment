@@ -23,6 +23,8 @@ namespace YourApartment.Business
             Location = apartment.Location.Name;
             ExactAdress = apartment.ExactAdress;
             Images = images;
+            Latitude = apartment.Latitude;
+            Longitude = apartment.Longitude;
         }
 
         public Guid Id { get; private set; }
@@ -32,6 +34,9 @@ namespace YourApartment.Business
         public int NumberOfRooms { get; private set; }
         public string Location { get; private set; }
         public string ExactAdress { get; private set; }
+        public double Latitude { get; private set; }
+        public double Longitude{ get; private set; }
+        
         public IEnumerable<byte[]> Images { get; set; }
 
     }

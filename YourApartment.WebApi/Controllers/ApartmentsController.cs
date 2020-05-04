@@ -65,6 +65,8 @@ namespace YourApartment.WebApi.Controllers
                 createApartmentModel.Description,
                 createApartmentModel.Confort,
                 createApartmentModel.ConstructionYear,
+                createApartmentModel.Lat,
+                createApartmentModel.Lng,
                 createApartmentModel.ImagesBytes);
             var result = await apartmentsService.Create(command);
 

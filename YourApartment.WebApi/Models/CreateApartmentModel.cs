@@ -21,6 +21,10 @@ namespace YourApartment.WebApi
         public int Confort { get;  set; }
         public int ConstructionYear { get;  set; }
 
+        public double Lat { get; set; }
+
+        public double Lng { get; set; }
+
         public byte[] ImagesBytes { get; set; }
     }
 }

@@ -49,7 +49,7 @@ namespace YourApartment.Business
                 .Map(() => Apartment.Create(command.Title, adressResult.Value, command.ExactAdress, command.Area, command.Confort,
                     command.ConstructionYear, command.NumberOfRooms, command.Price,
                     command.Description, command.Floor, command.TotalNumberOfFloors,
-                    command.NumberOfBathRooms).Value)
+                    command.NumberOfBathRooms, command.Lat, command.Lng).Value)
                 .Tap(s => writeRepository.Create(s))
                 .Tap(s => imageRepository.AddImage(s.Id, command.ImageBytes))
                 .Tap(a => imageRepository.SaveChanges())
