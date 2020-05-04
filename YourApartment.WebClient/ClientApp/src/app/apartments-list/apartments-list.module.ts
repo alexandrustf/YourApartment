@@ -7,6 +7,8 @@ import { PaginationComponent } from "./pagination/pagination.component";
 import { CardsListComponent } from "./cards-list/cards-list.component";
 import { RouterModule } from "@angular/router";
 import { MatPaginatorModule } from "@angular/material/paginator";
+import { MapComponent } from "./map/map.component";
+import { AgmCoreModule } from "@agm/core";
 
 @NgModule({
   declarations: [
@@ -15,7 +17,15 @@ import { MatPaginatorModule } from "@angular/material/paginator";
     ApartmentCardComponent,
     PaginationComponent,
     CardsListComponent,
+    MapComponent,
   ],
-  imports: [CommonModule, RouterModule, MatPaginatorModule],
+  imports: [
+    CommonModule,
+    RouterModule,
+    MatPaginatorModule,
+    AgmCoreModule.forRoot({
+      apiKey: "AIzaSyBVmIevOIYNBX1c4ZKEcNArXL04WS_JVO0",
+    }),
+  ],
 })
 export class ApartmentsListModule {}

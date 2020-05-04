@@ -3,6 +3,7 @@
   flex-wrap: nowrap;
   align-self: center;
   justify-content: center;
+
   .icon-search-container {
     background: #ffffff 0% 0% no-repeat padding-box;
     border: 1px solid #d6d6d9;
@@ -47,6 +48,7 @@
 
   .left-filters {
     display: flex;
+    flex-wrap: wrap;
     .filter-button {
       align-items: center;
       .label-price {
@@ -135,8 +137,5 @@
           no-repeat padding-box;
       }
     }
-  }
-
-  .see-map-button {
   }
 }

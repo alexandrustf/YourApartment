@@ -26,6 +26,8 @@ namespace YourApartment.Business
             PostedBy = apartment.PostedBy.ToString();
             Building = apartment.Building.ToString();
             AddedAt = apartment.AddedAt;
+            Latitude = apartment.Latitude;
+            Longitude = apartment.Longitude;
             Images = images;
         }
 
@@ -45,6 +47,8 @@ namespace YourApartment.Business
         public string PartitioningType { get; private set; }
         public string PostedBy { get; private set; }
         public string Building { get; private set; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
         public DateTime AddedAt { get; private set; }
         public IEnumerable<byte[]> Images { get; private set; }
 

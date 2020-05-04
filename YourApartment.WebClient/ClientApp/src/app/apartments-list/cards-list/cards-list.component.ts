@@ -1,4 +1,11 @@
-import { Component, OnInit, Input, SimpleChange } from "@angular/core";
+import {
+  Component,
+  OnInit,
+  Input,
+  SimpleChange,
+  Output,
+  EventEmitter,
+} from "@angular/core";
 import { ApartmentService } from "src/app/shared/services/apartment.service";
 import { FilterModel } from "src/app/shared/models/filter.model";
 import { PageModel } from "src/app/shared/models/page.model";
@@ -16,6 +23,10 @@ export class CardsListComponent implements OnInit {
   public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
   public pagination: PaginationModel;
+  @Output() public apartmentsListEmit: EventEmitter<
+    Apartment[]
+  > = new EventEmitter<Apartment[]>();
+
   constructor(private apartmentsService: ApartmentService) {}
 
   ngOnInit() {
@@ -33,6 +44,7 @@ export class CardsListComponent implements OnInit {
       .subscribe((res) => {
         this.apartmentsPageModel = res;
         this.apartmentsList = this.apartmentsPageModel.records;
+        this.apartmentsListEmit.emit(this.apartmentsList);
       });
   }
 

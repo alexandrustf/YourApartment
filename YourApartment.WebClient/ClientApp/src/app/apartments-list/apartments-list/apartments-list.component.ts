@@ -8,11 +8,14 @@ import { FilterModel } from "src/app/shared/models/filter.model";
 })
 export class ApartmentsListComponent implements OnInit {
   public filterModel: FilterModel;
+  public mapToggle: boolean;
+  public apartmentsPageModel;
   constructor() {}
 
   ngOnInit() {
     this.filterModel = new FilterModel();
     this.filterModel.pageSize = 8;
     this.filterModel.page = 1;
+    this.mapToggle = false;
   }
 }

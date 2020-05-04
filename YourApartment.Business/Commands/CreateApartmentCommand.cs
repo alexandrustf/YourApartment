@@ -9,7 +9,7 @@ namespace YourApartment.Business
     {
         public CreateApartmentCommand(string title, int price, int area, int numberOfRooms, int floor, int totalNumberOfFloors, 
             int numberOfBathRooms,
-            Guid locationId, string exactAdress, string description, int confort, int constructionYear,  
+            Guid locationId, string exactAdress, string description, int confort, int constructionYear, double lat, double lng,
             byte[] imageBytes)
         {
             Title = title;
@@ -24,6 +24,8 @@ namespace YourApartment.Business
             Description = description;
             Confort = confort;
             ConstructionYear = constructionYear;
+            Lat = lat;
+            Lng = lng;
             ImageBytes = new List<byte[]>{imageBytes};
         }
         public string Title { get; set; }
@@ -38,6 +40,8 @@ namespace YourApartment.Business
         public string Description { get; set; }
         public int Confort { get; set; }
         public int ConstructionYear { get; set; }
+        public double Lat { get; set; }
+        public double Lng { get; set; }
         public DateTime AddedAt { get; set; }
         public IEnumerable<byte[]> ImageBytes { get; set; }
 

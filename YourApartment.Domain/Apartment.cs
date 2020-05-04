@@ -16,7 +16,7 @@ namespace YourApartment.Domain
         }
         public Apartment(string title, Location location, string exactAdress, int price, 
             int area, int numberOfRooms, int floor, int totalNumberOfFloors, int numberOfBathrooms,
-            string description, int constructionYear, int confort)
+            string description, int constructionYear, int confort, double lat, double lng)
         {
             Title = title;
             Price = price;
@@ -30,7 +30,10 @@ namespace YourApartment.Domain
             Description = description;
             ConstructionYear = constructionYear;
             AddedAt = DateTime.Now;
+            Latitude = lat;
+            Longitude = lng;
         }
+
         public string Title { get; private set; }
         public int Price { get; private set; }
         public int Area { get; private set; }
@@ -46,6 +49,8 @@ namespace YourApartment.Domain
         public string Description { get; private set; }
         public int Confort { get; private set; }
         public int ConstructionYear { get; private set; }
+        public double Latitude { get; private set; }
+        public double Longitude { get; private set; }
 
         public ApartmentEnums.PartitioningType PartitioningType { get; private set; }
         public ApartmentEnums.PostedBy PostedBy { get; private set; }
@@ -63,10 +68,10 @@ namespace YourApartment.Domain
         }
         public static Result<Apartment> Create(string title,Location location, string exactAdress, int area, int confort, 
             int constructionYear, int numberOfRooms, int price, string description, 
-            int floor, int totalNumberOfFloors, int numberOfBathrooms)
+            int floor, int totalNumberOfFloors, int numberOfBathrooms, double lat, double lng)
         {
             return Result.Success<Apartment>(new Apartment(title, location, exactAdress, price, area, numberOfRooms, 
-                floor, totalNumberOfFloors, numberOfBathrooms, description,  constructionYear, confort));
+                floor, totalNumberOfFloors, numberOfBathrooms, description,  constructionYear, confort, lat, lng));
         }
     }
 }
