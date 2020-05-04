@@ -27,5 +27,6 @@ import { AgmCoreModule } from "@agm/core";
       apiKey: "AIzaSyBVmIevOIYNBX1c4ZKEcNArXL04WS_JVO0",
     }),
   ],
+  exports: [ApartmentCardComponent],
 })
 export class ApartmentsListModule {}
