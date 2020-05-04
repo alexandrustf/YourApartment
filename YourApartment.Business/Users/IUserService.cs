@@ -15,5 +15,6 @@ namespace YourApartment.Business
 
         // void Update(User user, string password = null);
         // void Delete(int id);
+        Task<Result<IEnumerable<ApartmentModel>>> getFavoriteApartments(GetFavoriteApartmentsForUserQuery command);
     }
 }

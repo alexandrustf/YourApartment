@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using CSharpFunctionalExtensions;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -72,13 +73,18 @@ namespace YourApartment.WebApi.Controllers
 
 
 
-        [HttpGet]
+        [HttpGet("favorite")]
         [Authorize(Roles = AppRole.User)]
         [ProducesResponseType(200)]
-        public IActionResult GetAll()
+        public async Task<IActionResult> GetAll()
         {
-            
-            return Ok("Numai un user poate accesa asta!");
+            var command = new GetFavoriteApartmentsForUserQuery(HttpContext.ExtractEmail());
+
+            var result = await userService.getFavoriteApartments(command);
+
+            return result.IsFailure
+                ? (IActionResult)BadRequest(Result.Failure(result.Error))
+                : Ok(result.Value);
         }
 
         [HttpGet("admin")]

@@ -1,0 +1,29 @@
+.favorite-apartments-container {
+  padding: 134px 134px 134px 134px;
+  display: flex;
+  flex-wrap: wrap;
+  width: 100%;
+
+  .sub-title {
+    align-self: center;
+    padding: 30px 30px 30px 30px;
+  }
+
+  .apartment-card {
+    width: 389px;
+    height: 438px;
+    background: #ffffff 0% 0% no-repeat padding-box;
+    box-shadow: 0px 15px 50px #262c3414;
+    opacity: 1;
+    margin-right: 16px;
+    margin-left: 16px;
+    margin-top: 32px;
+    border-radius: 10px;
+    opacity: 1;
+  }
+
+  .apartment-card:hover {
+    transform: scale(1.1);
+    cursor: pointer;
+  }
+}
