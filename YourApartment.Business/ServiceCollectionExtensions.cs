@@ -15,14 +15,12 @@ namespace YourApartment.Business
             services.AddScoped<IApartmentsService, ApartmentsService>();
             services.AddScoped<ILocationsService, LocationService>();
             services.AddScoped<IUserService, UserService>();
+            services.AddScoped<IPerfectHomeService, PerfectHomeService>();
 
             return services;
         }
 
-        public static IEnumerable<User> WithoutPasswords(this IEnumerable<User> users)
-        {
-            return users.Select(x => x.WithoutPassword());
-        }
+
 
         public static User WithoutPassword(this User user)
         {

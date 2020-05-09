@@ -96,7 +96,6 @@ namespace YourApartment.WebApi
 
             app.UseEndpoints(endpoints =>
             {
-                endpoints.MapControllers();
             });
             var option = new RewriteOptions();
             option.AddRedirect("^$", "swagger");
