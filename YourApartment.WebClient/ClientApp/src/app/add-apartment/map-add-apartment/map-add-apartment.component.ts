@@ -15,6 +15,8 @@ import { LocationCoordinates } from "./location-coordinates.model";
   styleUrls: ["./map-add-apartment.component.scss"],
 })
 export class MapAddApartmentComponent implements OnInit {
+  public lat: number = 47.161494;
+  public lng: number = 27.5840504;
   public marker = { lat: 47.161494, lng: 27.5840504, alpha: 1 };
   public locationCoordinates: LocationCoordinates;
   @Output() public selectedLocation: EventEmitter<
@@ -32,7 +34,6 @@ export class MapAddApartmentComponent implements OnInit {
     this.marker = { lat, lng, alpha: 1 };
     this.locationCoordinates.lat = this.marker.lat;
     this.locationCoordinates.lng = this.marker.lng;
-    console.log(this.locationCoordinates.lat, this.locationCoordinates.lng);
     this.updated();
   }
 

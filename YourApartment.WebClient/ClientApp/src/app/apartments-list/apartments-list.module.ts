@@ -28,5 +28,6 @@ import { AgmCoreModule } from "@agm/core";
     }),
   ],
   exports: [ApartmentCardComponent],
+
 })
 export class ApartmentsListModule {}
