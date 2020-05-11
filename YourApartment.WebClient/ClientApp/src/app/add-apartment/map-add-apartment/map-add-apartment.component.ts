@@ -32,6 +32,7 @@ export class MapAddApartmentComponent implements OnInit {
     this.marker = { lat, lng, alpha: 1 };
     this.locationCoordinates.lat = this.marker.lat;
     this.locationCoordinates.lng = this.marker.lng;
+    console.log(this.locationCoordinates.lat, this.locationCoordinates.lng);
     this.updated();
   }
 
