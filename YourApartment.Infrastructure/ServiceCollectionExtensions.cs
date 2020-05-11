@@ -5,6 +5,7 @@ using System.Text;
 using Sieve.Services;
 using YourApartment.Business;
 using YourApartment.Domain;
+using YourApartment.Infrastructure.SendRequests;
 
 namespace YourApartment.Infrastructure
 {
@@ -16,7 +17,8 @@ namespace YourApartment.Infrastructure
             return services.AddTransient<ITokenProvider, TokenProvider>()
                 .AddScoped(typeof(IPaginationService<,>), typeof(PaginationService<,>))
                 .AddScoped<ISieveProcessor, ApplicationSieveProcessor>()
-                .AddScoped<IMapRoute, MapRoute>();
+                .AddScoped<IMapRoute, MapRoute>()
+                .AddScoped<ISendRequesterAsync, SendRequesterAsync>();
         }
     }
 }

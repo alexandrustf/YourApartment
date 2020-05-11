@@ -16,14 +16,21 @@ namespace YourApartment.WebApi.Controllers
     {
         private readonly IPerfectHomeService perfectHomeService;
 
+        public PerfectHomeController(IPerfectHomeService perfectHomeService)
+        {
+            this.perfectHomeService = perfectHomeService;
+        }
+
 
         [HttpPost]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> PostPerfectHome([FromBody] PerfectHomeModel perfectHomeModel)
         {
-            var command = new PerfectHomeQuery(perfectHomeModel.FavoriteLocations, 
-                perfectHomeModel.NearMall, perfectHomeModel.NearHospital, 
+            var command = new PerfectHomeQuery(perfectHomeModel.LatFavoriteLocations,
+                perfectHomeModel.LngFavoriteLocations,
+                perfectHomeModel.NearMall, perfectHomeModel.NearHospital,
+                perfectHomeModel.NumberOfRooms,
                 perfectHomeModel.MaxPrice);
 
             var result = await perfectHomeService.PerfectApartments(command);
