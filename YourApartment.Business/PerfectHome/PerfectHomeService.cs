@@ -15,7 +15,7 @@ namespace YourApartment.Business
         private readonly IMapRoute mapRoute;
         private readonly IReadRepository<Apartment> readRepository;
         private readonly IMapper mapper;
-            
+
         public PerfectHomeService(IMapRoute mapRoute, IReadRepository<Apartment> readRepository, IMapper mapper)
         {
             EnsureArg.IsNotNull(mapRoute);
@@ -30,18 +30,14 @@ namespace YourApartment.Business
         {
             EnsureArg.IsNotNull(perfectHomeQuery);
 
-            var apartments = await readRepository.Find(a => 
+            var apartments = await readRepository.Find(a =>
                 a.Price <= perfectHomeQuery.MaxPrice && a.NumberOfRooms == perfectHomeQuery.NumberOfRooms);
 
-            var lengthApartments = apartments.Count();
-            var tasks = new List<Task<IEnumerable<int>>>();
-            for (int i = 0; i < lengthApartments; ++i)
-            {
-                tasks.Add(mapRoute.GetTimeForRoutesAsync(apartments.ElementAt(i).Latitude,
-                    apartments.ElementAt(i).Longitude, perfectHomeQuery.FavoriteLocations));
-            }
+            var tasks = apartments.Select(a => mapRoute.GetTimeForRoutesAsync(a.Latitude,
+                a.Longitude, perfectHomeQuery.FavoriteLocations));
 
             await Task.WhenAll(tasks);
+
             var results = tasks.Select(t => t.Result);
 
             int index = 0;
