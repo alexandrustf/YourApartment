@@ -9,6 +9,7 @@
     [longitude]="marker.lng"
     [opacity]="marker.alpha"
     [markerDraggable]="true"
+    (dragEnd)="addMarker($event.coords.lat, $event.coords.lng)"
   >
   </agm-marker>
 </agm-map>
