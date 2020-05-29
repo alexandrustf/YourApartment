@@ -24,7 +24,7 @@ export class LoginFormComponent implements OnInit {
   ) {
     // redirect to home if already logged in
     if (this.authService.currentUserValue) {
-      this.router.navigate(["/"]);
+      this.router.navigate(["/favorite-apartments"]);
     }
   }
 
@@ -35,7 +35,8 @@ export class LoginFormComponent implements OnInit {
     });
 
     // get return url from route parameters or default to '/'
-    this.returnUrl = this.route.snapshot.queryParams["returnUrl"] || "/";
+    this.returnUrl =
+      this.route.snapshot.queryParams["returnUrl"] || "/favorite-apartments";
   }
 
   // convenience getter for easy access to form fields

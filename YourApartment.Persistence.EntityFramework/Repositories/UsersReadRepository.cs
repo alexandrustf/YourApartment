@@ -18,7 +18,9 @@ namespace YourApartment.Persistence.EntityFramework.Repositories
 
         protected override IQueryable<User> DecorateEntities(IQueryable<User> entities)
         {
-            return entities.Include(p => p.FavoriteApartments);
+            return entities.Include(p => p.FavoriteApartments)
+                .ThenInclude(a => a.Apartment)
+                .ThenInclude(j => j.Location);
         }
 
     }

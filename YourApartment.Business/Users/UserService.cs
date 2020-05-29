@@ -86,5 +86,17 @@ namespace YourApartment.Business.Users
                 .Tap(u => writeApartmentRepository.Commit());
         }
 
+        public async Task<Result<IEnumerable<ApartmentModel>>> getFavoriteApartments(GetFavoriteApartmentsForUserQuery command)
+        {
+            EnsureArg.IsNotNull(command);
+
+            var userOrNull = (await readRepository.FindOne(u => u.Email == command.Email))
+                .ToResult("User does not exist!");
+
+            return Result.FirstFailureOrSuccess(userOrNull)
+                .Map(() => userOrNull.Value.FavoriteApartments)
+                .Map(f => f.Select(a => _mapper.Map<Apartment, ApartmentModel>(a.Apartment)));
+
+        }
     }
 }

@@ -24,6 +24,8 @@ import { AuthModule } from "./auth/auth.module";
 import { AuthGuard } from "./shared/guards/auth.guard";
 import { AuthService } from "./shared/services/auth.service";
 import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
+import { FavoriteApartmentsListComponent } from "./my-account/favorite-apartments-list/favorite-apartments-list.component";
+import { MyAccountModule } from "./my-account/my-account.module";
 
 @NgModule({
   declarations: [
@@ -42,7 +44,6 @@ import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
         path: "",
         component: HomeComponent,
         pathMatch: "full",
-        canActivate: [AuthGuard],
       },
       { path: "add-apartment", component: AddApartmentComponent },
       { path: "counter", component: CounterComponent },
@@ -54,6 +55,11 @@ import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
 
       { path: "perfect-home", component: PerfectHomeComponent },
       { path: "my-account", component: AuthComponent },
+      {
+        path: "favorite-apartments",
+        component: FavoriteApartmentsListComponent,
+        canActivate: [AuthGuard],
+      },
     ]),
     AppRoutingModule,
     MatPaginatorModule,
@@ -63,6 +69,7 @@ import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
     AddApartmentModule,
     PerfectHomeModule,
     AuthModule,
+    MyAccountModule,
   ],
   providers: [
     AuthService,

@@ -25,12 +25,6 @@ namespace YourApartment.WebApi.Controllers
         [ProducesResponseType(200)]
         public async Task<IActionResult> Get() => Ok(await locationsService.GetAll());
 
-        // GET: api/Locations/5
-        [HttpGet("{id}", Name = "Get")]
-        public string Get(int id)
-        {
-            return "value";
-        }
 
         // POST: api/Locations
         [HttpPost]
@@ -47,17 +41,5 @@ namespace YourApartment.WebApi.Controllers
                 ? (IActionResult) BadRequest(result.Error) 
                 : CreatedAtAction(null, "Created Location!");
         }
-
-        // PUT: api/Locations/5
-        // [HttpPut("{id}")]
-        // public void Put(int id, [FromBody] string value)
-        // {
-        // }
-
-        // DELETE: api/ApiWithActions/5
-        // [HttpDelete("{id}")]
-        // public void Delete(int id)
-        // {
-        // }
     }
 }
