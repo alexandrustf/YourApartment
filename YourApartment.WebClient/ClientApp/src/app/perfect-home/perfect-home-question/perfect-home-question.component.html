@@ -1,0 +1,169 @@
+<div [ngSwitch]="this.step">
+  <div class="question-container" *ngSwitchCase="1">
+    <div class="step">
+      <p>Pasul {{ this.step }}</p>
+    </div>
+    <div class="question-text">
+      <p>
+        Ești student/elev?
+      </p>
+      <form>
+        <div class="radio-input">
+          <input
+            type="radio"
+            id="Yes"
+            name="student"
+            value="1"
+            (change)="onItemChange($event.target.value)"
+          />
+          <label for="Yes">Da</label>
+        </div>
+        <div class="radio-input">
+          <input
+            type="radio"
+            id="No"
+            name="student"
+            value="0"
+            (change)="onItemChange($event.target.value)"
+          />
+          <label for="No">Nu</label>
+          <button mat-button>foo</button>
+        </div>
+      </form>
+    </div>
+    <div class="illustration">
+      <img src="../../../assets/icons/student.jpg" alt="Sleeping student" />
+    </div>
+  </div>
+
+  <div class="question-container" *ngSwitchCase="2">
+    <div class="step">
+      <p>Pasul {{ this.step }}</p>
+    </div>
+    <div class="question-text">
+      <p>
+        Ești angajat?
+      </p>
+      <form>
+        <div class="radio-input">
+          <input type="radio" id="Yes" name="student" value="1" />
+          <label for="Yes">Da</label>
+        </div>
+        <div class="radio-input">
+          <input type="radio" id="No" name="student" value="0" />
+          <label for="No">Nu</label>
+        </div>
+      </form>
+    </div>
+    <div class="illustration">
+      <img src="../../../assets/icons/munca.jpg" alt="Sleeping student" />
+    </div>
+  </div>
+
+  <div class="question-container" *ngSwitchCase="3">
+    <div class="step">
+      <p>Pasul {{ this.step }}</p>
+    </div>
+    <div class="question-text">
+      <p>
+        Ai copii?
+      </p>
+      <form>
+        <div class="radio-input">
+          <input type="radio" id="Yes" name="student" value="1" />
+          <label for="Yes">Da</label>
+        </div>
+        <div class="radio-input">
+          <input type="radio" id="No" name="student" value="0" />
+          <label for="No">Nu</label>
+        </div>
+      </form>
+    </div>
+    <div class="illustration">
+      <img src="../../../assets/icons/familie.jpg" alt="Sleeping student" />
+    </div>
+  </div>
+
+  <div class="question-container" *ngSwitchCase="4">
+    <div class="step">
+      <p>Pasul {{ this.step }}</p>
+    </div>
+    <div class="question-text">
+      <p>
+        Unde îți place să ieși cu prietenii?
+      </p>
+      <form>
+        <div class="radio-input">
+          <input type="radio" id="Yes" name="student" value="1" />
+          <label for="Yes">Da</label>
+        </div>
+        <div class="radio-input">
+          <input type="radio" id="No" name="student" value="0" />
+          <label for="No">Nu</label>
+        </div>
+      </form>
+    </div>
+    <div class="illustration">
+      <img src="../../../assets/icons/prieteni.jpg" alt="Friends" />
+    </div>
+  </div>
+  <div class="question-container" *ngSwitchCase="5">
+    <div class="step">
+      <p>Pasul {{ this.step }}</p>
+    </div>
+    <div class="question-text">
+      <p>
+        Unde îți place să te distrezi?
+      </p>
+      <form>
+        <div class="radio-input">
+          <input type="radio" id="Yes" name="student" value="1" />
+          <label for="Yes">Da</label>
+        </div>
+        <div class="radio-input">
+          <input type="radio" id="No" name="student" value="0" />
+          <label for="No">Nu</label>
+        </div>
+      </form>
+    </div>
+    <div class="illustration">
+      <img src="../../../assets/icons/PARTY.jpg" alt="Party" />
+    </div>
+  </div>
+  <div class="question-container" *ngSwitchCase="6">
+    <div class="step">
+      <p>Pasul {{ this.step }}</p>
+    </div>
+    <div class="question-text">
+      <p>
+        Unde învață copiii tăi?
+      </p>
+      <form>
+        <div class="radio-input">
+          <input type="radio" id="Yes" name="student" value="1" />
+          <label for="Yes">Da</label>
+        </div>
+        <div class="radio-input">
+          <input type="radio" id="No" name="student" value="0" />
+          <label for="No">Nu</label>
+        </div>
+      </form>
+    </div>
+    <div class="illustration">
+      <img src="../../../assets/icons/scoala-copii.jpg" alt="Children" />
+    </div>
+  </div>
+</div>
+<div id="submit-container">
+  <button id="skip" (click)="this.SkipQuestion()">Sari peste</button>
+  <button id="submit" (click)="this.Respond()">Gata</button>
+</div>
+<h5>
+  Alege pe hartă facultatea/liceul la care studiezi iar noi îți vom găsi un
+  apartament în apropiere. (Plaseaza markerul apoi apasa pe Gata.)
+</h5>
+<div class="map-container">
+  <app-map-add-apartment
+    (selectedLocation)="this.PreciseLocation = $event"
+  ></app-map-add-apartment>
+</div>

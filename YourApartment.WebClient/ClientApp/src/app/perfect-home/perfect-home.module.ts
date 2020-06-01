@@ -1,13 +1,11 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { PerfectHomeComponent } from './perfect-home/perfect-home.component';
-
-
+import { NgModule } from "@angular/core";
+import { CommonModule } from "@angular/common";
+import { PerfectHomeComponent } from "./perfect-home/perfect-home.component";
+import { PerfectHomeQuestionComponent } from "./perfect-home-question/perfect-home-question.component";
+import { AddApartmentModule } from "../add-apartment/add-apartment.module";
 
 @NgModule({
-  declarations: [PerfectHomeComponent],
-  imports: [
-    CommonModule
-  ]
+  declarations: [PerfectHomeComponent, PerfectHomeQuestionComponent],
+  imports: [CommonModule, AddApartmentModule],
 })
-export class PerfectHomeModule { }
+export class PerfectHomeModule {}
