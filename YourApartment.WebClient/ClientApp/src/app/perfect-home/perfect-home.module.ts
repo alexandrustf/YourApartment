@@ -3,9 +3,10 @@ import { CommonModule } from "@angular/common";
 import { PerfectHomeComponent } from "./perfect-home/perfect-home.component";
 import { PerfectHomeQuestionComponent } from "./perfect-home-question/perfect-home-question.component";
 import { AddApartmentModule } from "../add-apartment/add-apartment.module";
+import { MatButtonModule } from "@angular/material/button";
 
 @NgModule({
   declarations: [PerfectHomeComponent, PerfectHomeQuestionComponent],
-  imports: [CommonModule, AddApartmentModule],
+  imports: [CommonModule, AddApartmentModule, MatButtonModule],
 })
 export class PerfectHomeModule {}

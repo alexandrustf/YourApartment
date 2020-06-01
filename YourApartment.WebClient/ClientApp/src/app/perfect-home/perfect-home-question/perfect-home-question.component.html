@@ -9,25 +9,12 @@
       </p>
       <form>
         <div class="radio-input">
-          <input
-            type="radio"
-            id="Yes"
-            name="student"
-            value="1"
-            (change)="onItemChange($event.target.value)"
-          />
+          <button mat-raised-button color="primary">Da</button>
           <label for="Yes">Da</label>
         </div>
         <div class="radio-input">
-          <input
-            type="radio"
-            id="No"
-            name="student"
-            value="0"
-            (change)="onItemChange($event.target.value)"
-          />
+          <button mat-raised-button color="warn">Nu</button>
           <label for="No">Nu</label>
-          <button mat-button>foo</button>
         </div>
       </form>
     </div>
