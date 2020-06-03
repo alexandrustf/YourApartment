@@ -2,13 +2,15 @@
   <h3 class="sub-title">
     Următorii pași te vor aduce mai aproape de casa perfectă pentru tine
   </h3>
-  <app-perfect-home-question></app-perfect-home-question>
-
-  <!-- <div
-    class="apartment-card"
-    *ngFor="let apartment of apartmentsList"
-    [routerLink]="['./detail/' + apartment.id]"
-  >
+  <app-perfect-home-question
+    *ngIf="!this.responded"
+    (locationResponse)="this.addLocationResponse($event)"
+    (responded)="this.GetPerfectHome()"
+  ></app-perfect-home-question>
+  <h4 *ngIf="this.responded" class="sub-title">
+    Casa ta perfecta pentru tine este:
+  </h4>
+  <div class="apartment-card" *ngFor="let apartment of apartmentsList">
     <app-apartment-card [apartment]="apartment"></app-apartment-card>
-  </div> -->
+  </div>
 </div>

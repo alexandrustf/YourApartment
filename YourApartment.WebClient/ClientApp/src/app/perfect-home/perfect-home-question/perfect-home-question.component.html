@@ -8,14 +8,15 @@
         Ești student/elev?
       </p>
       <form>
-        <div class="radio-input">
-          <button mat-raised-button color="primary">Da</button>
-          <label for="Yes">Da</label>
-        </div>
-        <div class="radio-input">
-          <button mat-raised-button color="warn">Nu</button>
-          <label for="No">Nu</label>
-        </div>
+        <button type="button" mat-raised-button color="primary">Da</button>
+        <button
+          (click)="this.SkipQuestion()"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Nu
+        </button>
       </form>
     </div>
     <div class="illustration">
@@ -32,14 +33,15 @@
         Ești angajat?
       </p>
       <form>
-        <div class="radio-input">
-          <input type="radio" id="Yes" name="student" value="1" />
-          <label for="Yes">Da</label>
-        </div>
-        <div class="radio-input">
-          <input type="radio" id="No" name="student" value="0" />
-          <label for="No">Nu</label>
-        </div>
+        <button type="button" mat-raised-button color="primary">Da</button>
+        <button
+          (click)="this.SkipQuestion()"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Nu
+        </button>
       </form>
     </div>
     <div class="illustration">
@@ -56,14 +58,15 @@
         Ai copii?
       </p>
       <form>
-        <div class="radio-input">
-          <input type="radio" id="Yes" name="student" value="1" />
-          <label for="Yes">Da</label>
-        </div>
-        <div class="radio-input">
-          <input type="radio" id="No" name="student" value="0" />
-          <label for="No">Nu</label>
-        </div>
+        <button type="button" mat-raised-button color="primary">Da</button>
+        <button
+          (click)="this.SkipQuestion()"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Nu
+        </button>
       </form>
     </div>
     <div class="illustration">
@@ -80,14 +83,15 @@
         Unde îți place să ieși cu prietenii?
       </p>
       <form>
-        <div class="radio-input">
-          <input type="radio" id="Yes" name="student" value="1" />
-          <label for="Yes">Da</label>
-        </div>
-        <div class="radio-input">
-          <input type="radio" id="No" name="student" value="0" />
-          <label for="No">Nu</label>
-        </div>
+        <button type="button" mat-raised-button color="primary">Da</button>
+        <button
+          (click)="this.SkipQuestion()"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Nu
+        </button>
       </form>
     </div>
     <div class="illustration">
@@ -103,14 +107,15 @@
         Unde îți place să te distrezi?
       </p>
       <form>
-        <div class="radio-input">
-          <input type="radio" id="Yes" name="student" value="1" />
-          <label for="Yes">Da</label>
-        </div>
-        <div class="radio-input">
-          <input type="radio" id="No" name="student" value="0" />
-          <label for="No">Nu</label>
-        </div>
+        <button type="button" mat-raised-button color="primary">Da</button>
+        <button
+          (click)="this.SkipQuestion()"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Nu
+        </button>
       </form>
     </div>
     <div class="illustration">
@@ -126,14 +131,15 @@
         Unde învață copiii tăi?
       </p>
       <form>
-        <div class="radio-input">
-          <input type="radio" id="Yes" name="student" value="1" />
-          <label for="Yes">Da</label>
-        </div>
-        <div class="radio-input">
-          <input type="radio" id="No" name="student" value="0" />
-          <label for="No">Nu</label>
-        </div>
+        <button type="button" mat-raised-button color="primary">Da</button>
+        <button
+          (click)="this.SkipQuestion()"
+          type="button"
+          mat-raised-button
+          color="warn"
+        >
+          Nu
+        </button>
       </form>
     </div>
     <div class="illustration">
@@ -142,8 +148,22 @@
   </div>
 </div>
 <div id="submit-container">
-  <button id="skip" (click)="this.SkipQuestion()">Sari peste</button>
-  <button id="submit" (click)="this.Respond()">Gata</button>
+  <button
+    id="skip"
+    mat-raised-button
+    color="warn"
+    (click)="this.SkipQuestion()"
+  >
+    Sari peste
+  </button>
+  <button
+    id="submit"
+    mat-raised-button
+    color="primary"
+    (click)="this.Respond()"
+  >
+    Gata
+  </button>
 </div>
 <h5>
   Alege pe hartă facultatea/liceul la care studiezi iar noi îți vom găsi un

@@ -9,41 +9,40 @@ import { LocationCoordinates } from "src/app/add-apartment/map-add-apartment/loc
 export class PerfectHomeQuestionComponent implements OnInit {
   public step;
   public PreciseLocation: LocationCoordinates;
-  public QuestionAnswer: boolean;
-  public FavoriteLocations: LocationCoordinates[];
-  @Output() public questionResponse: EventEmitter<boolean> = new EventEmitter<
+  @Output() public locationResponse: EventEmitter<
+    LocationCoordinates
+  > = new EventEmitter<LocationCoordinates>();
+  @Output() public responded: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();
   constructor() {
     this.step = 1;
-    this.FavoriteLocations = [];
   }
 
   ngOnInit() {}
 
   public SkipQuestion() {
-    console.log(this.step);
     this.step = this.step + 1;
+    console.log(this.step);
+    this.CheckRespondedToAllQuestions();
   }
 
   public Respond() {
     console.log("res");
-
-    this.FavoriteLocations.push(this.PreciseLocation);
-
-    console.log(this.FavoriteLocations);
+    this.step = this.step + 1;
+    this.locationResponse.emit(Object.assign({}, this.PreciseLocation));
+    console.log("Am emis : " + this.PreciseLocation);
+    this.CheckRespondedToAllQuestions();
   }
 
-  onItemChange(value) {
-    console.log("selectat");
-    console.log(value);
-    if (value == "1") {
-      this.QuestionAnswer = true;
+  public CheckRespondedToAllQuestions() {
+    if (this.step > 6) {
+      console.log("emit that you are done!");
+      this.sayDone();
     }
-    if (value == "0") {
-      this.QuestionAnswer = false;
-      this.step++;
-    }
-    console.log(this.QuestionAnswer);
+  }
+
+  public sayDone() {
+    this.responded.emit(true);
   }
 }
