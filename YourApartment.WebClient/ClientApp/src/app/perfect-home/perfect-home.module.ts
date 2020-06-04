@@ -5,6 +5,7 @@ import { PerfectHomeQuestionComponent } from "./perfect-home-question/perfect-ho
 import { AddApartmentModule } from "../add-apartment/add-apartment.module";
 import { MatButtonModule } from "@angular/material/button";
 import { ApartmentsListModule } from "../apartments-list/apartments-list.module";
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 
 @NgModule({
   declarations: [PerfectHomeComponent, PerfectHomeQuestionComponent],
@@ -13,6 +14,7 @@ import { ApartmentsListModule } from "../apartments-list/apartments-list.module"
     ApartmentsListModule,
     AddApartmentModule,
     MatButtonModule,
+    BrowserAnimationsModule
   ],
 })
-export class PerfectHomeModule {}
+export class PerfectHomeModule { }

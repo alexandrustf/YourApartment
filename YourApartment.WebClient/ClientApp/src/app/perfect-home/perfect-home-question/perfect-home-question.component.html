@@ -8,13 +8,8 @@
         Ești student/elev?
       </p>
       <form>
-        <button type="button" mat-raised-button color="primary">Da</button>
-        <button
-          (click)="this.SkipQuestion()"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="toggleMap()">Da</button>
+        <button (click)="this.SkipQuestion()" type="button" mat-raised-button color="warn">
           Nu
         </button>
       </form>
@@ -33,13 +28,8 @@
         Ești angajat?
       </p>
       <form>
-        <button type="button" mat-raised-button color="primary">Da</button>
-        <button
-          (click)="this.SkipQuestion()"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="toggleMap()">Da</button>
+        <button (click)=" this.SkipQuestion()" type="button" mat-raised-button color="warn">
           Nu
         </button>
       </form>
@@ -58,13 +48,8 @@
         Ai copii?
       </p>
       <form>
-        <button type="button" mat-raised-button color="primary">Da</button>
-        <button
-          (click)="this.SkipQuestion()"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="toggleMap()">Da</button>
+        <button (click)=" this.SkipQuestion()" type="button" mat-raised-button color="warn">
           Nu
         </button>
       </form>
@@ -83,13 +68,8 @@
         Unde îți place să ieși cu prietenii?
       </p>
       <form>
-        <button type="button" mat-raised-button color="primary">Da</button>
-        <button
-          (click)="this.SkipQuestion()"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="toggleMap()">Da</button>
+        <button (click)=" this.SkipQuestion()" type="button" mat-raised-button color="warn">
           Nu
         </button>
       </form>
@@ -107,13 +87,8 @@
         Unde îți place să te distrezi?
       </p>
       <form>
-        <button type="button" mat-raised-button color="primary">Da</button>
-        <button
-          (click)="this.SkipQuestion()"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="toggleMap()">Da</button>
+        <button (click)=" this.SkipQuestion()" type="button" mat-raised-button color="warn">
           Nu
         </button>
       </form>
@@ -131,13 +106,8 @@
         Unde învață copiii tăi?
       </p>
       <form>
-        <button type="button" mat-raised-button color="primary">Da</button>
-        <button
-          (click)="this.SkipQuestion()"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
+        <button type="button" mat-raised-button color="primary" (click)="toggleMap()">Da</button>
+        <button (click)=" this.SkipQuestion()" type="button" mat-raised-button color="warn">
           Nu
         </button>
       </form>
@@ -148,29 +118,17 @@
   </div>
 </div>
 <div id="submit-container">
-  <button
-    id="skip"
-    mat-raised-button
-    color="warn"
-    (click)="this.SkipQuestion()"
-  >
+  <button id="skip" mat-raised-button color="warn" (click)="this.SkipQuestion()">
     Sari peste
   </button>
-  <button
-    id="submit"
-    mat-raised-button
-    color="primary"
-    (click)="this.Respond()"
-  >
+  <button id="submit" mat-raised-button color="primary" (click)="this.Respond()">
     Gata
   </button>
 </div>
-<h5>
-  Alege pe hartă facultatea/liceul la care studiezi iar noi îți vom găsi un
-  apartament în apropiere. (Plaseaza markerul apoi apasa pe Gata.)
-</h5>
-<div class="map-container">
-  <app-map-add-apartment
-    (selectedLocation)="this.PreciseLocation = $event"
-  ></app-map-add-apartment>
+
+<div class="map-container" [@popOverState]="stateName">
+  <h5 class="guide-text">
+    {{this.guide}}
+  </h5>
+  <app-map-add-apartment (selectedLocation)="this.PreciseLocation = $event"></app-map-add-apartment>
 </div>

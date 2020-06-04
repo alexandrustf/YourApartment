@@ -1,7 +1,7 @@
 <div class="perfect-home-container">
-  <h3 class="sub-title">
+  <h4 class="sub-title" *ngIf="!this.responded">
     Următorii pași te vor aduce mai aproape de casa perfectă pentru tine
-  </h3>
+  </h4>
   <app-perfect-home-question
     *ngIf="!this.responded"
     (locationResponse)="this.addLocationResponse($event)"
@@ -10,7 +10,9 @@
   <h4 *ngIf="this.responded" class="sub-title">
     Casa ta perfecta pentru tine este:
   </h4>
-  <div class="apartment-card" *ngFor="let apartment of apartmentsList">
-    <app-apartment-card [apartment]="apartment"></app-apartment-card>
+  <div class="cards-container">
+    <div class="apartment-card" *ngFor="let apartment of apartmentsList">
+      <app-apartment-card [apartment]="apartment"></app-apartment-card>
+    </div>
   </div>
 </div>
