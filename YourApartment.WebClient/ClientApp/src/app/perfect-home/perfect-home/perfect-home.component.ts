@@ -1,15 +1,46 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit } from "@angular/core";
+import { LocationCoordinates } from "src/app/add-apartment/map-add-apartment/location-coordinates.model";
+import { createOfflineCompileUrlResolver } from "@angular/compiler";
+import { FindPerfectHomeService } from "../find-perfect-home.service";
+import { ChoicesPerfectHome } from "../choices-perfect-home.model";
+import { first } from "rxjs/operators";
+import { Apartment } from "src/app/shared/models/apartment.model";
 
 @Component({
-  selector: 'app-perfect-home',
-  templateUrl: './perfect-home.component.html',
-  styleUrls: ['./perfect-home.component.scss']
+  selector: "app-perfect-home",
+  templateUrl: "./perfect-home.component.html",
+  styleUrls: ["./perfect-home.component.scss"],
 })
 export class PerfectHomeComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {
+  public FavoriteLocations: LocationCoordinates[];
+  public apartmentsList: Apartment[];
+  public responded: boolean;
+  constructor(private findPerfectHomeService: FindPerfectHomeService) {
+    this.FavoriteLocations = [];
+    this.responded = false;
   }
 
+  ngOnInit() {}
+
+  public addLocationResponse(event) {
+    this.FavoriteLocations.push(event);
+    console.log(this.FavoriteLocations);
+  }
+
+  public GetPerfectHome() {
+    console.log("iti gasim casa perfecta :)");
+    this.responded = true;
+    const latLocations = this.FavoriteLocations.map((p) => p.lat);
+    const lngLocations = this.FavoriteLocations.map((p) => p.lng);
+
+    const choices = new ChoicesPerfectHome(400, 3, latLocations, lngLocations);
+
+    this.findPerfectHomeService
+      .FindPerfectHouses(choices)
+      .pipe(first())
+      .subscribe((res) => {
+        this.apartmentsList = res;
+        console.log(this.apartmentsList);
+      });
+  }
 }

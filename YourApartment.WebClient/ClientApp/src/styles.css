@@ -38,3 +38,6 @@ body {
   max-height: 450px;
   max-width: 420px !important;
 }
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
