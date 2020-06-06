@@ -22,7 +22,7 @@ namespace YourApartment.Infrastructure
 
         public async Task SeedLocationsAsync()
         {
-            if(this.locationSettings.Locations.ToList().Count == 0)
+            if(this.locationsService.GetAll().Result.ToList().Count == 0)
                 foreach (var location in this.locationSettings.Locations)
                 {
                     await locationsService.Create(new CreateLocationCommand(location, location));
