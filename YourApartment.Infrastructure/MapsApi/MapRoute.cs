@@ -40,6 +40,7 @@ namespace YourApartment.Infrastructure
             }
 
             return new List<int>();// SHOW ERROR IMPLEMENT WITH RESULT
+
         }
     }
 }
