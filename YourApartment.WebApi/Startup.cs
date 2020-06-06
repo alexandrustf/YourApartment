@@ -42,9 +42,11 @@ namespace YourApartment.WebApi
             // configure strongly typed settings objects
             var appSettingsSection = Configuration.GetSection("AppSettings");
             services.Configure<JwtSettings>(appSettingsSection);
-
+            var locationSettings = Configuration.GetSection("LocationSettings");
+            services.Configure<LocationSettings>(locationSettings);
             // configure jwt authentication
             var appSettings = appSettingsSection.Get<JwtSettings>();
+            
             var key = Encoding.ASCII.GetBytes(appSettings.Secret);
             services.AddAuthentication(x =>
                 {
@@ -70,10 +72,11 @@ namespace YourApartment.WebApi
             services.AddBusiness();
             services.AddInfrastructure();
             services.AddMvc();
+            services.AddDefaultLocationCollection();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, List<DefaultLocationSettings> defaultLocations, ILocationsService locationsService)
         {
             if (env.IsDevelopment())
             {
@@ -93,7 +96,7 @@ namespace YourApartment.WebApi
                     .AllowAnyHeader())
                 .UseSwagger()
                 .UseSwaggerUI(options => { options.SwaggerEndpoint("/swagger/v1/swagger.json", "Auth"); options.RoutePrefix = string.Empty; });
-
+            app.CreateDefaultLocation(defaultLocations, locationsService);
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();

@@ -66,7 +66,21 @@ namespace YourApartment.WebApi
             return services;
         }
 
+        public static IServiceCollection AddDefaultLocationCollection(this IServiceCollection services)
+        {
+            return services.AddSingleton(provider =>
+            {
+                var config = provider.GetService<IConfiguration>();
 
+                var defaultLocationCollection = config.GetSection(nameof(DefaultLocationCollection))
+                    .GetChildren()
+                    .ToList()
+                    .Select(d => new DefaultLocationSettings(
+                        d[nameof(DefaultLocationSettings.Location)]));
+
+                return defaultLocationCollection.ToList();
+            });
+        }
 
     }
 }

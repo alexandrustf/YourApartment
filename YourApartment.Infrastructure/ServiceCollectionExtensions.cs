@@ -14,6 +14,8 @@ namespace YourApartment.Infrastructure
         public static IServiceCollection AddInfrastructure(this IServiceCollection services)
         {
             services.AddScoped<IImageRepository, ImageRepository>();
+
+
             return services.AddTransient<ITokenProvider, TokenProvider>()
                 .AddScoped(typeof(IPaginationService<,>), typeof(PaginationService<,>))
                 .AddScoped<ISieveProcessor, ApplicationSieveProcessor>()
