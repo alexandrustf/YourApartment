@@ -1,3 +1,5 @@
+@import "../../../style/main.scss";
+
 .perfect-home-container {
   padding: 75px 134px 134px 134px;
   display: flex;
@@ -39,5 +41,10 @@
 
   .map-container {
     width: 100%;
+  }
+}
+@include for-phone-only {
+  .perfect-home-container {
+    background-color: red;
   }
 }
