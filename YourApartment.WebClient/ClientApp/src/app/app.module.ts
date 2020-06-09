@@ -24,6 +24,9 @@ import { AuthService } from "./shared/services/auth.service";
 import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
 import { FavoriteApartmentsListComponent } from "./my-account/favorite-apartments-list/favorite-apartments-list.component";
 import { MyAccountModule } from "./my-account/my-account.module";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSidenavModule } from "@angular/material/sidenav";
 
 @NgModule({
   declarations: [AppComponent, NavMenuComponent, HomeComponent],
@@ -31,6 +34,9 @@ import { MyAccountModule } from "./my-account/my-account.module";
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
     FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
     RouterModule.forRoot([
       {
         path: "",
@@ -61,6 +67,7 @@ import { MyAccountModule } from "./my-account/my-account.module";
     PerfectHomeModule,
     AuthModule,
     MyAccountModule,
+    MatToolbarModule,
   ],
   providers: [
     AuthService,

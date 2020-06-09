@@ -1,6 +1,24 @@
-<app-nav-menu></app-nav-menu>
-<div class="YourApartment-container">
-  <div class="content-container">
-    <router-outlet></router-outlet>
-  </div>
-</div>
+<!-- <mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <app-nav-menu (sidenavToggle)="sidenav.toggle()"></app-nav-menu>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <div class="YourApartment-container">
+      <div class="content-container">
+        <router-outlet></router-outlet>
+      </div>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container> -->
+
+<mat-sidenav-container>
+  <mat-sidenav #sidenav role="navigation">
+    <!-- <app-sidenav-list (sidenavClose)="sidenav.close()"></app-sidenav-list> -->
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <app-nav-menu (sidenavToggle)="sidenav.toggle()"></app-nav-menu>
+    <main>
+      <router-outlet></router-outlet>
+    </main>
+  </mat-sidenav-content>
+</mat-sidenav-container>
