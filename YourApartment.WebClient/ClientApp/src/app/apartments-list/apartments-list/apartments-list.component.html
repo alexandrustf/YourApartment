@@ -11,6 +11,7 @@
   </div>
   <div class="apartments-search-container">
     <app-cards-list
+      [className]="this.mapToggle === true ? 'no-display' : 'some-class'"
       [filteredModel]="this.filterModel"
       (apartmentsListEmit)="this.apartmentsList = $event"
     ></app-cards-list>

@@ -16,14 +16,14 @@
 </div>
 <div class="filters-bar-container">
   <div class="left-filters">
-    <div class="filter-button">
+    <div class="filter-button filter-button-container">
       <div class="number-of-rooms-icon-blue"></div>
       <select class="filter-button">
         <option selected value="rent">Rent</option>
         <option value="buy">Buy</option>
       </select>
     </div>
-    <div class="filter-button">
+    <div class="filter-button filter-button-container">
       <div class="number-of-rooms-icon-blue"></div>
       <select
         (change)="filterByRooms($event.target.value)"
@@ -37,16 +37,18 @@
         <option value="5">5 or more Rooms</option>
       </select>
     </div>
-    <div class="filter-button">
+    <div class="filter-button filter-button-container">
       <div class="icon-area-blue"></div>
       <select class="filter-button">
         <option selected value="">Area</option>
         <option value="200">200mp</option>
       </select>
     </div>
-    <div class="filter-button">
+    <div class="filter-button filter-button-container">
       <div class="icon-price-blue"></div>
-      <label for="min-price" class="label-price">Price Min:</label>
+      <label for="min-price" class="label-price" style="font-size: 12px;"
+        >Price Min:</label
+      >
       <input
         type="number"
         name="min-price"
@@ -54,7 +56,9 @@
         class="input-price"
         (change)="filterByMinPrice($event.target.value)"
       />
-      <label for="max-price" class="label-price">Price Max:</label>
+      <label for="max-price" class="label-price" style="font-size: 12px;"
+        >Price Max:</label
+      >
       <input
         type="number"
         name="max-price"
@@ -63,7 +67,7 @@
         (change)="filterByMaxPrice($event.target.value)"
       />
     </div>
-    <div class="filter-button">
+    <div class="filter-button filter-button-container">
       <div class="location-icon"></div>
       <select
         aria-placeholder="Zone"

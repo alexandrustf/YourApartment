@@ -1,3 +1,7 @@
+@import "../../../style/main.scss";
+.filter-button-container {
+  margin-bottom: 10px;
+}
 .search-bar-container {
   display: flex;
   flex-wrap: nowrap;
@@ -141,5 +145,14 @@
           no-repeat padding-box;
       }
     }
+  }
+}
+@include for-phone-only {
+  .filter-button-container {
+    margin-bottom: 10px;
+  }
+
+  #search-apartment {
+    width: 180px;
   }
 }
