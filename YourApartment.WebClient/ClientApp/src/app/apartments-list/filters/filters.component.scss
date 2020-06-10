@@ -51,6 +51,10 @@
     flex-wrap: wrap;
     .filter-button {
       align-items: center;
+
+      option {
+        text-transform: capitalize;
+      }
       .label-price {
         padding: 10px 16px 0px 2px;
       }
