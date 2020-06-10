@@ -10,7 +10,7 @@ import { AuthenticationToken } from "../shared/models/authentication-token.model
 })
 export class NavListComponent implements OnInit {
   currentUser: AuthenticationToken;
-
+  onSidenavClose;
   constructor(private router: Router, private authService: AuthService) {
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
   }
