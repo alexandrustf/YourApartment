@@ -13,93 +13,35 @@
         <ul fxLayout fxLayoutGap="15px" class="navigation-items"> -->
       <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px">
-          <div
-            class="navigation-bar-item-container"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActiveOptions]="{ exact: true }"
-          >
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }">
             <a class="navigation-bar-item" [routerLink]="['/']">Acasa</a>
           </div>
-          <div
-            class="navigation-bar-item-container"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActive]="['active-link']"
-          >
-            <a
-              class="navigation-bar-item"
-              [routerLink]="['/apartments-rent']"
-              [routerLinkActive]="['active-link']"
-              >Inchirieri</a
-            >
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']"
+            [routerLinkActive]="['active-link']">
+            <a class="navigation-bar-item" [routerLink]="['/apartments-rent']"
+              [routerLinkActive]="['active-link']">Inchirieri</a>
           </div>
 
-          <div
-            class="navigation-bar-item-container"
-            [routerLinkActive]="['link-active']"
-          >
-            <a
-              class="navigation-bar-item"
-              [routerLink]="['/perfect-home']"
-              [routerLinkActive]="['active-link']"
-              >Your perfect home
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']">
+            <a class="navigation-bar-item" [routerLink]="['/perfect-home']" [routerLinkActive]="['active-link']">Your
+              perfect home
             </a>
           </div>
-          <div
-            class="navigation-bar-item-container"
-            [routerLinkActive]="['link-active']"
-          >
-            <a
-              class="navigation-bar-item"
-              [routerLink]="['/my-account']"
-              [routerLinkActive]="['active-link']"
-              >Contul meu</a
-            >
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']">
+            <a class="navigation-bar-item" [routerLink]="['/my-account']" [routerLinkActive]="['active-link']">Contul
+              meu</a>
           </div>
-          <div
-            class="navigation-bar-item-container"
-            [routerLinkActive]="['link-active']"
-          >
-            <a
-              class="navigation-bar-item"
-              [routerLink]="['/my-account']"
-              (click)="logout()"
-              >Log Out</a
-            >
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']">
+            <a class="navigation-bar-item" [routerLink]="['/my-account']" (click)="logout()">Log Out</a>
           </div>
-          <div
-            class="navigation-bar-item-container"
-            [routerLinkActive]="['link-active']"
-            [routerLinkActive]="['active-link']"
-          >
-            <a
-              class="navigation-bar-item"
-              [routerLink]="['/add-apartment']"
-              [routerLinkActive]="['active-link']"
-              >Adauga Anunt</a
-            >
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']"
+            [routerLinkActive]="['active-link']">
+            <a class="navigation-bar-item" [routerLink]="['/add-apartment']" [routerLinkActive]="['active-link']">Adauga
+              Anunt</a>
           </div>
         </ul>
       </div>
     </mat-toolbar>
-  </div>
-</mat-toolbar>
-<mat-toolbar color="primary">
-  <div fxHide.gt-xs>
-    <button mat-icon-button (click)="onToggleSidenav()">
-      <mat-icon>menu</mat-icon>
-    </button>
-  </div>
-  <div>
-    <a routerLink="/home">Owner-Account</a>
-  </div>
-  <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
-    <ul fxLayout fxLayoutGap="15px" class="navigation-items">
-      <li>
-        <a routerLink="/owner">Owner Actions</a>
-      </li>
-      <li>
-        <a routerLink="/account">Account Actions</a>
-      </li>
-    </ul>
   </div>
 </mat-toolbar>

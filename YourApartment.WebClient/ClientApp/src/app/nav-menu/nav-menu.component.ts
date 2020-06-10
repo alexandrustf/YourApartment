@@ -15,16 +15,16 @@ export class NavMenuComponent {
   constructor(private router: Router, private authService: AuthService) {
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
   }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/my-account"]);
+  }
   collapse() {
     this.isExpanded = false;
   }
 
   toggle() {
     this.isExpanded = !this.isExpanded;
-  }
-  logout() {
-    this.authService.logout();
-    this.router.navigate(["/my-account"]);
   }
 
   public onToggleSidenav = () => {
