@@ -3,10 +3,12 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using CSharpFunctionalExtensions;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Sieve.Models;
 using YourApartment.Business;
+using YourApartment.Domain;
 
 namespace YourApartment.WebApi.Controllers
 {
@@ -77,6 +79,7 @@ namespace YourApartment.WebApi.Controllers
 
         // PUT: api/Accommodations/5
         [HttpPut("{apartmentId:Guid}")]
+        [Authorize(Roles = AppRole.Admin)]
         [ProducesResponseType(204)]
         [ProducesResponseType(404)]
 
@@ -92,6 +95,7 @@ namespace YourApartment.WebApi.Controllers
 
         //DELETE: api/ApiWithActions/5
         [HttpDelete("{apartmentId:Guid}")]
+        [Authorize(Roles = AppRole.Admin)]
         [ProducesResponseType(200)]
         [ProducesResponseType(404)]
         public async Task<IActionResult> Delete([FromRoute] Guid apartmentId)
