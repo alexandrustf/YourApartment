@@ -5,7 +5,7 @@
 export const environment = {
   production: false,
   YourApartmentUrl: "https://localhost:44366/api/v1",
-  ApartmentMLUrl: "https://deployapartment.nw.r.appspot.com/",
+  ApartmentMLUrl: "https://deployapartment.nw.r.appspot.com",
 };
 
 /*

@@ -47,6 +47,10 @@ export class AddApartmentFormComponent implements OnInit {
       validators: [Validators.maxLength(DESCRIPTION_MAX_LENGTH)],
       updateOn: "change",
     }),
+    compartimentare: new FormControl("", {
+      validators: [Validators.required],
+      updateOn: "change",
+    }),
     floor: new FormControl("", {
       validators: [],
       updateOn: "change",
@@ -93,7 +97,6 @@ export class AddApartmentFormComponent implements OnInit {
       .getZoneLocations()
       .pipe(first())
       .subscribe((res) => (this.locations = res));
-    console.log(this.locations);
   }
 
   imageContent: string;
@@ -109,6 +112,9 @@ export class AddApartmentFormComponent implements OnInit {
 
   selectChangeHandler(event: any) {
     this.selectedLocation = event.target.value;
+    console.log(
+      this.locations.filter((p) => p.id == this.selectedLocation)[0].name
+    );
   }
 
   public idealPrice: number;
@@ -116,9 +122,17 @@ export class AddApartmentFormComponent implements OnInit {
     var apartment = new ApartmentIdealPrice();
     apartment.Area = [this.apartmentForm.get("area").value];
     apartment.Rooms = [this.apartmentForm.get("numberOfRooms").value];
-    apartment.Location = ["nicolina"];
-    apartment.BlocNou = ["Bloc Nou"];
-    apartment.Compartimentare = ["Decomandat"];
+    apartment.Location = [
+      this.locations.filter((p) => p.id == this.selectedLocation)[0].name,
+    ];
+    if (+this.apartmentForm.get("constructionYear").value > 2015)
+      apartment.BlocNou = ["Bloc Nou"];
+    else apartment.BlocNou = ["Bloc Vechi"];
+    console.log("compartimentare");
+    console.log(this.apartmentForm.get("compartimentare").value);
+    apartment.Compartimentare = [
+      this.apartmentForm.get("compartimentare").value,
+    ];
     apartment.Ap_Etaj = [this.apartmentForm.get("floor").value];
 
     this.idealPriceService
