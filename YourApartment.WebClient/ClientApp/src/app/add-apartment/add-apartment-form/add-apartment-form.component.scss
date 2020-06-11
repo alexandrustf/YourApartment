@@ -1,6 +1,9 @@
 .add-apartment-container {
   margin: 25px 25px 25px 25px;
 
+  option {
+    text-transform: capitalize;
+  }
   .add-location-container {
     .location-icon {
       margin: 16px 0px 0px 16px;

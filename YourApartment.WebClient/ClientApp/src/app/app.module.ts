@@ -24,13 +24,24 @@ import { AuthService } from "./shared/services/auth.service";
 import { JwtInterceptor } from "./shared/interceptors/jwt.interceptor";
 import { FavoriteApartmentsListComponent } from "./my-account/favorite-apartments-list/favorite-apartments-list.component";
 import { MyAccountModule } from "./my-account/my-account.module";
+import { MatToolbarModule } from "@angular/material/toolbar";
+import { MatIconModule } from "@angular/material/icon";
+import { MatSidenavModule } from "@angular/material/sidenav";
+import { FlexLayoutModule } from "@angular/flex-layout";
+import { MatListModule } from '@angular/material/list';
+import { NavListComponent } from "./nav-list/nav-list.component";
 
 @NgModule({
-  declarations: [AppComponent, NavMenuComponent, HomeComponent],
+  declarations: [AppComponent, NavMenuComponent, HomeComponent, NavListComponent],
   imports: [
     BrowserModule.withServerTransition({ appId: "ng-cli-universal" }),
     HttpClientModule,
     FormsModule,
+    MatToolbarModule,
+    MatIconModule,
+    MatSidenavModule,
+    FlexLayoutModule,
+    MatListModule,
     RouterModule.forRoot([
       {
         path: "",
@@ -61,6 +72,7 @@ import { MyAccountModule } from "./my-account/my-account.module";
     PerfectHomeModule,
     AuthModule,
     MyAccountModule,
+    MatToolbarModule,
   ],
   providers: [
     AuthService,
@@ -72,4 +84,4 @@ import { MyAccountModule } from "./my-account/my-account.module";
   ],
   bootstrap: [AppComponent],
 })
-export class AppModule {}
+export class AppModule { }
