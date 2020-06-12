@@ -1,17 +1,18 @@
 <div class="apartment-detail-container">
-  <div *ngIf="apartment">
+  <div *ngIf="apartment" class="apartment-subcontainer">
     <div class="title-container">
       <h1>{{ apartment.title }}</h1>
     </div>
-    <div class="images-container">
+
+    <div class="images-container" *ngFor="let image of apartment.images">
       <img
         mat-card-image
-        [src]="'data:image/png;base64,' + apartment.images[0]"
+        [src]="'data:image/png;base64,' + image"
         [alt]="apartment.name"
       />
     </div>
     <div class="favorite-container">
-      <h3>Adauga produsul la favorite in contul tau:</h3>
+      <h3>Adaugă produsul la favorite in contul tău:</h3>
       <input
         id="heart"
         type="checkbox"
@@ -21,55 +22,55 @@
       <label for="heart">❤</label>
     </div>
     <div class="description-container">
-      <h2>Description</h2>
+      <h2>Descriere:</h2>
       <div class="description-text">
         <h4>{{ apartment.description }}</h4>
       </div>
     </div>
 
     <div class="spefications-container">
-      <h2>Spefications</h2>
+      <h2>Specificații:</h2>
       <div class="spefication-container">
-        <h4 class="spefication-title">Location:</h4>
+        <h4 class="spefication-title">Locație:</h4>
         <h4 class="spefication-value">{{ apartment.location }}</h4>
       </div>
 
       <div class="spefication-container">
-        <h4 class="spefication-title">Price:</h4>
+        <h4 class="spefication-title">Preț:</h4>
         <h4 class="spefication-value">{{ apartment.price }}</h4>
       </div>
       <div class="spefication-container">
-        <h4 class="spefication-title">Number of Rooms:</h4>
+        <h4 class="spefication-title">Numărul de camere:</h4>
         <h4 class="spefication-value">{{ apartment.numberOfRooms }}</h4>
       </div>
       <div class="spefication-container">
-        <h4 class="spefication-title">Area:</h4>
+        <h4 class="spefication-title">Aria:</h4>
         <h4 class="spefication-value">{{ apartment.area }}</h4>
       </div>
       <div *ngIf="apartment.exactAdress" class="spefication-container">
-        <h4 class="spefication-title">Adress:</h4>
+        <h4 class="spefication-title">Adresa:</h4>
         <h4 class="spefication-value">{{ apartment.exactAdress }}</h4>
       </div>
       <div *ngIf="apartment.floor" class="spefication-container">
-        <h4 class="spefication-title">Floor:</h4>
+        <h4 class="spefication-title">Etajul:</h4>
         <h4 class="spefication-value">{{ apartment.floor }}</h4>
       </div>
       <div *ngIf="apartment.totalNumberOfFloors" class="spefication-container">
         <h4 class="spefication-title">
-          Total number of floors of the building:
+          Numărul total de etaje al clădirii:
         </h4>
         <h4 class="spefication-value">{{ apartment.totalNumberOfFloors }}</h4>
       </div>
       <div *ngIf="apartment.confort" class="spefication-container">
-        <h4 class="spefication-title">Confort level:</h4>
+        <h4 class="spefication-title">Nivelul de confort:</h4>
         <h4 class="spefication-value">{{ apartment.confort }}</h4>
       </div>
       <div *ngIf="apartment.constructionYear" class="spefication-container">
-        <h4 class="spefication-title">Construction Year:</h4>
+        <h4 class="spefication-title">Anul Construcției:</h4>
         <h4 class="spefication-value">{{ apartment.constructionYear }}</h4>
       </div>
       <div *ngIf="apartment.numberOfBathrooms" class="spefication-container">
-        <h4 class="spefication-title">Number of Bathrooms:</h4>
+        <h4 class="spefication-title">Numărul de băi:</h4>
         <h4 class="spefication-value">{{ apartment.numberOfBathrooms }}</h4>
       </div>
       <div
@@ -79,14 +80,14 @@
         "
         class="spefication-container"
       >
-        <h4 class="spefication-title">Partitiong type:</h4>
+        <h4 class="spefication-title">Compartimentare:</h4>
         <h4 class="spefication-value">{{ apartment.partitioningType }}</h4>
       </div>
       <div
         *ngIf="apartment.building && apartment.building !== 'UnSpecified'"
         class="spefication-container"
       >
-        <h4 class="spefication-title">Building:</h4>
+        <h4 class="spefication-title">Tip clădire:</h4>
         <h4 class="spefication-value">{{ apartment.building }}</h4>
       </div>
     </div>

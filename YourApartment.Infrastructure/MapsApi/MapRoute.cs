@@ -21,10 +21,10 @@ namespace YourApartment.Infrastructure
             this.sendRequester = sendRequester;
         }
 
-        public async Task<IEnumerable<int>> GetTimeForRoutesAsync(double latOrigin, double lngOrigin,
+        public async Task<Result<IEnumerable<int>>> GetTimeForRoutesAsync(double latOrigin, double lngOrigin,
             IEnumerable<Tuple<double, double>> destinations)
         {
-            var apiKey = "AIzaSyANzoJQGnlwpm8607jHLIZUdKLxropZbbg";
+            var apiKey = "AIzaSyBVl60GVd2m7f138pnXMm5-3sNrJ_ZRvUo";
 
             var url = $"https://maps.googleapis.com/maps/api/distancematrix/json?origins={latOrigin},{lngOrigin}";
 
@@ -36,10 +36,10 @@ namespace YourApartment.Infrastructure
             var resultObject = await sendRequester.GetAsync(url);
             if (resultObject.ContainsKey("status") && resultObject["status"].ToString() == "OK")
             {
-                return resultObject["rows"][0]["elements"].Select(r => (int)r["duration"]["value"]);
+                return Result.Ok(resultObject["rows"][0]["elements"].Select(r => (int)r["duration"]["value"]));
             }
 
-            return new List<int>();// SHOW ERROR IMPLEMENT WITH RESULT
+            return Result.Failure<IEnumerable<int>>("API KEY is Invalid!"); // SHOW ERROR IMPLEMENT WITH RESULT
 
         }
     }

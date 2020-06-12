@@ -37,12 +37,17 @@ export class PerfectHomeQuestionComponent implements OnInit {
   public showMap: boolean;
   public guide: string;
   public map;
+  public priceMax: number;
+  public roomsWanted: number;
   @Output() public locationResponse: EventEmitter<
     LocationCoordinates
   > = new EventEmitter<LocationCoordinates>();
   @Output() public responded: EventEmitter<boolean> = new EventEmitter<
     boolean
   >();
+  @Output() public price: EventEmitter<number> = new EventEmitter<number>();
+  @Output() public rooms: EventEmitter<number> = new EventEmitter<number>();
+
   constructor() {
     this.step = 1;
   }
@@ -64,7 +69,14 @@ export class PerfectHomeQuestionComponent implements OnInit {
     this.step = this.step + 1;
     console.log(this.step);
     this.CheckRespondedToAllQuestions();
-    this.scrollUp(map);
+  }
+
+  public getRooms(rooms) {
+    this.roomsWanted = +rooms;
+  }
+
+  public getPrice(price) {
+    this.priceMax = +price;
   }
 
   public Respond(map) {
@@ -106,7 +118,9 @@ export class PerfectHomeQuestionComponent implements OnInit {
         this.guide = "";
         break;
     }
-
+    if (this.step == 6) {
+      this.showMap = false;
+    }
     if (this.step > 6) {
       console.log("emit that you are done!");
       this.sayDone();
@@ -114,6 +128,8 @@ export class PerfectHomeQuestionComponent implements OnInit {
   }
 
   public sayDone() {
+    this.price.emit(this.priceMax);
+    this.rooms.emit(this.roomsWanted);
     this.responded.emit(true);
     this.scrollUp(this.map);
   }

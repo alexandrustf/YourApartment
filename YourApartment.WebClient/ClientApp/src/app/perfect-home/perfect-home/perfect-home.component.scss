@@ -8,6 +8,7 @@
   width: 100%;
   .cards-container {
     display: flex;
+    flex-wrap: wrap;
   }
 
   app-perfect-home-question {
