@@ -7,6 +7,7 @@ import {
   state,
   style,
 } from "@angular/animations";
+import { PriceRooms } from "../price-rooms.model";
 
 @Component({
   selector: "app-perfect-home-question",
@@ -42,11 +43,9 @@ export class PerfectHomeQuestionComponent implements OnInit {
   @Output() public locationResponse: EventEmitter<
     LocationCoordinates
   > = new EventEmitter<LocationCoordinates>();
-  @Output() public responded: EventEmitter<boolean> = new EventEmitter<
-    boolean
+  @Output() public responded: EventEmitter<PriceRooms> = new EventEmitter<
+    PriceRooms
   >();
-  @Output() public price: EventEmitter<number> = new EventEmitter<number>();
-  @Output() public rooms: EventEmitter<number> = new EventEmitter<number>();
 
   constructor() {
     this.step = 1;
@@ -128,26 +127,16 @@ export class PerfectHomeQuestionComponent implements OnInit {
   }
 
   public sayDone() {
-    this.price.emit(this.priceMax);
-    this.rooms.emit(this.roomsWanted);
-    this.responded.emit(true);
-    this.scrollUp(this.map);
+    const priceRoom = new PriceRooms();
+    priceRoom.rooms = this.roomsWanted;
+    priceRoom.price = this.priceMax;
+    this.responded.emit(priceRoom);
   }
   private scrollUp(map) {
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
     map.scrollIntoView({ behavior: "smooth" });
   }
 
   private scrollDown(target) {
     target.scrollIntoView({ behavior: "smooth" });
-    // window.scrollTo({
-    //   top: 1285,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
   }
 }

@@ -27,13 +27,19 @@ export class PerfectHomeComponent implements OnInit {
     console.log(this.FavoriteLocations);
   }
 
-  public GetPerfectHome() {
+  public GetPerfectHome(response) {
     console.log("iti gasim casa perfecta :)");
+    console.log(response);
     this.responded = true;
     const latLocations = this.FavoriteLocations.map((p) => p.lat);
     const lngLocations = this.FavoriteLocations.map((p) => p.lng);
 
-    const choices = new ChoicesPerfectHome(400, 3, latLocations, lngLocations);
+    const choices = new ChoicesPerfectHome(
+      response.price,
+      response.rooms,
+      latLocations,
+      lngLocations
+    );
 
     this.findPerfectHomeService
       .FindPerfectHouses(choices)

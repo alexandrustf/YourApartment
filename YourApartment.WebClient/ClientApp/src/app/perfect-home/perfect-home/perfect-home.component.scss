@@ -47,5 +47,9 @@
 @include for-phone-only {
   .perfect-home-container {
     padding: 0px 0px 0px 0px;
+
+    .apartment-card {
+      width: 100%;
+    }
   }
 }

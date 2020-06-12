@@ -5,7 +5,7 @@
   <app-perfect-home-question
     *ngIf="!this.responded"
     (locationResponse)="this.addLocationResponse($event)"
-    (responded)="this.GetPerfectHome()"
+    (responded)="this.GetPerfectHome($event)"
   ></app-perfect-home-question>
   <h4 *ngIf="this.responded" class="sub-title">
     Casa perfectă pentru tine este:
