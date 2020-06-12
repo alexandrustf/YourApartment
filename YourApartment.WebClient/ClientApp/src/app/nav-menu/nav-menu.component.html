@@ -1,77 +1,47 @@
-<div>
+<mat-toolbar>
   <div class="header-container">
-    <div class="logo-container">
-      <a class="logo" [routerLink]="['/']">Your Apartment</a>
-    </div>
-    <div class="container-navigation-bar">
-      <div
-        class="navigation-bar-item-container"
-        [routerLinkActive]="['link-active']"
-        [routerLinkActiveOptions]="{ exact: true }"
-      >
-        <a class="navigation-bar-item" [routerLink]="['/']">Acasa</a>
+    <mat-toolbar>
+      <div fxHide.gt-xs>
+        <button mat-icon-button (click)="onToggleSidenav()">
+          <mat-icon>menu</mat-icon>
+        </button>
       </div>
-      <div
-        class="navigation-bar-item-container"
-        [routerLinkActive]="['link-active']"
-        [routerLinkActive]="['active-link']"
-      >
-        <a
-          class="navigation-bar-item"
-          [routerLink]="['/apartments-rent']"
-          [routerLinkActive]="['active-link']"
-          >Inchirieri</a
-        >
+      <div class="logo-container">
+        <a class="logo" [routerLink]="['/']">Your Apartment</a>
       </div>
+      <!-- <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px" class="navigation-items"> -->
+      <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
+        <ul fxLayout fxLayoutGap="15px">
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']"
+            [routerLinkActiveOptions]="{ exact: true }">
+            <a class="navigation-bar-item" [routerLink]="['/']">Acasa</a>
+          </div>
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']"
+            [routerLinkActive]="['active-link']">
+            <a class="navigation-bar-item" [routerLink]="['/apartments-rent']"
+              [routerLinkActive]="['active-link']">Inchirieri</a>
+          </div>
 
-      <div
-        class="navigation-bar-item-container"
-        [routerLinkActive]="['link-active']"
-      >
-        <a
-          class="navigation-bar-item"
-          [routerLink]="['/perfect-home']"
-          [routerLinkActive]="['active-link']"
-
-          >Your perfect home
-        </a>
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']">
+            <a class="navigation-bar-item" [routerLink]="['/perfect-home']" [routerLinkActive]="['active-link']">Your
+              perfect home
+            </a>
+          </div>
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']">
+            <a class="navigation-bar-item" [routerLink]="['/my-account']" [routerLinkActive]="['active-link']">Contul
+              meu</a>
+          </div>
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']">
+            <a class="navigation-bar-item" [routerLink]="['/my-account']" (click)="logout()">Log Out</a>
+          </div>
+          <div class="navigation-bar-item-container" [routerLinkActive]="['link-active']"
+            [routerLinkActive]="['active-link']">
+            <a class="navigation-bar-item" [routerLink]="['/add-apartment']" [routerLinkActive]="['active-link']">Adauga
+              Anunt</a>
+          </div>
+        </ul>
       </div>
-      <div
-        class="navigation-bar-item-container"
-        [routerLinkActive]="['link-active']"
-      >
-        <a
-          class="navigation-bar-item"
-          [routerLink]="['/my-account']"
-          [routerLinkActive]="['active-link']"
-
-          >Contul meu</a
-        >
-      </div>
-      <div
-        class="navigation-bar-item-container"
-        [routerLinkActive]="['link-active']"
-      >
-        <a
-          class="navigation-bar-item"
-          [routerLink]="['/my-account']"
-          (click)="logout()"
-          >Log Out</a
-        >
-      </div>
-      <div
-        class="navigation-bar-item-container"
-        [routerLinkActive]="['link-active']"
-        [routerLinkActive]="['active-link']"
-      >
-        <a
-          class="navigation-bar-item"
-          [routerLink]="['/add-apartment']"
-          [routerLinkActive]="['active-link']"
-
-          >Adauga Anunt</a
-        >
-      </div>
-    </div>
+    </mat-toolbar>
   </div>
-</div>
+</mat-toolbar>

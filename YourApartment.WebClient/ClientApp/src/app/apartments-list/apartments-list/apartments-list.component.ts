@@ -10,6 +10,7 @@ export class ApartmentsListComponent implements OnInit {
   public filterModel: FilterModel;
   public mapToggle: boolean;
   public apartmentsPageModel;
+  public apartmentsList;
   constructor() {}
 
   ngOnInit() {

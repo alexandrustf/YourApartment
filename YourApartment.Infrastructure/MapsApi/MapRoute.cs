@@ -24,7 +24,7 @@ namespace YourApartment.Infrastructure
         public async Task<IEnumerable<int>> GetTimeForRoutesAsync(double latOrigin, double lngOrigin,
             IEnumerable<Tuple<double, double>> destinations)
         {
-            var apiKey = "AIzaSyDfcPgvdVOXTXTzPt-G7fl_BAmjT_6QQcc";
+            var apiKey = "AIzaSyANzoJQGnlwpm8607jHLIZUdKLxropZbbg";
 
             var url = $"https://maps.googleapis.com/maps/api/distancematrix/json?origins={latOrigin},{lngOrigin}";
 
@@ -34,9 +34,13 @@ namespace YourApartment.Infrastructure
             url += $"&key={apiKey}";
 
             var resultObject = await sendRequester.GetAsync(url);
-            var timeValues = resultObject["rows"][0]["elements"].Select(r => (int)r["duration"]["value"]);
+            if (resultObject.ContainsKey("status") && resultObject["status"].ToString() == "OK")
+            {
+                return resultObject["rows"][0]["elements"].Select(r => (int)r["duration"]["value"]);
+            }
 
-            return timeValues;
+            return new List<int>();// SHOW ERROR IMPLEMENT WITH RESULT
+
         }
     }
 }

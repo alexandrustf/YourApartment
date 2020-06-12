@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, Output, EventEmitter } from "@angular/core";
 import { Router } from "@angular/router";
 import { AuthService } from "../shared/services/auth.service";
 import { AuthenticationToken } from "../shared/models/authentication-token.model";
@@ -9,10 +9,15 @@ import { AuthenticationToken } from "../shared/models/authentication-token.model
   styleUrls: ["./nav-menu.component.scss"],
 })
 export class NavMenuComponent {
+  @Output() public sidenavToggle = new EventEmitter();
   isExpanded = false;
   currentUser: AuthenticationToken;
   constructor(private router: Router, private authService: AuthService) {
     this.authService.currentUser.subscribe((x) => (this.currentUser = x));
+  }
+  logout() {
+    this.authService.logout();
+    this.router.navigate(["/my-account"]);
   }
   collapse() {
     this.isExpanded = false;
@@ -21,8 +26,8 @@ export class NavMenuComponent {
   toggle() {
     this.isExpanded = !this.isExpanded;
   }
-  logout() {
-    this.authService.logout();
-    this.router.navigate(["/my-account"]);
-  }
+
+  public onToggleSidenav = () => {
+    this.sidenavToggle.emit();
+  };
 }
