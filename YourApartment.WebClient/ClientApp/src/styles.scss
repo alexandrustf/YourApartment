@@ -136,3 +136,11 @@ mat-sidenav {
 main {
   padding: 10px;
 }
+@include for-phone-only {
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  main {
+    padding: 0px;
+  }
+}
