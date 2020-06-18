@@ -119,9 +119,6 @@ mat-sidenav {
   width: 250px;
 }
 
-main {
-  padding: 10px;
-}
 mat-sidenav-container,
 mat-sidenav-content,
 mat-sidenav {
@@ -133,14 +130,8 @@ mat-sidenav {
   height: 1233px;
 }
 
-main {
-  padding: 10px;
-}
 @include for-phone-only {
   ::-webkit-scrollbar {
     display: none;
-  }
-  main {
-    padding: 0px;
   }
 }

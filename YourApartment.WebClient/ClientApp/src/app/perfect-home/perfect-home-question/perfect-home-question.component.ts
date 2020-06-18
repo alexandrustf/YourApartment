@@ -7,6 +7,7 @@ import {
   state,
   style,
 } from "@angular/animations";
+import { PriceRooms } from "../price-rooms.model";
 
 @Component({
   selector: "app-perfect-home-question",
@@ -37,12 +38,15 @@ export class PerfectHomeQuestionComponent implements OnInit {
   public showMap: boolean;
   public guide: string;
   public map;
+  public priceMax: number;
+  public roomsWanted: number;
   @Output() public locationResponse: EventEmitter<
     LocationCoordinates
   > = new EventEmitter<LocationCoordinates>();
-  @Output() public responded: EventEmitter<boolean> = new EventEmitter<
-    boolean
+  @Output() public responded: EventEmitter<PriceRooms> = new EventEmitter<
+    PriceRooms
   >();
+
   constructor() {
     this.step = 1;
   }
@@ -64,7 +68,14 @@ export class PerfectHomeQuestionComponent implements OnInit {
     this.step = this.step + 1;
     console.log(this.step);
     this.CheckRespondedToAllQuestions();
-    this.scrollUp(map);
+  }
+
+  public getRooms(rooms) {
+    this.roomsWanted = +rooms;
+  }
+
+  public getPrice(price) {
+    this.priceMax = +price;
   }
 
   public Respond(map) {
@@ -106,7 +117,9 @@ export class PerfectHomeQuestionComponent implements OnInit {
         this.guide = "";
         break;
     }
-
+    if (this.step == 6) {
+      this.showMap = false;
+    }
     if (this.step > 6) {
       console.log("emit that you are done!");
       this.sayDone();
@@ -114,24 +127,16 @@ export class PerfectHomeQuestionComponent implements OnInit {
   }
 
   public sayDone() {
-    this.responded.emit(true);
-    this.scrollUp(this.map);
+    const priceRoom = new PriceRooms();
+    priceRoom.rooms = this.roomsWanted;
+    priceRoom.price = this.priceMax;
+    this.responded.emit(priceRoom);
   }
   private scrollUp(map) {
-    // window.scrollTo({
-    //   top: 0,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
     map.scrollIntoView({ behavior: "smooth" });
   }
 
   private scrollDown(target) {
     target.scrollIntoView({ behavior: "smooth" });
-    // window.scrollTo({
-    //   top: 1285,
-    //   left: 0,
-    //   behavior: "smooth",
-    // });
   }
 }

@@ -5,14 +5,17 @@
   <app-perfect-home-question
     *ngIf="!this.responded"
     (locationResponse)="this.addLocationResponse($event)"
-    (responded)="this.GetPerfectHome()"
+    (responded)="this.GetPerfectHome($event)"
   ></app-perfect-home-question>
   <h4 *ngIf="this.responded" class="sub-title">
-    Casa ta perfecta pentru tine este:
+    Casa perfectă pentru tine este:
   </h4>
   <div class="cards-container">
     <div class="apartment-card" *ngFor="let apartment of apartmentsList">
-      <app-apartment-card [apartment]="apartment"></app-apartment-card>
+      <app-apartment-card
+        [apartment]="apartment"
+        [routerLink]="['./detail/' + apartment.id]"
+      ></app-apartment-card>
     </div>
   </div>
 </div>

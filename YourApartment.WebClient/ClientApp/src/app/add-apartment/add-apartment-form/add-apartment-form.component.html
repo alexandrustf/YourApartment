@@ -5,6 +5,7 @@
         <div class="form-group">
           <label for="file">Adauga pozele cu apartamentul tau: *</label>
           <input
+            multiple
             class="form-control"
             type="file"
             (change)="onFileChanged($event)"
@@ -171,9 +172,9 @@
             >
               Vezi pretul ideal
             </a>
-            <label> Pret: *</label>
+            <label> Pret: (Euro pe lună)*</label>
             <h4 *ngIf="this.idealPrice">
-              Pretul pietei este: {{ this.idealPrice }}
+              Pretul pietei este: {{ this.idealPrice }} Euro/lună
             </h4>
           </div>
         </div>

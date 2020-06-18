@@ -28,7 +28,7 @@
   .question-text {
     // flex: 0.25;
     p {
-      font-size: 2.3;
+      font-size: 1.5rem;
     }
   }
 
@@ -66,4 +66,7 @@ h5 {
     flex-wrap: wrap;
     flex-direction: column;
   }
+}
+button {
+  margin: 10px 10px 10px 10px;
 }
