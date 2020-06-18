@@ -8,6 +8,7 @@ import { ApartmentsListModule } from "../apartments-list/apartments-list.module"
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 
+
 @NgModule({
   declarations: [PerfectHomeComponent, PerfectHomeQuestionComponent],
   imports: [
@@ -17,6 +18,7 @@ import { RouterModule } from "@angular/router";
     MatButtonModule,
     BrowserAnimationsModule,
     RouterModule,
+
   ],
 })
 export class PerfectHomeModule {}

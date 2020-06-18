@@ -41,6 +41,7 @@ namespace YourApartment.Infrastructure
 
             return Result.Failure<IEnumerable<int>>("API KEY is Invalid!"); // SHOW ERROR IMPLEMENT WITH RESULT
 
+
         }
     }
 }
