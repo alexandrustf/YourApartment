@@ -1,9 +1,29 @@
+@import "../../../style/main.scss";
+
 .apartment-detail-container {
   padding-top: 115px;
   padding-left: 134px;
   padding-right: 134px;
   display: flex;
   justify-content: center;
+
+  .apartment-subcontainer {
+    padding: 100px 100px 100px 100px;
+    background-color: #f5f5f5;
+    border-radius: 10%;
+    border: solid #557a95 3px;
+    color: #21435c;
+    text-transform: capitalize;
+
+    h1,
+    h3,
+    .favorite-container {
+      text-align: center;
+    }
+    img {
+      width: 800px;
+    }
+  }
   .favorite-container {
     [id="heart"] {
       position: absolute;
@@ -68,6 +88,31 @@
       }
       .spefication-value {
         display: inline-block;
+      }
+    }
+  }
+}
+@include for-phone-only {
+  .apartment-detail-container {
+    padding: 0px 0px 0px 0px;
+    display: flex;
+    justify-content: center;
+
+    .apartment-subcontainer {
+      padding: 0px 0px 0px 0px;
+      background-color: #f5f5f5;
+      border-radius: 0%;
+      border: solid #557a95 0px;
+      color: #21435c;
+      text-transform: capitalize;
+
+      h1,
+      h3,
+      .favorite-container {
+        text-align: center;
+      }
+      img {
+        width: 100vw;
       }
     }
   }

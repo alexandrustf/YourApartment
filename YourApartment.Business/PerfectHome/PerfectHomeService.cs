@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection.Metadata.Ecma335;
 using System.Text;
 using System.Threading.Tasks;
 using AutoMapper;
@@ -38,11 +39,12 @@ namespace YourApartment.Business
 
             await Task.WhenAll(tasks);
 
-            var results = tasks.Select(t => t.Result);
+            if (tasks.Select(t => t.Result).Count(p => p.IsFailure) > 0)
+                return Result.Failure<IEnumerable<ApartmentModel>>("There was a problem with Google Maps Request!");
 
             int index = 0;
             var resultsTuple = new List<Tuple<int, int>>();
-            foreach (var res in results)
+            foreach (var res in tasks.Select(t => t.Result.Value))
             {
                 resultsTuple.Add(new Tuple<int, int>(index, res.Sum()));
                 index++;

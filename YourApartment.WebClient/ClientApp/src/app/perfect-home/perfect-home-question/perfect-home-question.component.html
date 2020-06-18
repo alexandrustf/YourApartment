@@ -101,7 +101,8 @@
     </div>
     <div class="question-text">
       <p>
-        Unde îți place să ieși cu prietenii?
+        Îți place să ieși cu prietenii?
+
       </p>
       <form>
         <button
@@ -132,7 +133,8 @@
     </div>
     <div class="question-text">
       <p>
-        Unde îți place să te distrezi?
+        Îți place să te distrezi?
+
       </p>
       <form>
         <button
@@ -163,25 +165,35 @@
     </div>
     <div class="question-text">
       <p>
-        Unde învață copiii tăi?
+        Casa ta perfecta este aproape gata!
       </p>
       <form>
-        <button
-          type="button"
-          mat-raised-button
-          color="primary"
-          (click)="toggleMap(target)"
-        >
-          Da
-        </button>
-        <button
-          (click)="this.SkipQuestion(question)"
-          type="button"
-          mat-raised-button
-          color="warn"
-        >
-          Nu
-        </button>
+        <div class="form-group">
+          <label> Alege numărul de camere: *</label>
+          <input
+            class="form-control"
+            id="rooms-perfect-home"
+            (change)="getRooms($event.target.value)"
+            type="number"
+            min="1"
+            max="5"
+            formControlName="numberOfRooms"
+            required
+          />
+        </div>
+        <div class="form-group">
+          <label> Alege bugetul tău(preț in EURO pe lună): *</label>
+          <input
+            id="price-perfect-home"
+            (change)="getPrice($event.target.value)"
+            class="form-control"
+            type="number"
+            min="100"
+            max="1000"
+            formControlName="price"
+            required
+          />
+        </div>
       </form>
     </div>
     <div class="illustration">
@@ -195,6 +207,8 @@
     mat-raised-button
     color="warn"
     (click)="this.SkipQuestion(question)"
+    *ngIf="this.step !== 6"
+
   >
     Sari peste
   </button>

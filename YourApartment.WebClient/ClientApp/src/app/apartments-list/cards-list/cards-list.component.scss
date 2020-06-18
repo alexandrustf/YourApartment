@@ -69,5 +69,13 @@
 @include for-phone-only {
   .apartments-list-container {
     padding: 0px 0px 0px 0px;
+    .image-no-result {
+      padding: 20px 0px 0px 0px;
+      img {
+        align-self: center;
+        width: 200px;
+      }
+    }
+
   }
 }

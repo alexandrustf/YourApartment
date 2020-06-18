@@ -5,6 +5,7 @@
         <div class="form-group">
           <label for="file">Adauga pozele cu apartamentul tau: *</label>
           <input
+            multiple
             class="form-control"
             type="file"
             (change)="onFileChanged($event)"
@@ -71,6 +72,21 @@
             formControlName="area"
             required
           />
+        </div>
+
+        <div class="form-group">
+          <label> Compartimentare: *</label>
+          <select
+            class="form-control"
+            type="number"
+            name="min-price"
+            min="0"
+            formControlName="compartimentare"
+          >
+            <option value="Decomandat">Decomandat</option>
+            <option value="Semidecomandat">Semidecomandat</option>
+            <option value="Nedecomandat">Nedecomandat</option>
+          </select>
         </div>
 
         <div class="form-group">
@@ -146,7 +162,7 @@
           />
         </div>
         <div class="form-group">
-          <label> Vezi pretul apartamentului tau conform pietei *</label>
+          <label> Vezi pretul apartamentului tau conform pietei </label>
           <div class="corect-price-container">
             <a
               mat-button
@@ -156,9 +172,9 @@
             >
               Vezi pretul ideal
             </a>
-            <label> Pret: *</label>
+            <label> Pret: (Euro pe lună)*</label>
             <h4 *ngIf="this.idealPrice">
-              Pretul pietei este: {{ this.idealPrice }}
+              Pretul pietei este: {{ this.idealPrice }} Euro/lună
             </h4>
           </div>
         </div>

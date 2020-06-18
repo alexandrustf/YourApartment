@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using YourApartment.Business;
+using YourApartment.Domain;
 
 namespace YourApartment.WebApi.Controllers
 {
@@ -28,7 +29,7 @@ namespace YourApartment.WebApi.Controllers
 
         // POST: api/Locations
         [HttpPost]
-        [Authorize]
+        [Authorize(Roles = AppRole.Admin)]
         [ProducesResponseType(201)]
         [ProducesResponseType(400)]
         public async Task<IActionResult> Post([FromBody] CreateLocationModel createLocationModel)

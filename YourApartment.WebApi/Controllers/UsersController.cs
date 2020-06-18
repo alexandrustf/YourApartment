@@ -86,12 +86,5 @@ namespace YourApartment.WebApi.Controllers
                 ? (IActionResult)BadRequest(Result.Failure(result.Error))
                 : Ok(result.Value);
         }
-
-        [HttpGet("admin")]
-        [Authorize(Roles = AppRole.Admin)]
-        public IActionResult GetSome()
-        {
-            return Ok("Doar cei ca admin logati pot accesa asta!");
-        }
     }
 }

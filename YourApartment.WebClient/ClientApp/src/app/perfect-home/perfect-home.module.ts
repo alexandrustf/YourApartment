@@ -6,6 +6,8 @@ import { AddApartmentModule } from "../add-apartment/add-apartment.module";
 import { MatButtonModule } from "@angular/material/button";
 import { ApartmentsListModule } from "../apartments-list/apartments-list.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { RouterModule } from "@angular/router";
+
 
 @NgModule({
   declarations: [PerfectHomeComponent, PerfectHomeQuestionComponent],
@@ -14,7 +16,9 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
     ApartmentsListModule,
     AddApartmentModule,
     MatButtonModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    RouterModule,
+
   ],
 })
-export class PerfectHomeModule { }
+export class PerfectHomeModule {}

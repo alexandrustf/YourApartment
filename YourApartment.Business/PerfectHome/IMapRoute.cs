@@ -8,7 +8,7 @@ namespace YourApartment.Business
 {
     public interface IMapRoute 
     {
-        Task<IEnumerable<int>> GetTimeForRoutesAsync(double latOrigin, double lngOrigin,
+        Task<Result<IEnumerable<int>>> GetTimeForRoutesAsync(double latOrigin, double lngOrigin,
             IEnumerable<Tuple<double, double>> destinations);
     }
 }
