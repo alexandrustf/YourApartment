@@ -48,6 +48,16 @@ export class FiltersComponent implements OnInit {
     this.filtered();
   }
 
+  public filterByMinArea(event) {
+    this.filterModel.areaMin = event;
+    this.filtered();
+  }
+
+  public filterByMaxArea(event) {
+    this.filterModel.areaMax = event;
+    this.filtered();
+  }
+
   public filterByLocation(event) {
     this.filterModel.location = event;
     this.filtered();

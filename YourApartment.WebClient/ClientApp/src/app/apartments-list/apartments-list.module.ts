@@ -9,6 +9,7 @@ import { RouterModule } from "@angular/router";
 import { MatPaginatorModule } from "@angular/material/paginator";
 import { MapComponent } from "./map/map.component";
 import { AgmCoreModule } from "@agm/core";
+import { SpinnerComponent } from "../shared/spinner/spinner.component";
 
 @NgModule({
   declarations: [
@@ -18,6 +19,7 @@ import { AgmCoreModule } from "@agm/core";
     PaginationComponent,
     CardsListComponent,
     MapComponent,
+    SpinnerComponent
   ],
   imports: [
     CommonModule,
@@ -30,4 +32,4 @@ import { AgmCoreModule } from "@agm/core";
   exports: [ApartmentCardComponent],
 
 })
-export class ApartmentsListModule {}
+export class ApartmentsListModule { }

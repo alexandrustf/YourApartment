@@ -5,20 +5,11 @@
     </div>
 
     <div class="images-container" *ngFor="let image of apartment.images">
-      <img
-        mat-card-image
-        [src]="'data:image/png;base64,' + image"
-        [alt]="apartment.name"
-      />
+      <img mat-card-image [src]="'data:image/png;base64,' + image" [alt]="apartment.name" />
     </div>
     <div class="favorite-container">
       <h3>Adaugă produsul la favorite in contul tău:</h3>
-      <input
-        id="heart"
-        type="checkbox"
-        [checked]="this.status"
-        (change)="changeStatus(this.status)"
-      />
+      <input id="heart" type="checkbox" [checked]="this.status" (change)="changeStatus(this.status)" />
       <label for="heart">❤</label>
     </div>
     <div class="description-container">
@@ -73,23 +64,21 @@
         <h4 class="spefication-title">Numărul de băi:</h4>
         <h4 class="spefication-value">{{ apartment.numberOfBathrooms }}</h4>
       </div>
-      <div
-        *ngIf="
+      <div *ngIf="
           apartment.partitioningType &&
           apartment.partitioningType !== 'UnSpecified'
-        "
-        class="spefication-container"
-      >
+        " class="spefication-container">
         <h4 class="spefication-title">Compartimentare:</h4>
         <h4 class="spefication-value">{{ apartment.partitioningType }}</h4>
       </div>
-      <div
-        *ngIf="apartment.building && apartment.building !== 'UnSpecified'"
-        class="spefication-container"
-      >
+      <div *ngIf="apartment.building && apartment.building !== 'UnSpecified'" class="spefication-container">
         <h4 class="spefication-title">Tip clădire:</h4>
         <h4 class="spefication-value">{{ apartment.building }}</h4>
       </div>
     </div>
+    <div class="contact">
+      <h4>Contactează un agent la numărul: <span>0757 401 296 </span></h4>
+    </div>
   </div>
+
 </div>

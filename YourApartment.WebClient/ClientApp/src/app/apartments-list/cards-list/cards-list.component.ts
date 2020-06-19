@@ -23,11 +23,13 @@ export class CardsListComponent implements OnInit {
   public apartmentsPageModel: PageModel<Apartment>;
   public apartmentsList: Apartment[];
   public pagination: PaginationModel;
+  public showSpinner: boolean = true;
+
   @Output() public apartmentsListEmit: EventEmitter<
     Apartment[]
   > = new EventEmitter<Apartment[]>();
 
-  constructor(private apartmentsService: ApartmentService) {}
+  constructor(private apartmentsService: ApartmentService) { }
 
   ngOnInit() {
     console.log(this.filterModel);
@@ -37,7 +39,7 @@ export class CardsListComponent implements OnInit {
     console.log(
       "FACEM CALL din GET APARTMENTS----------------------------------"
     );
-
+    this.showSpinner = true;
     this.apartmentsService
       .getApartments(this.filterModel)
       .pipe(first())
@@ -45,6 +47,7 @@ export class CardsListComponent implements OnInit {
         this.apartmentsPageModel = res;
         this.apartmentsList = this.apartmentsPageModel.records;
         this.apartmentsListEmit.emit(this.apartmentsList);
+        this.showSpinner = false;
       });
   }
 
