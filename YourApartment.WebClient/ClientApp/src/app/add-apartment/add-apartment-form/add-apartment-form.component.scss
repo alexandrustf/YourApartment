@@ -37,3 +37,22 @@
 .form-group {
   padding-top: 10px;
 }
+#response {
+  color: green;
+  font-weight: 700;
+  padding-left: 20px;
+  font-size: 20px;
+}
+#add-apartment-button {
+  display: block;
+  width: 100%;
+  margin: auto;
+  height: 50px;
+  font-weight: 900;
+  border: solid #557a95 3px;
+  border-radius: 10px;
+}
+#add-apartment-button:enabled {
+  background-color: #557a95;
+  color: white;
+}

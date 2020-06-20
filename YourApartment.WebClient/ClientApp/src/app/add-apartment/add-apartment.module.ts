@@ -5,6 +5,7 @@ import { AddApartmentFormComponent } from "./add-apartment-form/add-apartment-fo
 import { ReactiveFormsModule } from "@angular/forms";
 import { MapAddApartmentComponent } from "./map-add-apartment/map-add-apartment.component";
 import { AgmCoreModule } from "@agm/core";
+import { SpinnerModule } from "../spinner/spinner.module";
 
 @NgModule({
   declarations: [
@@ -15,6 +16,7 @@ import { AgmCoreModule } from "@agm/core";
   imports: [
     CommonModule,
     ReactiveFormsModule,
+    SpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBVmIevOIYNBX1c4ZKEcNArXL04WS_JVO0",
     }),
