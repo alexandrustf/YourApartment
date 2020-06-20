@@ -10,6 +10,7 @@ import { MatPaginatorModule } from "@angular/material/paginator";
 import { MapComponent } from "./map/map.component";
 import { AgmCoreModule } from "@agm/core";
 import { SpinnerComponent } from "../shared/spinner/spinner.component";
+import { SpinnerModule } from "../spinner/spinner.module";
 
 @NgModule({
   declarations: [
@@ -19,17 +20,16 @@ import { SpinnerComponent } from "../shared/spinner/spinner.component";
     PaginationComponent,
     CardsListComponent,
     MapComponent,
-    SpinnerComponent
   ],
   imports: [
     CommonModule,
     RouterModule,
     MatPaginatorModule,
+    SpinnerModule,
     AgmCoreModule.forRoot({
       apiKey: "AIzaSyBVmIevOIYNBX1c4ZKEcNArXL04WS_JVO0",
     }),
   ],
   exports: [ApartmentCardComponent],
-
 })
-export class ApartmentsListModule { }
+export class ApartmentsListModule {}
