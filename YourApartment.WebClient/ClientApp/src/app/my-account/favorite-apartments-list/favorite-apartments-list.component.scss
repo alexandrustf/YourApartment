@@ -1,15 +1,21 @@
+@import "../../../style/main.scss";
+
 .favorite-apartments-container {
   padding: 134px 134px 134px 134px;
   display: flex;
+  flex-direction: column;
   flex-wrap: wrap;
   width: 100%;
 
+  .favorite-apartments-list {
+    display: flex;
+    flex-wrap: wrap;
+  }
   .sub-title {
     align-self: center;
     margin: auto;
     padding: 30px 30px 30px 30px;
     color: #547a95;
-
   }
 
   .apartment-card {
@@ -29,4 +35,26 @@
     transform: scale(1.1);
     cursor: pointer;
   }
+}
+
+@include for-phone-only {
+  .favorite-apartments-container {
+    padding: 0px 0px 0px 0px;
+
+    .sub-title {
+      padding: 0px 0px 0px 10px;
+      font-size: 24px;
+    }
+
+    .apartment-card {
+      width: 100%;
+      margin-right: 0px;
+      margin-left: 0px;
+    }
+  }
+
+  // .apartment-card {
+  //   width: 339px;
+  //   height: 388px;
+  // }
 }
