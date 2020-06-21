@@ -20,4 +20,8 @@
       </app-apartment-card>
     </div>
   </div>
+  <h5 *ngIf="apartmentsList && apartmentsList.length === 0">
+    Se pare ca nu există niciun apartament conform cerințelor tale. Te rugăm sa
+    încerci din nou cu un buget mai mare.
+  </h5>
 </div>
