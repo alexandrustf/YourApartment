@@ -1,4 +1,5 @@
 <div class="apartment-detail-container">
+  <app-spinner *ngIf="this.loading"></app-spinner>
   <div *ngIf="apartment" class="apartment-subcontainer">
     <div class="title-container">
       <h1>{{ apartment.title }}</h1>
