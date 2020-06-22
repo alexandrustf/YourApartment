@@ -7,6 +7,7 @@ import { MatButtonModule } from "@angular/material/button";
 import { ApartmentsListModule } from "../apartments-list/apartments-list.module";
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
+import { SpinnerModule } from "../spinner/spinner.module";
 
 
 @NgModule({
@@ -18,6 +19,8 @@ import { RouterModule } from "@angular/router";
     MatButtonModule,
     BrowserAnimationsModule,
     RouterModule,
+    ApartmentsListModule,
+    SpinnerModule,
 
   ],
 })

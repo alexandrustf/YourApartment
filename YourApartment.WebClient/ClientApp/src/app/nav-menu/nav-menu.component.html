@@ -1,13 +1,23 @@
 <mat-toolbar>
   <div class="header-container">
-    <mat-toolbar>
+    <mat-toolbar class="header-container">
       <div fxHide.gt-xs>
         <button mat-icon-button (click)="onToggleSidenav()">
           <mat-icon>menu</mat-icon>
         </button>
       </div>
       <div class="logo-container">
-        <a class="logo" [routerLink]="['/']">Your Apartment</a>
+        <!-- <img
+          class="logo"
+          src="/src/assets/images/logo-apartments.png"
+          [routerLink]="['/']"
+        /> -->
+
+        <img
+          src="../../../assets/images/logo-apartments.png"
+          id="logo"
+          alt="Logo"
+        />
       </div>
       <!-- <div fxFlex fxLayout fxLayoutAlign="end" fxHide.xs>
         <ul fxLayout fxLayoutGap="15px" class="navigation-items"> -->
@@ -18,7 +28,8 @@
             [routerLinkActive]="['link-active']"
             [routerLinkActiveOptions]="{ exact: true }"
           >
-            <a class="navigation-bar-item" [routerLink]="['/']">Acasa</a>
+            <a class="navigation-bar-item" [routerLink]="['/']">Acasă</a>
+
           </div>
           <div
             class="navigation-bar-item-container"
@@ -68,6 +79,8 @@
           </div>
           <div
             class="navigation-bar-item-container"
+            id="add-apartment-button-container"
+
             [routerLinkActive]="['link-active']"
             [routerLinkActive]="['active-link']"
           >

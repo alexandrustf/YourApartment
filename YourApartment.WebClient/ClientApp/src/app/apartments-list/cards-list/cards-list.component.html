@@ -1,15 +1,14 @@
 <div *ngIf="apartmentsPageModel" class="number-of-apartments">
   {{ apartmentsPageModel.totalNumberOfRecords }} Rezultate
 </div>
-<div class="apartments-list-container">
+<app-spinner *ngIf="showSpinner"></app-spinner>
+<div *ngIf="!showSpinner" class="apartments-list-container">
   <div
     class="image-no-result"
-    *ngIf="
-      !apartmentsPageModel || apartmentsPageModel.totalNumberOfRecords == 0
-    "
+    *ngIf="apartmentsPageModel && apartmentsPageModel.totalNumberOfRecords == 0"
   >
     <img src="../../../assets/images/NoResult.svg" alt="No Result" />
-    <div class="no-results-text">No Results Found</div>
+    <div class="no-results-text">Niciun anunț găsit</div>
   </div>
   <div
     class="apartment-card"

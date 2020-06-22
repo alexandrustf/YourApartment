@@ -13,7 +13,7 @@ import { ApartmentDetails } from "../models/apartment-details.model";
   providedIn: "root",
 })
 export class ApartmentService {
-  public constructor(private http: HttpClient) {}
+  public constructor(private http: HttpClient) { }
 
   public getApartmentById(id: string): Observable<ApartmentDetails> {
     return this.http.get<ApartmentDetails>(
@@ -35,13 +35,21 @@ export class ApartmentService {
     filters = filterModel.priceMax
       ? filters.concat(`price<=${filterModel.priceMax},`)
       : filters.concat();
+    filters = filterModel.areaMin
+      ? filters.concat(`area>=${filterModel.areaMin},`)
+      : filters.concat();
+    filters = filterModel.areaMax
+      ? filters.concat(`area<=${filterModel.areaMax},`)
+      : filters.concat();
     for (let property of Object.keys(filterModel)) {
       if (
         property !== "page" &&
         property !== "pageSize" &&
         property !== "searchBar" &&
         property !== "priceMin" &&
-        property !== "priceMax"
+        property !== "priceMax" &&
+        property !== "areaMin" &&
+        property !== "areaMax"
       )
         filters = filters.concat(`${property}==${filterModel[property]},`);
     }

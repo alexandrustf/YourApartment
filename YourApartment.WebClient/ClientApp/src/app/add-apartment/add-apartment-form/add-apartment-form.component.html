@@ -188,8 +188,29 @@
           />
         </div>
       </div>
-      <button type="submit" [disabled]="!apartmentForm.valid">Submit</button>
+      <label
+        >Trebuie sa completezi toate câmpurile obligatorii, marcate cu *, pentru
+        a apasa butonul de Adaugă Apartament</label
+      >
+
+      <button
+        type="submit"
+        id="add-apartment-button"
+        [disabled]="!apartmentForm.valid"
+      >
+        Adaugă Apartament
+      </button>
     </div>
   </form>
+  <app-spinner *ngIf="this.loading"></app-spinner>
   <!-- <p>Form Status: {{ apartmentForm.status }}</p> -->
+  <div id="response" *ngIf="this.added">
+    Apartament adăugat cu success!
+  </div>
 </div>
+<!-- margin: auto;
+justify-content: center;
+width: 100%;
+background: blue;
+color: white;
+border: coral; -->

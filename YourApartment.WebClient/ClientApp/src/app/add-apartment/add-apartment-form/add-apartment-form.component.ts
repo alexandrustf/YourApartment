@@ -22,6 +22,8 @@ export class AddApartmentFormComponent implements OnInit {
   public response: ServiceResponse;
   public PreciseLocation: LocationCoordinates;
   public selectedLocation: string;
+  public added: boolean;
+  public loading: boolean;
   public apartmentForm: FormGroup = new FormGroup({
     image: new FormControl("", {
       validators: [Validators.required],
@@ -90,6 +92,8 @@ export class AddApartmentFormComponent implements OnInit {
 
   ngOnInit() {
     this.getZoneLocations();
+    this.added = false;
+    this.loading = false;
   }
 
   private getZoneLocations() {
@@ -144,6 +148,7 @@ export class AddApartmentFormComponent implements OnInit {
   }
 
   onSubmit() {
+    this.loading = true;
     // console.warn(this.apartmentForm.value);
     // window.alert("A fost apasat butonu de submit" + this.apartmentForm.value);
     var apartment = new CreateApartmentModel();
@@ -187,10 +192,17 @@ export class AddApartmentFormComponent implements OnInit {
     apartment.price = this.apartmentForm.get("price").value;
     apartment.imagesBytes = this.imageContent;
     console.log(apartment);
+    this.added = true;
+    this.loading = false;
 
     this.addApartmentService
       .AddApartment(apartment)
       .pipe(first())
-      .subscribe((res) => (this.response = res));
+      .subscribe((res) => {
+        this.response = res;
+        console.log(this.response);
+        this.added = true;
+        this.loading = false;
+      });
   }
 }

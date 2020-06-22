@@ -13,8 +13,10 @@
 
   .subheader-rent-apartments {
     background: #ffffff 0% 0% no-repeat padding-box;
-    height: 270px;
-    padding-top: 115px;
+    // height: 270px;
+    padding-top: 65px;
+    padding-bottom: 20px;
+
     display: flex;
     flex-direction: column;
     padding-left: 134px;
@@ -105,8 +107,10 @@
 
     .subheader-rent-apartments {
       background: #ffffff 0% 0% no-repeat padding-box;
-      height: 350px;
+      // height: 350px;
+
       padding: 0px 0px 0px 0px;
+      padding-bottom: 10px;
       display: flex;
       flex-direction: column;
 

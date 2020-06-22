@@ -1,4 +1,6 @@
 <div class="apartment-detail-container">
+  <app-spinner *ngIf="this.loading"></app-spinner>
+
   <div *ngIf="apartment" class="apartment-subcontainer">
     <div class="title-container">
       <h1>{{ apartment.title }}</h1>
@@ -90,6 +92,9 @@
         <h4 class="spefication-title">Tip clădire:</h4>
         <h4 class="spefication-value">{{ apartment.building }}</h4>
       </div>
+    </div>
+    <div class="contact">
+      <h4>Contactează un agent: <span>0757 401 296 </span></h4>
     </div>
   </div>
 </div>

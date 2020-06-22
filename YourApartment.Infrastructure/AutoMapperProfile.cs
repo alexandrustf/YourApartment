@@ -28,7 +28,7 @@ namespace YourApartment.Infrastructure
 
         private static async Task<IEnumerable<byte[]>> GetImagesForApartment(Guid apartmentId)
         {
-            string[] fileEntries = Directory.GetFiles(Path.Combine("..\\Images", apartmentId.ToString())); //TODO should not hardcode string
+            string[] fileEntries = Directory.GetFiles(Path.Combine("..\\Images", apartmentId.ToString()));
             var images = new List<byte[]>();
             foreach (var fileEntry in fileEntries)
             {

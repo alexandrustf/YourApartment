@@ -15,12 +15,15 @@ export class PerfectHomeComponent implements OnInit {
   public FavoriteLocations: LocationCoordinates[];
   public apartmentsList: Apartment[];
   public responded: boolean;
+  public loading: boolean;
   constructor(private findPerfectHomeService: FindPerfectHomeService) {
     this.FavoriteLocations = [];
     this.responded = false;
   }
 
-  ngOnInit() {}
+  ngOnInit() {
+    this.loading = false;
+  }
 
   public addLocationResponse(event) {
     this.FavoriteLocations.push(event);
@@ -32,6 +35,7 @@ export class PerfectHomeComponent implements OnInit {
     console.log(response);
 
     this.responded = true;
+    this.loading = true;
     const latLocations = this.FavoriteLocations.map((p) => p.lat);
     const lngLocations = this.FavoriteLocations.map((p) => p.lng);
 
@@ -49,6 +53,7 @@ export class PerfectHomeComponent implements OnInit {
       .subscribe((res) => {
         this.apartmentsList = res;
         console.log(this.apartmentsList);
+        this.loading = false;
       });
   }
 }

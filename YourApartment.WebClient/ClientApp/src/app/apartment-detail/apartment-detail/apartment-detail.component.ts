@@ -15,6 +15,7 @@ import { Favorite } from "src/app/shared/models/favorite.model";
 export class ApartmentDetailComponent implements OnInit {
   public apartment: ApartmentDetails;
   public status: boolean;
+  public loading: boolean;
   constructor(
     private route: ActivatedRoute,
     private apartmentsService: ApartmentService,
@@ -23,11 +24,15 @@ export class ApartmentDetailComponent implements OnInit {
 
   ngOnInit() {
     this.status = false;
+    this.loading = true;
     const id: string = this.route.snapshot.paramMap.get("id");
     this.apartmentsService
       .getApartmentById(id)
       .pipe(first())
-      .subscribe((res) => (this.apartment = res));
+      .subscribe((res) => {
+        this.apartment = res;
+        this.loading = false;
+      });
   }
   dosth(event) {
     console.log(event);

@@ -110,10 +110,44 @@
       h3,
       .favorite-container {
         text-align: center;
+        font-size: 24px;
+      }
+      h4 {
+        font-size: 20px;
+
       }
       img {
         width: 100vw;
       }
+
+      .description-container {
+        margin-left: 10px;
+        margin-top: 50px;
+        .description-text {
+          margin-left: 10px;
+        }
+      }
+      .spefications-container {
+        display: flex;
+        flex-direction: column;
+        margin-left: 10px;
+        .spefication-container {
+          padding-left: 10px;
+
+          display: inline-block;
+          .spefication-title {
+            display: inline-block;
+          }
+          .spefication-value {
+            display: inline-block;
+            // font-size: 20px;
+          }
+        }
+      }
     }
   }
 }
+span {
+  color: chocolate;
+}
+
