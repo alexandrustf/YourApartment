@@ -49,6 +49,7 @@ namespace YourApartment.Business
             var bestApartmentDistance = computedDistancesIntoOne.Min();
             var index = 0;
 
+
             // Filter only the apartments which are only 120% of the best route
             var distancesWithIndex = computedDistancesIntoOne.Select(p => new Tuple<int, int>(index++, p))
                 .Where(p => p.Item2 / 1.2 <= bestApartmentDistance);

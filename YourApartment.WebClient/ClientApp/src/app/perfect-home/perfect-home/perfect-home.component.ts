@@ -46,6 +46,7 @@ export class PerfectHomeComponent implements OnInit {
       lngLocations
     );
 
+
     this.findPerfectHomeService
       .FindPerfectHouses(choices)
       .pipe(first())

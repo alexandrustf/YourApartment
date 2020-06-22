@@ -9,6 +9,7 @@ import {
 } from "@angular/animations";
 import { PriceRooms } from "../price-rooms.model";
 
+
 @Component({
   selector: "app-perfect-home-question",
   templateUrl: "./perfect-home-question.component.html",
@@ -41,6 +42,7 @@ export class PerfectHomeQuestionComponent implements OnInit {
   public priceMax: number;
   public roomsWanted: number;
   public lastSubmit: boolean;
+
   @Output() public locationResponse: EventEmitter<
     LocationCoordinates
   > = new EventEmitter<LocationCoordinates>();
@@ -71,6 +73,7 @@ export class PerfectHomeQuestionComponent implements OnInit {
     console.log(this.step);
     this.CheckRespondedToAllQuestions();
     this.showMap = false;
+
   }
 
   public getRooms(rooms) {
@@ -79,6 +82,7 @@ export class PerfectHomeQuestionComponent implements OnInit {
 
   public getPrice(price) {
     this.priceMax = +price;
+
   }
 
   public Respond(map) {
@@ -124,6 +128,7 @@ export class PerfectHomeQuestionComponent implements OnInit {
     if (this.step == 6) {
       this.showMap = false;
       this.lastSubmit = true;
+
     }
 
     if (this.step > 6) {
@@ -139,6 +144,7 @@ export class PerfectHomeQuestionComponent implements OnInit {
     this.responded.emit(priceRoom);
   }
   private scrollUp(map) {
+
     map.scrollIntoView({ behavior: "smooth" });
   }
 
