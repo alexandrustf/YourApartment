@@ -11,16 +11,20 @@ import { first } from "rxjs/operators";
 })
 export class FavoriteApartmentsListComponent implements OnInit {
   public apartmentsList: Apartment[];
+  public loading: boolean;
 
   constructor(private favoriteService: FavoriteService) {}
 
   ngOnInit() {
+    this.loading = true;
+
     this.favoriteService
       .getFavorites()
       .pipe(first())
       .subscribe((res) => {
         this.apartmentsList = res;
         console.log(this.apartmentsList);
+        this.loading = false;
       });
   }
 }
