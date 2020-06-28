@@ -9,6 +9,7 @@ import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { RouterModule } from "@angular/router";
 import { SpinnerModule } from "../spinner/spinner.module";
 
+
 @NgModule({
   declarations: [PerfectHomeComponent, PerfectHomeQuestionComponent],
   imports: [
@@ -20,6 +21,7 @@ import { SpinnerModule } from "../spinner/spinner.module";
     RouterModule,
     ApartmentsListModule,
     SpinnerModule,
+
   ],
 })
 export class PerfectHomeModule {}
