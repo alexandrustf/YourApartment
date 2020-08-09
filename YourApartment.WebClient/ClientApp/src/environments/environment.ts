@@ -6,7 +6,7 @@ export const environment = {
   production: false,
   // YourApartmentUrl: "https://localhost:44366/api/v1",
   YourApartmentUrl:
-    "https://yourapartmentwebapi2-20200613035211.azurewebsites.net/api/v1",
+    "http://localhost:8080/api/v1",
 
   ApartmentMLUrl: "https://deployapartment.nw.r.appspot.com",
 
